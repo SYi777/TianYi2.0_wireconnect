@@ -1,0 +1,46 @@
+{
+  "version": "6.3.1",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "USB-A_Port",
+      "points": [
+        [
+          638.1500000000001,
+          305.1
+        ],
+        [
+          647.45,
+          313.40000000000003
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Port",
+      "points": [
+        [
+          656.6500000000001,
+          296.3
+        ],
+        [
+          665.75,
+          304.1
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "00176.jpg",
+  "imageData": null,
+  "imageHeight": 720,
+  "imageWidth": 1280
+}

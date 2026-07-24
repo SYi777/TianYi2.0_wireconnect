@@ -1,0 +1,7 @@
+running egg_info
+writing ../../build/bodyctrl_debug/bodyctrl_debug.egg-info/PKG-INFO
+writing dependency_links to ../../build/bodyctrl_debug/bodyctrl_debug.egg-info/dependency_links.txt
+writing entry points to ../../build/bodyctrl_debug/bodyctrl_debug.egg-info/entry_points.txt
+writing requirements to ../../build/bodyctrl_debug/bodyctrl_debug.egg-info/requires.txt
+writing top-level names to ../../build/bodyctrl_debug/bodyctrl_debug.egg-info/top_level.txt
+reading manifest file '../../build/bodyctrl_debug/bodyctrl_debug.egg-info/SOURCES.txt'

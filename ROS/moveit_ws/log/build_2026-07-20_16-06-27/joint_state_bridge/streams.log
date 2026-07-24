@@ -1,0 +1,39 @@
+[0.369s] Invoking command in '/home/syi777/WireConnect_ws/ROS/moveit_ws/src/joint_state_bridge': PYTHONPATH=/home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/joint_state_bridge build --build-base /home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/build install --record /home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/install.log --single-version-externally-managed install_data
+[0.504s] running egg_info
+[0.504s] creating ../../build/joint_state_bridge/joint_state_bridge.egg-info
+[0.504s] writing ../../build/joint_state_bridge/joint_state_bridge.egg-info/PKG-INFO
+[0.504s] writing dependency_links to ../../build/joint_state_bridge/joint_state_bridge.egg-info/dependency_links.txt
+[0.504s] writing entry points to ../../build/joint_state_bridge/joint_state_bridge.egg-info/entry_points.txt
+[0.504s] writing requirements to ../../build/joint_state_bridge/joint_state_bridge.egg-info/requires.txt
+[0.504s] writing top-level names to ../../build/joint_state_bridge/joint_state_bridge.egg-info/top_level.txt
+[0.504s] writing manifest file '../../build/joint_state_bridge/joint_state_bridge.egg-info/SOURCES.txt'
+[0.506s] reading manifest file '../../build/joint_state_bridge/joint_state_bridge.egg-info/SOURCES.txt'
+[0.506s] writing manifest file '../../build/joint_state_bridge/joint_state_bridge.egg-info/SOURCES.txt'
+[0.506s] running build
+[0.506s] running build_py
+[0.506s] creating /home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/build
+[0.506s] creating /home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/build/lib
+[0.506s] creating /home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/build/lib/joint_state_bridge
+[0.506s] copying joint_state_bridge/bridge_node.py -> /home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/build/lib/joint_state_bridge
+[0.506s] copying joint_state_bridge/__init__.py -> /home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/build/lib/joint_state_bridge
+[0.506s] running install
+[0.506s] running install_lib
+[0.507s] creating /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/lib/python3.10/site-packages/joint_state_bridge
+[0.507s] copying /home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/build/lib/joint_state_bridge/bridge_node.py -> /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/lib/python3.10/site-packages/joint_state_bridge
+[0.507s] copying /home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/build/lib/joint_state_bridge/__init__.py -> /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/lib/python3.10/site-packages/joint_state_bridge
+[0.507s] byte-compiling /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/lib/python3.10/site-packages/joint_state_bridge/bridge_node.py to bridge_node.cpython-310.pyc
+[0.508s] byte-compiling /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/lib/python3.10/site-packages/joint_state_bridge/__init__.py to __init__.cpython-310.pyc
+[0.508s] running install_data
+[0.508s] creating /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/share/ament_index
+[0.508s] creating /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/share/ament_index/resource_index
+[0.508s] creating /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/share/ament_index/resource_index/packages
+[0.508s] copying resource/joint_state_bridge -> /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/share/ament_index/resource_index/packages
+[0.508s] copying package.xml -> /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/share/joint_state_bridge
+[0.508s] creating /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/share/joint_state_bridge/launch
+[0.508s] copying launch/joint_state_bridge.launch.py -> /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/share/joint_state_bridge/launch
+[0.508s] running install_egg_info
+[0.510s] Copying ../../build/joint_state_bridge/joint_state_bridge.egg-info to /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/lib/python3.10/site-packages/joint_state_bridge-0.1.0-py3.10.egg-info
+[0.510s] running install_scripts
+[0.524s] Installing joint_state_bridge script to /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/bin
+[0.524s] writing list of installed files to '/home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/install.log'
+[0.538s] Invoked command in '/home/syi777/WireConnect_ws/ROS/moveit_ws/src/joint_state_bridge' returned '0': PYTHONPATH=/home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/joint_state_bridge build --build-base /home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/build install --record /home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/install.log --single-version-externally-managed install_data

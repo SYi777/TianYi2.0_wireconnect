@@ -1,0 +1,25 @@
+running egg_info
+writing ../../build/bodyctrl_debug/bodyctrl_debug.egg-info/PKG-INFO
+writing dependency_links to ../../build/bodyctrl_debug/bodyctrl_debug.egg-info/dependency_links.txt
+writing entry points to ../../build/bodyctrl_debug/bodyctrl_debug.egg-info/entry_points.txt
+writing requirements to ../../build/bodyctrl_debug/bodyctrl_debug.egg-info/requires.txt
+writing top-level names to ../../build/bodyctrl_debug/bodyctrl_debug.egg-info/top_level.txt
+reading manifest file '../../build/bodyctrl_debug/bodyctrl_debug.egg-info/SOURCES.txt'
+writing manifest file '../../build/bodyctrl_debug/bodyctrl_debug.egg-info/SOURCES.txt'
+running build
+running build_py
+copying bodyctrl_debug/bodyctrldebug.py -> /home/syi777/WireConnect_ws/ROS/control_debug_ws/build/bodyctrl_debug/build/lib/bodyctrl_debug
+copying bodyctrl_debug/head_keyboard_control.py -> /home/syi777/WireConnect_ws/ROS/control_debug_ws/build/bodyctrl_debug/build/lib/bodyctrl_debug
+copying bodyctrl_debug/__init__.py -> /home/syi777/WireConnect_ws/ROS/control_debug_ws/build/bodyctrl_debug/build/lib/bodyctrl_debug
+running install
+running install_lib
+running install_data
+copying resource/bodyctrl_debug -> /home/syi777/WireConnect_ws/ROS/control_debug_ws/install/bodyctrl_debug/share/ament_index/resource_index/packages
+copying package.xml -> /home/syi777/WireConnect_ws/ROS/control_debug_ws/install/bodyctrl_debug/share/bodyctrl_debug
+running install_egg_info
+removing '/home/syi777/WireConnect_ws/ROS/control_debug_ws/install/bodyctrl_debug/lib/python3.10/site-packages/bodyctrl_debug-0.1.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/bodyctrl_debug/bodyctrl_debug.egg-info to /home/syi777/WireConnect_ws/ROS/control_debug_ws/install/bodyctrl_debug/lib/python3.10/site-packages/bodyctrl_debug-0.1.0-py3.10.egg-info
+running install_scripts
+Installing bodyctrldebug script to /home/syi777/WireConnect_ws/ROS/control_debug_ws/install/bodyctrl_debug/lib/bodyctrl_debug
+Installing headkb script to /home/syi777/WireConnect_ws/ROS/control_debug_ws/install/bodyctrl_debug/lib/bodyctrl_debug
+writing list of installed files to '/home/syi777/WireConnect_ws/ROS/control_debug_ws/build/bodyctrl_debug/install.log'

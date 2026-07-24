@@ -1,0 +1,15 @@
+[Unit]
+Description=body_control
+After=network.target network-online.target 
+
+[Service]
+User=root
+
+ExecStart=/home/ubuntu/data/scripts/startup_proc_manager.bash
+Restart=no
+Type=simple
+RestartSec=1
+StartLimitInterval=0
+
+[Install]
+WantedBy = multi-user.target

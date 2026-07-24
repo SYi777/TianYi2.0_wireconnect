@@ -1,0 +1,24 @@
+# services_1_to_2:
+#   -
+#     service: /mantisArmEndMove_2001_ros2
+#     type: cm_msgs/srv/CommonRespRos2
+#   -
+#     service: /mantisJointStatesPlan_2001_ros2
+#     type: cm_msgs/srv/CommonRespRos2
+#   -
+#     service: /mantisJointStatesQuery_2001_ros2
+#     type: cm_msgs/srv/CommonRespRos2
+#   -
+#     service: /actionCommand_1051_ros2
+#     type: cm_msgs/srv/CommonRespRos2
+
+topics:
+  -
+    topic: /hand_pose_req
+    type: cm_msgs/msg/HandPoseReq
+    queue_size: 1
+    
+# services_2_to_1:
+#   -
+#     service: /GrpcCommonStream_ros2
+#     type: ginger_msgs/CommonStreamRos2

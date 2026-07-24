@@ -1,0 +1,4 @@
+1780366859.1907406 [INFO] [launch]: All log files can be found below /home/nvidia/orbbec_camera_ros2/log/2026-06-02-10-20-59-187952-nvidia-desktop-11542
+1780366859.1910827 [INFO] [launch]: Default logging verbosity is set to INFO
+1780366859.3816383 [INFO] [component_container-1]: process started with pid [11564]
+1780366861.2475419 [INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/ob_camera_head/ob_camera_head' in container '/ob_camera_head/camera_container'

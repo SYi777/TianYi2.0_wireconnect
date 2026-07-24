@@ -1,0 +1,240 @@
+{
+  "product": "TY2.0-Pro",
+  "version": "v2.0.9",
+  "commit": "bu/integration/tianyi2.0ProD,6ddf3cdf5c8b43f9d94aabd3ae254fd8a4a1d0fb",
+  "release_time": "2026-04-15",
+  "x86": [
+    {
+      "module": "xlibs",
+      "status": "enable",
+      "product": "xlibs",
+      "platform": "x86_64",
+      "version": "v0.0.1",
+      "file_name": "xlibs-x86_64-v0.0.1-20250815_085310.tar.gz",
+      "commit": "bu/project/common/xlibs,ca32779d7e25845286de77c015bb6216c0ce6378",
+      "install_dir_name": "xlibs",
+      "install_address": "192.168.41.1",
+      "release_time": "2025-08-15 08:53:10"
+    },
+    {
+      "module": "fastdds",
+      "status": "enable",
+      "product": "fastdds",
+      "platform": "",
+      "version": "v0.0.1",
+      "file_name": "dds_v0.0.1_20260203_1524.tar.gz",
+      "commit": "UniversalHumanoidPrototypeGroup/OldProjects/mcu_ota,6bf8b6c684c184fd9f10cbb6d10d46f1638f6877",
+      "install_dir_name": "fastdds",
+      "install_address": "192.168.41.1",
+      "release_time": "2025-11-20_15:39:00"
+    },
+    {
+      "module": "ota",
+      "status": "enable",
+      "product": "ota",
+      "platform": "linux-aarch64",
+      "version": "40407837",
+      "file_name": "ota_linux-x86_general_40407837_20260205_162551.tar.gz",
+      "commit": "bu/base/ota,4040783757247b3aa9bb457783482bff43a107ea",
+      "install_dir_name": "ota",
+      "install_address": "192.168.41.1",
+      "release_time": "2026-02-05 16:27:09"
+    },
+    {
+      "module": "benti",
+      "status": "enable",
+      "product": "TY2.0-pro",
+      "platform": "linux-x86",
+      "version": "v2.0.9",
+      "file_name": "TY2.0-pro_linux-x86_general_v2.0.9_20260415_181514.tar.gz",
+      "commit": "bu/project/tianyi2.0/tianyi_ros2,4d49e607b6ff9c2becfbec43e396fd5938c6f8d4",
+      "install_dir_name": "ros2ws",
+      "install_address": "192.168.41.1",
+      "release_time": "2026-04-15 18:19:53"
+    },
+    {
+      "module": "xarm_env",
+      "status": "enable",
+      "product": "XARM_env",
+      "platform": "",
+      "version": "V1.2.6",
+      "file_name": "XARM_env_release.tar.gz",
+      "commit": "EAI-manipulator/xarm_release,8bfc14331be48175357c42a40ef3811c0684afe6",
+      "install_dir_name": "xarm_env",
+      "install_address": "192.168.41.1",
+      "release_time": "2026-03-23 06:23:06"
+    },
+    {
+      "module": "xarm",
+      "status": "enable",
+      "product": "XARM",
+      "platform": "",
+      "version": "V1.2.27",
+      "file_name": "XARM_release.tar.gz",
+      "commit": "EAI-manipulator/xarm_release,c6f1ebd375217d14b199884ad56e5fc99979cd20",
+      "install_dir_name": "xarm",
+      "install_address": "192.168.41.1",
+      "release_time": "2026-04-15 02:51:02"
+    },
+    {
+      "module": "remote_diagnose",
+      "status": "enable",
+      "product": "remote_diagnose",
+      "platform": "linux-x86",
+      "version": "1.2.24755",
+      "file_name": "remote_diagnose-v1.1.2.tar.gz",
+      "commit": "robot-diagnose,c0efa57bc4a0307442cf0b664b4b2e7e1ccf39a3",
+      "install_dir_name": "remote_diagnose",
+      "install_address": "192.168.41.1",
+      "release_time": "2026-04-15 18:26:49"
+    },
+    {
+      "module": "log_extract",
+      "status": "enable",
+      "product": "robot-log-extract",
+      "platform": "linux-x86",
+      "version": "1.1.24756",
+      "file_name": "log_extract-v1.0.6.tar.gz",
+      "commit": "robot-log-extract,c0efa57bc4a0307442cf0b664b4b2e7e1ccf39a3",
+      "install_dir_name": "log_extract",
+      "install_address": "192.168.41.1",
+      "release_time": "2026-04-15 18:35:09"
+    },
+    {
+      "module": "cloud_proxy",
+      "status": "enable",
+      "product": "cloud_proxy",
+      "platform": "linux-x86",
+      "version": "1.0.24808",
+      "file_name": "cloud_proxy_linux-x86_general_1.0.21620_20260325_152243.tar.gz",
+      "commit": "bu/base/cloud_proxy,90afdf899f2037b9b749660446b455fd187e33f2",
+      "install_dir_name": "cloud_proxy",
+      "install_address": "192.168.41.1",
+      "release_time": "2026-04-15 20:15:57"
+    },
+    {
+      "module": "cloud_service",
+      "status": "enable",
+      "product": "cloud_service",
+      "platform": "linux-x86",
+      "version": "1.0.24751",
+      "file_name": "cloud_service_linux-x86_general_1.0.22717_20260402_150112.tar.gz",
+      "commit": "bu/base/cloud_service,d648e44ab9dc94987c010d54fe7d4569c2390262",
+      "install_dir_name": "cloud_service",
+      "install_address": "192.168.41.1",
+      "release_time": "2026-04-15 18:04:44"
+    },
+    {
+      "module": "teleop_robot",
+      "status": "enable",
+      "product": " teleop_robot",
+      "platform": "",
+      "version": " v0.0.6",
+      "file_name": "teleop_robot_TY2.0_ProD_2026-04-14_18-17-16.tar.gz",
+      "commit": " teleop_robot,941d5aed01dbf26e2911e6f6ff16f658f1308595",
+      "install_dir_name": "teleop_robot",
+      "install_address": "192.168.41.1",
+      "release_time": " 2026-04-14 19:28:16"
+    }
+  ],
+  "orin_llm": [
+    {
+      "module": "ros2ws",
+      "status": "enable",
+      "product": "lyre_ros2",
+      "platform": "aarch64",
+      "version": "v2.0.11",
+      "file_name": "lyre_ros2-aarch64-v2.0.11-20260415_180629.tar.gz",
+      "commit": "bu/project/common/lyre_ros2,64b89b1f05bc81bbb5e25ad203b57abf5b9dafe3",
+      "install_dir_name": "ros2ws",
+      "install_address": "192.168.41.2",
+      "release_time": "2026-04-15 18:06:28"
+    },
+    {
+      "module": "disk_manage",
+      "status": "enable",
+      "product": "disk_manager",
+      "platform": "linux-aarch64",
+      "version": "23578a1e",
+      "file_name": "disk_manager_linux-aarch64_general_23578a1e_20260414_213023.tar.gz",
+      "commit": "bu/base/disk_manager,23578a1eed615e17a168252f21f8c982289ffea0",
+      "install_dir_name": "disk_manage",
+      "install_address": "192.168.41.2",
+      "release_time": "2026-04-14 21:30:23"
+    },
+    {
+      "module": "orbbec_camera",
+      "status": "enable",
+      "product": "OrbbecCamera",
+      "platform": "linux-aarch64",
+      "version": "a351a5b6",
+      "file_name": "OrbbecCamera_linux-aarch64_general_a351a5b6_20260309_170332.tar.gz",
+      "commit": "bu/project/common/orbbec_camera,a351a5b6c8e71a9d50339c013463dd35443836d0",
+      "install_dir_name": "orbbec_camera_ros2",
+      "install_address": "192.168.41.2",
+      "release_time": "2026-03-09 17:05:21"
+    },
+    {
+      "module": "webrtc_server",
+      "status": "enable",
+      "product": "WebrtcServer-tianyi",
+      "platform": "ros2",
+      "version": "v0.0.10",
+      "file_name": "webrtc_server_tianyi_v0.0.10.0_dev_6890293e_20251128144333.tar.gz",
+      "commit": "dev,6890293e7930b18a408b63f9ad3f6fafb65d125b",
+      "install_dir_name": "webrtc_server",
+      "install_address": "192.168.41.2",
+      "release_time": "2025-11-28 14:41:40 "
+    },
+    {
+      "module": "lyre_vtn",
+      "status": "enable",
+      "product": "lyre_vtn",
+      "platform": "",
+      "version": "0.0.1.14412",
+      "file_name": "lyre_vtn-tyty-aarch64.tar.gz",
+      "commit": "bu/project/common/lyre_vtn,262993250ba34f24bb98d5c36dc8bc2bc8822f91",
+      "install_dir_name": "lyre_vtn",
+      "install_address": "192.168.41.2",
+      "release_time": "2026-01-19 15:59:47"
+    },
+    {
+      "module": "orin_chassis_ip",
+      "status": "enable",
+      "product": "TY2.0-ProD",
+      "platform": "",
+      "version": "v0.0.1",
+      "file_name": "orin_chassis_ip_TY2.0_ProD_2026-01-19_13-55-29.tar.gz",
+      "commit": "edgeai1/robot_patrol_system,2c9b33dbbcd8fafee33733611ce8746723adbd1d",
+      "install_dir_name": "orin_chassis_ip",
+      "install_address": "192.168.41.2",
+      "release_time": "2026-01-19 13:55:29"
+    }
+  ],
+  "firmware": [
+    {
+      "module": "joint-u2c",
+      "status": "enable",
+      "product": "TY2.0-Pro",
+      "platform": "",
+      "version": "0.0.3.16746",
+      "file_name": "joint-u2c_TY2.0-Pro_0.0.3.16746.tar.gz",
+      "commit": "robot/firmware/joint-u2c,f17bace2e6593f57cf0eb521cf88240ee07ff131",
+      "install_dir_name": "joint-u2c",
+      "install_address": "",
+      "release_time": "2026-04-08 10:26:11"
+    },
+    {
+      "module": "powerboard",
+      "status": "enable",
+      "product": "TY2.0-Pro",
+      "platform": "",
+      "version": "0.0.1.16987",
+      "file_name": "powerboard-serial_TY2.0-Pro_0.0.1.16987.tar.gz",
+      "commit": "robot/firmware/powerboard-serial,3060b9af6857083f0c07c8c62b9187bc9563c874",
+      "install_dir_name": "powerboard",
+      "install_address": "",
+      "release_time": "2026-04-15 10:27:53"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+/home/syi777/WireConnect_ws/ROS/moveit_ws/src/tianyi2_moveit_config/launch/moveit_rviz.launch.py

@@ -1,0 +1,11 @@
+source;share/rmpflow/hook/cmake_prefix_path.ps1
+source;share/rmpflow/hook/cmake_prefix_path.dsv
+source;share/rmpflow/hook/cmake_prefix_path.sh
+source;share/rmpflow/hook/ld_library_path_lib.ps1
+source;share/rmpflow/hook/ld_library_path_lib.dsv
+source;share/rmpflow/hook/ld_library_path_lib.sh
+source;share/rmpflow/local_setup.bash
+source;share/rmpflow/local_setup.dsv
+source;share/rmpflow/local_setup.ps1
+source;share/rmpflow/local_setup.sh
+source;share/rmpflow/local_setup.zsh

@@ -1,0 +1,9 @@
+# 目标关节角度
+float64[] target_positions
+---
+bool success
+string result_msg
+---
+float64[] current_positions
+string feedback_msg
+

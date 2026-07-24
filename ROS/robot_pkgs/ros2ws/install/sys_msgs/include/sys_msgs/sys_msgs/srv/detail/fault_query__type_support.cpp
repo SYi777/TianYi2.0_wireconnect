@@ -1,0 +1,381 @@
+// generated from rosidl_typesupport_introspection_cpp/resource/idl__type_support.cpp.em
+// with input from sys_msgs:srv/FaultQuery.idl
+// generated code does not contain a copyright notice
+
+#include "array"
+#include "cstddef"
+#include "string"
+#include "vector"
+#include "rosidl_runtime_c/message_type_support_struct.h"
+#include "rosidl_typesupport_cpp/message_type_support.hpp"
+#include "rosidl_typesupport_interface/macros.h"
+#include "sys_msgs/srv/detail/fault_query__struct.hpp"
+#include "rosidl_typesupport_introspection_cpp/field_types.hpp"
+#include "rosidl_typesupport_introspection_cpp/identifier.hpp"
+#include "rosidl_typesupport_introspection_cpp/message_introspection.hpp"
+#include "rosidl_typesupport_introspection_cpp/message_type_support_decl.hpp"
+#include "rosidl_typesupport_introspection_cpp/visibility_control.h"
+
+namespace sys_msgs
+{
+
+namespace srv
+{
+
+namespace rosidl_typesupport_introspection_cpp
+{
+
+void FaultQuery_Request_init_function(
+  void * message_memory, rosidl_runtime_cpp::MessageInitialization _init)
+{
+  new (message_memory) sys_msgs::srv::FaultQuery_Request(_init);
+}
+
+void FaultQuery_Request_fini_function(void * message_memory)
+{
+  auto typed_message = static_cast<sys_msgs::srv::FaultQuery_Request *>(message_memory);
+  typed_message->~FaultQuery_Request();
+}
+
+static const ::rosidl_typesupport_introspection_cpp::MessageMember FaultQuery_Request_message_member_array[1] = {
+  {
+    "structure_needs_at_least_one_member",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(sys_msgs::srv::FaultQuery_Request, structure_needs_at_least_one_member),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
+  }
+};
+
+static const ::rosidl_typesupport_introspection_cpp::MessageMembers FaultQuery_Request_message_members = {
+  "sys_msgs::srv",  // message namespace
+  "FaultQuery_Request",  // message name
+  1,  // number of fields
+  sizeof(sys_msgs::srv::FaultQuery_Request),
+  FaultQuery_Request_message_member_array,  // message members
+  FaultQuery_Request_init_function,  // function to initialize message memory (memory has to be allocated)
+  FaultQuery_Request_fini_function  // function to terminate message instance (will not free memory)
+};
+
+static const rosidl_message_type_support_t FaultQuery_Request_message_type_support_handle = {
+  ::rosidl_typesupport_introspection_cpp::typesupport_identifier,
+  &FaultQuery_Request_message_members,
+  get_message_typesupport_handle_function,
+};
+
+}  // namespace rosidl_typesupport_introspection_cpp
+
+}  // namespace srv
+
+}  // namespace sys_msgs
+
+
+namespace rosidl_typesupport_introspection_cpp
+{
+
+template<>
+ROSIDL_TYPESUPPORT_INTROSPECTION_CPP_PUBLIC
+const rosidl_message_type_support_t *
+get_message_type_support_handle<sys_msgs::srv::FaultQuery_Request>()
+{
+  return &::sys_msgs::srv::rosidl_typesupport_introspection_cpp::FaultQuery_Request_message_type_support_handle;
+}
+
+}  // namespace rosidl_typesupport_introspection_cpp
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+ROSIDL_TYPESUPPORT_INTROSPECTION_CPP_PUBLIC
+const rosidl_message_type_support_t *
+ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_cpp, sys_msgs, srv, FaultQuery_Request)() {
+  return &::sys_msgs::srv::rosidl_typesupport_introspection_cpp::FaultQuery_Request_message_type_support_handle;
+}
+
+#ifdef __cplusplus
+}
+#endif
+
+// already included above
+// #include "array"
+// already included above
+// #include "cstddef"
+// already included above
+// #include "string"
+// already included above
+// #include "vector"
+// already included above
+// #include "rosidl_runtime_c/message_type_support_struct.h"
+// already included above
+// #include "rosidl_typesupport_cpp/message_type_support.hpp"
+// already included above
+// #include "rosidl_typesupport_interface/macros.h"
+// already included above
+// #include "sys_msgs/srv/detail/fault_query__struct.hpp"
+// already included above
+// #include "rosidl_typesupport_introspection_cpp/field_types.hpp"
+// already included above
+// #include "rosidl_typesupport_introspection_cpp/identifier.hpp"
+// already included above
+// #include "rosidl_typesupport_introspection_cpp/message_introspection.hpp"
+// already included above
+// #include "rosidl_typesupport_introspection_cpp/message_type_support_decl.hpp"
+// already included above
+// #include "rosidl_typesupport_introspection_cpp/visibility_control.h"
+
+namespace sys_msgs
+{
+
+namespace srv
+{
+
+namespace rosidl_typesupport_introspection_cpp
+{
+
+void FaultQuery_Response_init_function(
+  void * message_memory, rosidl_runtime_cpp::MessageInitialization _init)
+{
+  new (message_memory) sys_msgs::srv::FaultQuery_Response(_init);
+}
+
+void FaultQuery_Response_fini_function(void * message_memory)
+{
+  auto typed_message = static_cast<sys_msgs::srv::FaultQuery_Response *>(message_memory);
+  typed_message->~FaultQuery_Response();
+}
+
+size_t size_function__FaultQuery_Response__fault_array(const void * untyped_member)
+{
+  const auto * member = reinterpret_cast<const std::vector<sys_msgs::msg::Fault> *>(untyped_member);
+  return member->size();
+}
+
+const void * get_const_function__FaultQuery_Response__fault_array(const void * untyped_member, size_t index)
+{
+  const auto & member =
+    *reinterpret_cast<const std::vector<sys_msgs::msg::Fault> *>(untyped_member);
+  return &member[index];
+}
+
+void * get_function__FaultQuery_Response__fault_array(void * untyped_member, size_t index)
+{
+  auto & member =
+    *reinterpret_cast<std::vector<sys_msgs::msg::Fault> *>(untyped_member);
+  return &member[index];
+}
+
+void fetch_function__FaultQuery_Response__fault_array(
+  const void * untyped_member, size_t index, void * untyped_value)
+{
+  const auto & item = *reinterpret_cast<const sys_msgs::msg::Fault *>(
+    get_const_function__FaultQuery_Response__fault_array(untyped_member, index));
+  auto & value = *reinterpret_cast<sys_msgs::msg::Fault *>(untyped_value);
+  value = item;
+}
+
+void assign_function__FaultQuery_Response__fault_array(
+  void * untyped_member, size_t index, const void * untyped_value)
+{
+  auto & item = *reinterpret_cast<sys_msgs::msg::Fault *>(
+    get_function__FaultQuery_Response__fault_array(untyped_member, index));
+  const auto & value = *reinterpret_cast<const sys_msgs::msg::Fault *>(untyped_value);
+  item = value;
+}
+
+void resize_function__FaultQuery_Response__fault_array(void * untyped_member, size_t size)
+{
+  auto * member =
+    reinterpret_cast<std::vector<sys_msgs::msg::Fault> *>(untyped_member);
+  member->resize(size);
+}
+
+static const ::rosidl_typesupport_introspection_cpp::MessageMember FaultQuery_Response_message_member_array[1] = {
+  {
+    "fault_array",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
+    0,  // upper bound of string
+    ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<sys_msgs::msg::Fault>(),  // members of sub message
+    true,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(sys_msgs::srv::FaultQuery_Response, fault_array),  // bytes offset in struct
+    nullptr,  // default value
+    size_function__FaultQuery_Response__fault_array,  // size() function pointer
+    get_const_function__FaultQuery_Response__fault_array,  // get_const(index) function pointer
+    get_function__FaultQuery_Response__fault_array,  // get(index) function pointer
+    fetch_function__FaultQuery_Response__fault_array,  // fetch(index, &value) function pointer
+    assign_function__FaultQuery_Response__fault_array,  // assign(index, value) function pointer
+    resize_function__FaultQuery_Response__fault_array  // resize(index) function pointer
+  }
+};
+
+static const ::rosidl_typesupport_introspection_cpp::MessageMembers FaultQuery_Response_message_members = {
+  "sys_msgs::srv",  // message namespace
+  "FaultQuery_Response",  // message name
+  1,  // number of fields
+  sizeof(sys_msgs::srv::FaultQuery_Response),
+  FaultQuery_Response_message_member_array,  // message members
+  FaultQuery_Response_init_function,  // function to initialize message memory (memory has to be allocated)
+  FaultQuery_Response_fini_function  // function to terminate message instance (will not free memory)
+};
+
+static const rosidl_message_type_support_t FaultQuery_Response_message_type_support_handle = {
+  ::rosidl_typesupport_introspection_cpp::typesupport_identifier,
+  &FaultQuery_Response_message_members,
+  get_message_typesupport_handle_function,
+};
+
+}  // namespace rosidl_typesupport_introspection_cpp
+
+}  // namespace srv
+
+}  // namespace sys_msgs
+
+
+namespace rosidl_typesupport_introspection_cpp
+{
+
+template<>
+ROSIDL_TYPESUPPORT_INTROSPECTION_CPP_PUBLIC
+const rosidl_message_type_support_t *
+get_message_type_support_handle<sys_msgs::srv::FaultQuery_Response>()
+{
+  return &::sys_msgs::srv::rosidl_typesupport_introspection_cpp::FaultQuery_Response_message_type_support_handle;
+}
+
+}  // namespace rosidl_typesupport_introspection_cpp
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+ROSIDL_TYPESUPPORT_INTROSPECTION_CPP_PUBLIC
+const rosidl_message_type_support_t *
+ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_cpp, sys_msgs, srv, FaultQuery_Response)() {
+  return &::sys_msgs::srv::rosidl_typesupport_introspection_cpp::FaultQuery_Response_message_type_support_handle;
+}
+
+#ifdef __cplusplus
+}
+#endif
+
+#include "rosidl_runtime_c/service_type_support_struct.h"
+// already included above
+// #include "rosidl_typesupport_cpp/message_type_support.hpp"
+#include "rosidl_typesupport_cpp/service_type_support.hpp"
+// already included above
+// #include "rosidl_typesupport_interface/macros.h"
+// already included above
+// #include "rosidl_typesupport_introspection_cpp/visibility_control.h"
+// already included above
+// #include "sys_msgs/srv/detail/fault_query__struct.hpp"
+// already included above
+// #include "rosidl_typesupport_introspection_cpp/identifier.hpp"
+// already included above
+// #include "rosidl_typesupport_introspection_cpp/message_type_support_decl.hpp"
+#include "rosidl_typesupport_introspection_cpp/service_introspection.hpp"
+#include "rosidl_typesupport_introspection_cpp/service_type_support_decl.hpp"
+
+namespace sys_msgs
+{
+
+namespace srv
+{
+
+namespace rosidl_typesupport_introspection_cpp
+{
+
+// this is intentionally not const to allow initialization later to prevent an initialization race
+static ::rosidl_typesupport_introspection_cpp::ServiceMembers FaultQuery_service_members = {
+  "sys_msgs::srv",  // service namespace
+  "FaultQuery",  // service name
+  // these two fields are initialized below on the first access
+  // see get_service_type_support_handle<sys_msgs::srv::FaultQuery>()
+  nullptr,  // request message
+  nullptr  // response message
+};
+
+static const rosidl_service_type_support_t FaultQuery_service_type_support_handle = {
+  ::rosidl_typesupport_introspection_cpp::typesupport_identifier,
+  &FaultQuery_service_members,
+  get_service_typesupport_handle_function,
+};
+
+}  // namespace rosidl_typesupport_introspection_cpp
+
+}  // namespace srv
+
+}  // namespace sys_msgs
+
+
+namespace rosidl_typesupport_introspection_cpp
+{
+
+template<>
+ROSIDL_TYPESUPPORT_INTROSPECTION_CPP_PUBLIC
+const rosidl_service_type_support_t *
+get_service_type_support_handle<sys_msgs::srv::FaultQuery>()
+{
+  // get a handle to the value to be returned
+  auto service_type_support =
+    &::sys_msgs::srv::rosidl_typesupport_introspection_cpp::FaultQuery_service_type_support_handle;
+  // get a non-const and properly typed version of the data void *
+  auto service_members = const_cast<::rosidl_typesupport_introspection_cpp::ServiceMembers *>(
+    static_cast<const ::rosidl_typesupport_introspection_cpp::ServiceMembers *>(
+      service_type_support->data));
+  // make sure that both the request_members_ and the response_members_ are initialized
+  // if they are not, initialize them
+  if (
+    service_members->request_members_ == nullptr ||
+    service_members->response_members_ == nullptr)
+  {
+    // initialize the request_members_ with the static function from the external library
+    service_members->request_members_ = static_cast<
+      const ::rosidl_typesupport_introspection_cpp::MessageMembers *
+      >(
+      ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<
+        ::sys_msgs::srv::FaultQuery_Request
+      >()->data
+      );
+    // initialize the response_members_ with the static function from the external library
+    service_members->response_members_ = static_cast<
+      const ::rosidl_typesupport_introspection_cpp::MessageMembers *
+      >(
+      ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<
+        ::sys_msgs::srv::FaultQuery_Response
+      >()->data
+      );
+  }
+  // finally return the properly initialized service_type_support handle
+  return service_type_support;
+}
+
+}  // namespace rosidl_typesupport_introspection_cpp
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+ROSIDL_TYPESUPPORT_INTROSPECTION_CPP_PUBLIC
+const rosidl_service_type_support_t *
+ROSIDL_TYPESUPPORT_INTERFACE__SERVICE_SYMBOL_NAME(rosidl_typesupport_introspection_cpp, sys_msgs, srv, FaultQuery)() {
+  return ::rosidl_typesupport_introspection_cpp::get_service_type_support_handle<sys_msgs::srv::FaultQuery>();
+}
+
+#ifdef __cplusplus
+}
+#endif

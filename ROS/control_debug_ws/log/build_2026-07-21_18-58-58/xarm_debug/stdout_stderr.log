@@ -1,0 +1,20 @@
+running egg_info
+writing ../../build/xarm_debug/xarm_debug.egg-info/PKG-INFO
+writing dependency_links to ../../build/xarm_debug/xarm_debug.egg-info/dependency_links.txt
+writing entry points to ../../build/xarm_debug/xarm_debug.egg-info/entry_points.txt
+writing requirements to ../../build/xarm_debug/xarm_debug.egg-info/requires.txt
+writing top-level names to ../../build/xarm_debug/xarm_debug.egg-info/top_level.txt
+reading manifest file '../../build/xarm_debug/xarm_debug.egg-info/SOURCES.txt'
+writing manifest file '../../build/xarm_debug/xarm_debug.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_data
+running install_egg_info
+removing '/home/syi777/WireConnect_ws/control_debug_ws/install/xarm_debug/lib/python3.10/site-packages/xarm_debug-0.1.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/xarm_debug/xarm_debug.egg-info to /home/syi777/WireConnect_ws/control_debug_ws/install/xarm_debug/lib/python3.10/site-packages/xarm_debug-0.1.0-py3.10.egg-info
+running install_scripts
+Installing xarmcontroldebug script to /home/syi777/WireConnect_ws/control_debug_ws/install/xarm_debug/lib/xarm_debug
+Installing xarmdebug script to /home/syi777/WireConnect_ws/control_debug_ws/install/xarm_debug/lib/xarm_debug
+writing list of installed files to '/home/syi777/WireConnect_ws/control_debug_ws/build/xarm_debug/install.log'

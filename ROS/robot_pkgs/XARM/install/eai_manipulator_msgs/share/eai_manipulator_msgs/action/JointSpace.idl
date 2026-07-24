@@ -1,0 +1,24 @@
+// generated from rosidl_adapter/resource/action.idl.em
+// with input from eai_manipulator_msgs/action/JointSpace.action
+// generated code does not contain a copyright notice
+
+
+module eai_manipulator_msgs {
+  module action {
+    @verbatim (language="comment", text=
+      "目标关节角度")
+    struct JointSpace_Goal {
+      sequence<double> target_positions;
+    };
+    struct JointSpace_Result {
+      boolean success;
+
+      string result_msg;
+    };
+    struct JointSpace_Feedback {
+      sequence<double> current_positions;
+
+      string feedback_msg;
+    };
+  };
+};

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot xmlns:xacro="http://wiki.ros.org/xacro"
+  name="collision_ball_base">
+  <!-- 添加碰撞球 -->
+  <link name="collision_base_1">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0" ixz="0" iyy="0.0" iyz="0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.16"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.529 0.808 0.980 0.9"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.16"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="waist_yaw_to_collision_base_1" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.30"/>
+    <parent link="waist_yaw_link"/>
+    <child link="collision_base_1"/>
+  </joint>
+
+  <link name="collision_base_2">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0" ixz="0" iyy="0.0" iyz="0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.16"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.529 0.808 0.980 0.9"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.16"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="waist_yaw_to_collision_base_2" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.15"/>
+    <parent link="waist_yaw_link"/>
+    <child link="collision_base_2"/>
+  </joint>
+  
+  <link name="collision_base_3">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0" ixz="0" iyy="0.0" iyz="0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.16"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.529 0.808 0.980 0.9"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.16"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="waist_yaw_to_collision_base_3" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.23"/>
+    <parent link="waist_yaw_link"/>
+    <child link="collision_base_3"/>
+  </joint>
+
+
+</robot>

@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"
+  name="tiangong2dex_upperbody">
+  <link name="waist_pitch_link">
+    <inertial>
+      <origin xyz="-0.000538 0.000614 0.188819" rpy="0 0 0" />
+      <mass value="10.32379" />
+      <inertia ixx="0.19644" ixy="0.000118" ixz="0.002999" iyy="0.161537" iyz="0.000194" izz="0.096682" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/waist_pitch_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/waist_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="head_yaw_link">
+    <inertial>
+      <origin xyz="0.015357 0.000986 0.023702" rpy="0 0 0" />
+      <mass value="0.95297" />
+      <inertia ixx="0.001542" ixy="-1.5e-05" ixz="-9.7e-05" iyy="0.001564" iyz="-1e-06" izz="0.002195" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/head_yaw_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/head_yaw_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="head_yaw_joint" type="revolute">
+    <origin xyz="0 0 0.43627" rpy="0 0 0" />
+    <parent link="waist_pitch_link" />
+    <child link="head_yaw_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.0471975511965976" upper="1.0471975511965976" effort="6.3" velocity="7.644542123735163" />
+  </joint>
+  <link name="head_pitch_link">
+    <inertial>
+      <origin xyz="-0.001681 0.0042 -0.00014" rpy="0 0 0" />
+      <mass value="0.067829" />
+      <inertia ixx="7.1e-05" ixy="3e-06" ixz="0.0" iyy="2.2e-05" iyz="0.0" izz="6.5e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/head_pitch_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/head_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="head_pitch_joint" type="revolute">
+    <origin xyz="0.0689 -7.7578E-05 -0.0006" rpy="0 0 0" />
+    <parent link="head_yaw_link" />
+    <child link="head_pitch_link" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.9599310885968813" upper="0.2617993877991494" effort="6.3" velocity="7.644542123735163" />
+  </joint>
+  <link name="camera_head_link">
+    <inertial>
+      <origin xyz="0.010986 -0.000307 -0.016475" rpy="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="1.6e-05" ixy="0.0" ixz="0.0" iyy="8e-05" iyz="0.0" izz="7.7e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/camera_head_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/camera_head_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="camera_head_joint" type="fixed">
+    <origin xyz="0.01555 0.011209 -0.00012387" rpy="-1.5659 0 -1.5708" />
+    <parent link="head_pitch_link" />
+    <child link="camera_head_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="radar_head_link">
+    <inertial>
+      <origin xyz="-0.0002 -6e-06 -0.017365" rpy="0 0 0" />
+      <mass value="0.265" />
+      <inertia ixx="0.000124" ixy="0.0" ixz="0.0" iyy="0.000133" iyz="0.0" izz="0.000132" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/radar_head_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/radar_head_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="radar_head_joint" type="fixed">
+    <origin xyz="0 0 0.38177" rpy="3.1416 0 1.5708" />
+    <parent link="waist_pitch_link" />
+    <child link="radar_head_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="imu_head_link">
+    <inertial>
+      <origin xyz="0.001734 0.001046 -0.009253" rpy="0 0 0" />
+      <mass value="0.008" />
+      <inertia ixx="1e-06" ixy="0.0" ixz="0.0" iyy="1e-06" iyz="0.0" izz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/imu_head_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/imu_head_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="imu_head_joint" type="fixed">
+    <origin xyz="-0.057774 0 0.42677" rpy="-3.1416 0 -1.5708" />
+    <parent link="waist_pitch_link" />
+    <child link="imu_head_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="shoulder_pitch_l_link">
+    <inertial>
+      <origin xyz="0.004159 0.068507 2.3e-05" rpy="0 0 0" />
+      <mass value="0.909618" />
+      <inertia ixx="0.001218" ixy="-2e-05" ixz="0.0" iyy="0.000731" iyz="3e-06" izz="0.000973" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/shoulder_pitch_l_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/shoulder_pitch_l_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="shoulder_pitch_l_joint" type="revolute">
+    <origin xyz="0 0.13935 0.18595" rpy="0.087266 0 0" />
+    <parent link="waist_pitch_link" />
+    <child link="shoulder_pitch_l_link" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.9670597283903604" upper="2.9670597283903604" effort="91.0" velocity="9.215338450530059" />
+  </joint>
+  <link name="shoulder_roll_l_link">
+    <inertial>
+      <origin xyz="0.002685 -2e-06 -0.048205" rpy="0 0 0" />
+      <mass value="0.291432" />
+      <inertia ixx="0.000897" ixy="0.0" ixz="-1.4e-05" iyy="0.001004" iyz="0.0" izz="0.000519" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/shoulder_roll_l_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/shoulder_roll_l_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="shoulder_roll_l_joint" type="revolute">
+    <origin xyz="0 0.074003 0" rpy="0 0 0" />
+    <parent link="shoulder_pitch_l_link" />
+    <child link="shoulder_roll_l_link" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.2617993877991494" upper="3.4033920413889422" effort="60.0" velocity="12.56637061435917" />
+  </joint>
+  <link name="shoulder_yaw_l_link">
+    <inertial>
+      <origin xyz="0.011778 0.002807 -0.095219" rpy="0 0 0" />
+      <mass value="1.453126" />
+      <inertia ixx="0.005642" ixy="-3.4e-05" ixz="0.000793" iyy="0.006039" iyz="0.000184" izz="0.001316" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/shoulder_yaw_l_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/shoulder_yaw_l_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="shoulder_yaw_l_joint" type="revolute">
+    <origin xyz="0 0 -0.1198" rpy="0 0 0" />
+    <parent link="shoulder_roll_l_link" />
+    <child link="shoulder_yaw_l_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.9670597283903604" upper="2.9670597283903604" effort="36.0" velocity="7.644542123735163" />
+  </joint>
+  <link name="elbow_pitch_l_link">
+    <inertial>
+      <origin xyz="-0.016886 0.000922 -0.069512" rpy="0 0 0" />
+      <mass value="0.684992" />
+      <inertia ixx="0.001476" ixy="-8e-06" ixz="-0.00015" iyy="0.00138" iyz="-3.6e-05" izz="0.000724" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/elbow_pitch_l_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/elbow_pitch_l_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="elbow_pitch_l_joint" type="revolute">
+    <origin xyz="0.02 0 -0.1402" rpy="0 0 0" />
+    <parent link="shoulder_yaw_l_link" />
+    <child link="elbow_pitch_l_link" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.6179938779914944" upper="0.2617993877991494" effort="60.0" velocity="7.644542123735163" />
+  </joint>
+  <link name="elbow_yaw_l_link">
+    <inertial>
+      <origin xyz="2e-06 0.003301 -0.047544" rpy="0 0 0" />
+      <mass value="0.150855" />
+      <inertia ixx="0.000293" ixy="0.0" ixz="0.0" iyy="0.000229" iyz="1.2e-05" izz="0.000168" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/elbow_yaw_l_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/elbow_yaw_l_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="elbow_yaw_l_joint" type="revolute">
+    <origin xyz="-0.02 0 -0.112" rpy="0 0 0" />
+    <parent link="elbow_pitch_l_link" />
+    <child link="elbow_yaw_l_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.9670597283903604" upper="2.9670597283903604" effort="36.0" velocity="15.289084247470326" />
+  </joint>
+  <link name="wrist_pitch_l_link">
+    <inertial>
+      <origin xyz="0.002678 0.003481 -0.030765" rpy="0 0 0" />
+      <mass value="1.064383" />
+      <inertia ixx="0.00175" ixy="1e-05" ixz="8.8e-05" iyy="0.001741" iyz="-0.000114" izz="0.000714" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/wrist_pitch_l_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/wrist_pitch_l_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wrist_pitch_l_joint" type="revolute">
+    <origin xyz="0 0 -0.086" rpy="0 0 0" />
+    <parent link="elbow_yaw_l_link" />
+    <child link="wrist_pitch_l_link" />
+    <axis xyz="0 1 0" />
+    <limit lower="-1.3962634015954636" upper="1.3962634015954636" effort="36.0" velocity="7.5398223686155035" />
+  </joint>
+  <link name="wrist_roll_l_link">
+    <inertial>
+      <origin xyz="0.014657 1.7e-05 -0.024943" rpy="0 0 0" />
+      <mass value="0.109123" />
+      <inertia ixx="7.7e-05" ixy="0.0" ixz="-3.3e-05" iyy="9.5e-05" iyz="0.0" izz="7e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/wrist_roll_l_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/wrist_roll_l_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wrist_roll_l_joint" type="revolute">
+    <origin xyz="0 0 -0.061999" rpy="0 0 0" />
+    <parent link="wrist_pitch_l_link" />
+    <child link="wrist_roll_l_link" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.3962634015954636" upper="1.3962634015954636" effort="36.0" velocity="7.5398223686155035" />
+  </joint>
+  <link name="left_tcp_link">
+    <inertial>
+      <origin xyz="0.002131 -0.001921 -0.050085" rpy="0 0 0" />
+      <mass value="0.151835" />
+      <inertia ixx="0.000139" ixy="8e-06" ixz="-3e-06" iyy="0.000175" iyz="-1e-05" izz="0.000131" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/left_tcp_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/left_tcp_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="left_tcp_joint" type="fixed">
+    <origin xyz="0 0 -0.048905" rpy="0 0 0" />
+    <parent link="wrist_roll_l_link" />
+    <child link="left_tcp_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="shoulder_pitch_r_link">
+    <inertial>
+      <origin xyz="0.004159 -0.068507 2.3e-05" rpy="0 0 0" />
+      <mass value="0.909618" />
+      <inertia ixx="0.001218" ixy="2e-05" ixz="0.0" iyy="0.000731" iyz="-3e-06" izz="0.000973" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/shoulder_pitch_r_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/shoulder_pitch_r_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="shoulder_pitch_r_joint" type="revolute">
+    <origin xyz="0 -0.13935 0.18595" rpy="-0.087266 0 0" />
+    <parent link="waist_pitch_link" />
+    <child link="shoulder_pitch_r_link" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.9670597283903604" upper="2.9670597283903604" effort="91.0" velocity="9.215338450530059" />
+  </joint>
+  <link name="shoulder_roll_r_link">
+    <inertial>
+      <origin xyz="0.002685 2e-06 -0.048205" rpy="0 0 0" />
+      <mass value="0.291432" />
+      <inertia ixx="0.000897" ixy="0.0" ixz="-1.4e-05" iyy="0.001004" iyz="0.0" izz="0.000519" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/shoulder_roll_r_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/shoulder_roll_r_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="shoulder_roll_r_joint" type="revolute">
+    <origin xyz="0 -0.074003 0" rpy="0 0 0" />
+    <parent link="shoulder_pitch_r_link" />
+    <child link="shoulder_roll_r_link" />
+    <axis xyz="1 0 0" />
+    <limit lower="-3.4033920413889422" upper="0.2617993877991494" effort="60.0" velocity="12.56637061435917" />
+  </joint>
+  <link name="shoulder_yaw_r_link">
+    <inertial>
+      <origin xyz="0.011778 -0.002807 -0.095219" rpy="0 0 0" />
+      <mass value="1.453126" />
+      <inertia ixx="0.005642" ixy="3.4e-05" ixz="0.000793" iyy="0.006039" iyz="-0.000184" izz="0.001316" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/shoulder_yaw_r_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/shoulder_yaw_r_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="shoulder_yaw_r_joint" type="revolute">
+    <origin xyz="0 0 -0.1198" rpy="0 0 0" />
+    <parent link="shoulder_roll_r_link" />
+    <child link="shoulder_yaw_r_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.9670597283903604" upper="2.9670597283903604" effort="36.0" velocity="7.644542123735163" />
+  </joint>
+  <link name="elbow_pitch_r_link">
+    <inertial>
+      <origin xyz="-0.016886 -0.000922 -0.069512" rpy="0 0 0" />
+      <mass value="0.684992" />
+      <inertia ixx="0.001476" ixy="8e-06" ixz="-0.00015" iyy="0.00138" iyz="3.6e-05" izz="0.000724" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/elbow_pitch_r_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/elbow_pitch_r_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="elbow_pitch_r_joint" type="revolute">
+    <origin xyz="0.02 0 -0.1402" rpy="0 0 0" />
+    <parent link="shoulder_yaw_r_link" />
+    <child link="elbow_pitch_r_link" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.6179938779914944" upper="0.2617993877991494" effort="60.0" velocity="7.644542123735163" />
+  </joint>
+  <link name="elbow_yaw_r_link">
+    <inertial>
+      <origin xyz="2e-06 -0.003301 -0.047544" rpy="0 0 0" />
+      <mass value="0.150855" />
+      <inertia ixx="0.000293" ixy="0.0" ixz="0.0" iyy="0.000229" iyz="-1.2e-05" izz="0.000168" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/elbow_yaw_r_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/elbow_yaw_r_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="elbow_yaw_r_joint" type="revolute">
+    <origin xyz="-0.02 0 -0.112" rpy="0 0 0" />
+    <parent link="elbow_pitch_r_link" />
+    <child link="elbow_yaw_r_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.9670597283903604" upper="2.9670597283903604" effort="36.0" velocity="15.289084247470326" />
+  </joint>
+  <link name="wrist_pitch_r_link">
+    <inertial>
+      <origin xyz="0.002678 -0.003481 -0.030765" rpy="0 0 0" />
+      <mass value="1.064383" />
+      <inertia ixx="0.00175" ixy="-1e-05" ixz="8.8e-05" iyy="0.001741" iyz="0.000114" izz="0.000714" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/wrist_pitch_r_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/wrist_pitch_r_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wrist_pitch_r_joint" type="revolute">
+    <origin xyz="0 0 -0.086" rpy="0 0 0" />
+    <parent link="elbow_yaw_r_link" />
+    <child link="wrist_pitch_r_link" />
+    <axis xyz="0 1 0" />
+    <limit lower="-1.3962634015954636" upper="1.3962634015954636" effort="36.0" velocity="7.5398223686155035" />
+  </joint>
+  <link name="wrist_roll_r_link">
+    <inertial>
+      <origin xyz="0.014657 -1.7e-05 -0.024943" rpy="0 0 0" />
+      <mass value="0.109123" />
+      <inertia ixx="7.7e-05" ixy="0.0" ixz="-3.3e-05" iyy="9.5e-05" iyz="0.0" izz="7e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/wrist_roll_r_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/wrist_roll_r_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wrist_roll_r_joint" type="revolute">
+    <origin xyz="0 0 -0.061999" rpy="0 0 0" />
+    <parent link="wrist_pitch_r_link" />
+    <child link="wrist_roll_r_link" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.3962634015954636" upper="1.3962634015954636" effort="36.0" velocity="7.5398223686155035" />
+  </joint>
+  <link name="right_tcp_link">
+    <inertial>
+      <origin xyz="0.002131 0.001921 -0.050085" rpy="0 0 0" />
+      <mass value="0.151835" />
+      <inertia ixx="0.000139" ixy="-8e-06" ixz="-3e-06" iyy="0.000175" iyz="1e-05" izz="0.000131" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/right_tcp_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://tiangong2dex_description/meshes/right_tcp_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="right_tcp_joint" type="fixed">
+    <origin xyz="0 0 -0.048905" rpy="0 0 0" />
+    <parent link="wrist_roll_r_link" />
+    <child link="right_tcp_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+
+
+  <!-- <xacro:include filename="$(find tiangong2dex_description)/urdf/collision_ball_body.xacro"/> -->
+  <!-- <xacro:include filename="$(find tiangong2dex_description)/urdf/collision_ball_armR.xacro"/> -->
+  <!-- <xacro:include filename="$(find tiangong2dex_description)/urdf/collision_ball_armL.xacro"/> -->
+
+
+</robot>

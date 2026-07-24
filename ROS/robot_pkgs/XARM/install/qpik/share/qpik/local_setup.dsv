@@ -1,0 +1,3 @@
+source;share/qpik/environment/ament_prefix_path.sh
+source;share/qpik/environment/library_path.sh
+source;share/qpik/environment/path.sh

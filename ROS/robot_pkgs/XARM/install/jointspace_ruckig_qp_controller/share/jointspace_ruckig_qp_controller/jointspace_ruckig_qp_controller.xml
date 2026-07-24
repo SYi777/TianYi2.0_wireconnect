@@ -1,0 +1,9 @@
+<library path="jointspace_ruckig_qp_controller">
+  <class name="jointspace_ruckig_qp_controller/JointspaceRuckigQpController"
+         type="jointspace_ruckig_qp_controller::JointspaceRuckigQpController" 
+         base_class_type="controller_interface::ControllerInterface">
+  <description>
+    jointspace_ruckig_qp_controller ros2_control controller.
+  </description>
+  </class>
+</library>

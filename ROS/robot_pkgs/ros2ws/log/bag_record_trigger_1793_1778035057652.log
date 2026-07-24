@@ -1,0 +1,86 @@
+[INFO] [1778035057.673474718] [record_bag_node]: bag record config trigger_switch: 0 
+[INFO] [1778035057.673851749] [record_bag_node]: bag record config storage_disk_switch: 1 
+[INFO] [1778035057.673862617] [record_bag_node]: bag record config max_bag_size_mb: 100 
+[INFO] [1778035057.673866063] [record_bag_node]: bag record config bag_files_num: 40 
+[INFO] [1778035057.673869003] [record_bag_node]: bag record config output_path: /home/ubuntu/bags 
+[INFO] [1778035057.673872041] [record_bag_node]: bag record config record_type: list 
+[INFO] [1778035057.673874773] [record_bag_node]: bag record config bag_ctrl_topic: /bag_record/control/notify 
+[INFO] [1778035057.673877596] [record_bag_node]: bag record config topic list:
+[INFO] [1778035057.673880350] [record_bag_node]:  /imu/status 
+[INFO] [1778035057.673883134] [record_bag_node]:  /head/status 
+[INFO] [1778035057.673885598] [record_bag_node]:  /arm/status 
+[INFO] [1778035057.673888016] [record_bag_node]:  /waist/status 
+[INFO] [1778035057.673890436] [record_bag_node]:  /leg/status 
+[INFO] [1778035057.673892746] [record_bag_node]:  /inspire_hand/state/left_hand 
+[INFO] [1778035057.673895298] [record_bag_node]:  /inspire_hand/state/right_hand 
+[INFO] [1778035057.673897722] [record_bag_node]:  /power/board/status 
+[INFO] [1778035057.673900201] [record_bag_node]:  /power/board/key_status 
+[INFO] [1778035057.673902546] [record_bag_node]:  /power/battery/status 
+[INFO] [1778035057.673904909] [record_bag_node]:  /head/cmd_pos 
+[INFO] [1778035057.673908458] [record_bag_node]:  /head/cmd_ctrl 
+[INFO] [1778035057.673910951] [record_bag_node]:  /head/cmd_vel 
+[INFO] [1778035057.673913242] [record_bag_node]:  /head/cmd_set_zero 
+[INFO] [1778035057.673915589] [record_bag_node]:  /waist/cmd_pos 
+[INFO] [1778035057.673917945] [record_bag_node]:  /waist/cmd_ctrl 
+[INFO] [1778035057.673920254] [record_bag_node]:  /waist/cmd_vel 
+[INFO] [1778035057.673922509] [record_bag_node]:  /waist/cmd_set_zero 
+[INFO] [1778035057.673924837] [record_bag_node]:  /arm/cmd_pos 
+[INFO] [1778035057.673927230] [record_bag_node]:  /arm/cmd_ctrl 
+[INFO] [1778035057.673929541] [record_bag_node]:  /arm/cmd_vel 
+[INFO] [1778035057.673932031] [record_bag_node]:  /arm/cmd_current 
+[INFO] [1778035057.673934497] [record_bag_node]:  /arm/cmd_set_zero 
+[INFO] [1778035057.673936845] [record_bag_node]:  /leg/cmd_pos 
+[INFO] [1778035057.673939230] [record_bag_node]:  /leg/cmd_ctrl 
+[INFO] [1778035057.673941576] [record_bag_node]:  /leg/cmd_vel 
+[INFO] [1778035057.673944109] [record_bag_node]:  /leg/cmd_set_zero 
+[INFO] [1778035057.673946386] [record_bag_node]:  /sbus_data 
+[INFO] [1778035057.673948821] [record_bag_node]:  /sbus_data/event 
+[INFO] [1778035057.673951305] [record_bag_node]:  /monitor/cpu_monitor_data 
+[INFO] [1778035057.673953866] [record_bag_node]:  /monitor/mem_monitor_data 
+[INFO] [1778035057.673956194] [record_bag_node]:  /monitor/proc_monitor_data 
+[INFO] [1778035057.673958511] [record_bag_node]:  /hric/robot/cmd_vel 
+[INFO] [1778035057.673960827] [record_bag_node]:  /hric/motion/status 
+[INFO] [1778035057.673963107] [record_bag_node]:  /hric/robot/float_base_rpyz_cmd 
+[INFO] [1778035057.673965552] [record_bag_node]:  /hric/robot/float_base_rpyz_status 
+[INFO] [1778035057.673968104] [record_bag_node]:  /wbc_absolute_motion 
+[INFO] [1778035057.678985773] [rosbag2_storage]: Opened database '/home/ubuntu/bags/rosbag2_2026_05_06-10_37_37/bag_2026_05_06-10_37_37_0.db3' for READ_WRITE.
+[INFO] [1778035058.680037356] [record_bag_node]: proccess start record
+[INFO] [1778035058.680492586] [record_bag_node]: Recording topic: /waist/status (type: bodyctrl_msgs/msg/MotorStatusMsg)
+[INFO] [1778035058.680507592] [record_bag_node]: add metadata name /waist/status type bodyctrl_msgs/msg/MotorStatusMsg
+[INFO] [1778035058.682574681] [record_bag_node]: Recording topic: /sbus_data/event (type: bodyctrl_msgs/msg/SbusData)
+[INFO] [1778035058.682627030] [record_bag_node]: add metadata name /sbus_data/event type bodyctrl_msgs/msg/SbusData
+[INFO] [1778035058.683714175] [record_bag_node]: Recording topic: /arm/cmd_pos (type: bodyctrl_msgs/msg/CmdSetMotorPosition)
+[INFO] [1778035058.683765104] [record_bag_node]: add metadata name /arm/cmd_pos type bodyctrl_msgs/msg/CmdSetMotorPosition
+[INFO] [1778035058.684727736] [record_bag_node]: Recording topic: /imu/status (type: bodyctrl_msgs/msg/Imu)
+[INFO] [1778035058.684758389] [record_bag_node]: add metadata name /imu/status type bodyctrl_msgs/msg/Imu
+[INFO] [1778035058.685746499] [record_bag_node]: Recording topic: /head/status (type: bodyctrl_msgs/msg/MotorStatusMsg)
+[INFO] [1778035058.685774942] [record_bag_node]: add metadata name /head/status type bodyctrl_msgs/msg/MotorStatusMsg
+[INFO] [1778035058.686721156] [record_bag_node]: Recording topic: /head/cmd_pos (type: bodyctrl_msgs/msg/CmdSetMotorPosition)
+[INFO] [1778035058.686761329] [record_bag_node]: add metadata name /head/cmd_pos type bodyctrl_msgs/msg/CmdSetMotorPosition
+[INFO] [1778035058.687627985] [record_bag_node]: Recording topic: /leg/status (type: bodyctrl_msgs/msg/MotorStatusMsg)
+[INFO] [1778035058.687662354] [record_bag_node]: add metadata name /leg/status type bodyctrl_msgs/msg/MotorStatusMsg
+[INFO] [1778035058.688555932] [record_bag_node]: Recording topic: /inspire_hand/state/left_hand (type: sensor_msgs/msg/JointState)
+[INFO] [1778035058.688606205] [record_bag_node]: add metadata name /inspire_hand/state/left_hand type sensor_msgs/msg/JointState
+[INFO] [1778035058.690524562] [record_bag_node]: Recording topic: /inspire_hand/state/right_hand (type: sensor_msgs/msg/JointState)
+[INFO] [1778035058.690555009] [record_bag_node]: add metadata name /inspire_hand/state/right_hand type sensor_msgs/msg/JointState
+[INFO] [1778035058.691470474] [record_bag_node]: Recording topic: /leg/cmd_pos (type: bodyctrl_msgs/msg/CmdSetMotorPosition)
+[INFO] [1778035058.691516617] [record_bag_node]: add metadata name /leg/cmd_pos type bodyctrl_msgs/msg/CmdSetMotorPosition
+[INFO] [1778035058.692720371] [record_bag_node]: Recording topic: /arm/status (type: bodyctrl_msgs/msg/MotorStatusMsg)
+[INFO] [1778035058.692766669] [record_bag_node]: add metadata name /arm/status type bodyctrl_msgs/msg/MotorStatusMsg
+[INFO] [1778035058.693757377] [record_bag_node]: Recording topic: /power/battery/status (type: bodyctrl_msgs/msg/PowerBatteryStatus)
+[INFO] [1778035058.693786725] [record_bag_node]: add metadata name /power/battery/status type bodyctrl_msgs/msg/PowerBatteryStatus
+[INFO] [1778035058.694658838] [record_bag_node]: Recording topic: /waist/cmd_pos (type: bodyctrl_msgs/msg/CmdSetMotorPosition)
+[INFO] [1778035058.694687007] [record_bag_node]: add metadata name /waist/cmd_pos type bodyctrl_msgs/msg/CmdSetMotorPosition
+[INFO] [1778035058.695557579] [record_bag_node]: Recording topic: /power/board/status (type: bodyctrl_msgs/msg/PowerStatus)
+[INFO] [1778035058.695592501] [record_bag_node]: add metadata name /power/board/status type bodyctrl_msgs/msg/PowerStatus
+[INFO] [1778035058.697002456] [record_bag_node]: Recording topic: /power/board/key_status (type: bodyctrl_msgs/msg/PowerBoardKeyStatus)
+[INFO] [1778035058.697035922] [record_bag_node]: add metadata name /power/board/key_status type bodyctrl_msgs/msg/PowerBoardKeyStatus
+[INFO] [1778035058.697832705] [record_bag_node]: Recording topic: /sbus_data (type: sensor_msgs/msg/Joy)
+[INFO] [1778035058.697855984] [record_bag_node]: add metadata name /sbus_data type sensor_msgs/msg/Joy
+[INFO] [1778035058.698679943] [record_bag_node]: Bag recorder starting
+[INFO] [1778035206.114826241] [record_bag_node]: Recording topic: /waist/cmd_vel (type: bodyctrl_msgs/msg/CmdSetMotorSpeed)
+[INFO] [1778035206.114883679] [record_bag_node]: add metadata name /waist/cmd_vel type bodyctrl_msgs/msg/CmdSetMotorSpeed
+[INFO] [1778035206.116630652] [record_bag_node]: Recording topic: /head/cmd_set_zero (type: std_msgs/msg/String)
+[INFO] [1778035206.116669866] [record_bag_node]: add metadata name /head/cmd_set_zero type std_msgs/msg/String
+[INFO] [1778035206.117919415] [record_bag_node]: Recording topic: /head/cmd_vel (type: bodyctrl_msgs/msg/CmdSetMotorSpeed)
+[INFO] [1778035206.117967787] [record_bag_node]: add metadata name /head/cmd_vel type bodyct

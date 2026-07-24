@@ -1,0 +1,31 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from cloud_service/srv/RemoteCtrl.srv
+// generated code does not contain a copyright notice
+
+
+module cloud_service {
+  module srv {
+    struct RemoteCtrl_Request {
+      @verbatim (language="comment", text=
+        "MQTT 数据包的 id。")
+      int64 msg_id;
+
+      @verbatim (language="comment", text=
+        "云端传来的远控 id。")
+      int32 cmd_id;
+
+      @verbatim (language="comment", text=
+        "云端传来的远控数据。")
+      string payload;
+    };
+    @verbatim (language="comment", text=
+      "业务方的响应结果，3 成功，4 失败。")
+    struct RemoteCtrl_Response {
+      int32 code;
+
+      @verbatim (language="comment", text=
+        "业务方的响应消息。")
+      string message;
+    };
+  };
+};

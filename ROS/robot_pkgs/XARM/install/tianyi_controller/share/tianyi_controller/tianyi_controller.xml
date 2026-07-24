@@ -1,0 +1,9 @@
+<library path="tianyi_controller">
+  <class name="tianyi_controller/TianyiController"
+         type="tianyi_controller::TianyiController" 
+         base_class_type="controller_interface::ControllerInterface">
+  <description>
+    tianyi_controller ros2_control controller.
+  </description>
+  </class>
+</library>

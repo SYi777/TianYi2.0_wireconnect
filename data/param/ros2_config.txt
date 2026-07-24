@@ -1,0 +1,5 @@
+ROS_LOG_DIR=/home/syi777/logs
+ROS2_BAG_DIR=/home/syi777/bags
+FASTRTPS_DEFAULT_PROFILES_FILE=/home/syi777/WireConnect_ws/data/param/dds_profile.xml
+RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+ROS_DOMAIN_ID=0

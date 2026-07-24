@@ -1,0 +1,233 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-b9e7fc5c1bd918d21a48.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					]
+				},
+				{
+					"build" : "bodyctrl_msgs__py",
+					"jsonFile" : "directory-bodyctrl_msgs__py-7137c9c4fcafc1674091.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/home/ubuntu/nk2_ws/build/bodyctrl_msgs/bodyctrl_msgs__py",
+					"targetIndexes" : 
+					[
+						4
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1
+					],
+					"name" : "bodyctrl_msgs",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_build_bodyctrl_msgs_egg::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_build_bodyctrl_msgs_egg-68fd9438537c4a130dfb.json",
+					"name" : "ament_cmake_python_build_bodyctrl_msgs_egg",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_copy_bodyctrl_msgs::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_copy_bodyctrl_msgs-68b0e8bb3f6ba99829c7.json",
+					"name" : "ament_cmake_python_copy_bodyctrl_msgs",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bodyctrl_msgs::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bodyctrl_msgs-106ae3d96e50f1d9596a.json",
+					"name" : "bodyctrl_msgs",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bodyctrl_msgs__cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bodyctrl_msgs__cpp-cb16db2a5c7be0cfb65d.json",
+					"name" : "bodyctrl_msgs__cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "bodyctrl_msgs__py::@f516b034444ec6592fce",
+					"jsonFile" : "target-bodyctrl_msgs__py-2badaf53db1df8e6cc2f.json",
+					"name" : "bodyctrl_msgs__py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bodyctrl_msgs__rosidl_generator_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bodyctrl_msgs__rosidl_generator_c-a0c3bd39ceaec1476938.json",
+					"name" : "bodyctrl_msgs__rosidl_generator_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bodyctrl_msgs__rosidl_generator_py::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bodyctrl_msgs__rosidl_generator_py-2a5a2c619845a77dec2b.json",
+					"name" : "bodyctrl_msgs__rosidl_generator_py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bodyctrl_msgs__rosidl_typesupport_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bodyctrl_msgs__rosidl_typesupport_c-c6ccd208370fe2bb959f.json",
+					"name" : "bodyctrl_msgs__rosidl_typesupport_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bodyctrl_msgs__rosidl_typesupport_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bodyctrl_msgs__rosidl_typesupport_c__pyext-53b77186aa76e9547a03.json",
+					"name" : "bodyctrl_msgs__rosidl_typesupport_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bodyctrl_msgs__rosidl_typesupport_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bodyctrl_msgs__rosidl_typesupport_cpp-5d7c86d85f17106b0e59.json",
+					"name" : "bodyctrl_msgs__rosidl_typesupport_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bodyctrl_msgs__rosidl_typesupport_fastrtps_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bodyctrl_msgs__rosidl_typesupport_fastrtps_c-8d70cb870921b1acf633.json",
+					"name" : "bodyctrl_msgs__rosidl_typesupport_fastrtps_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bodyctrl_msgs__rosidl_typesupport_fastrtps_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bodyctrl_msgs__rosidl_typesupport_fastrtps_c__pyext-1c2a10d5c6519d39dc5c.json",
+					"name" : "bodyctrl_msgs__rosidl_typesupport_fastrtps_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bodyctrl_msgs__rosidl_typesupport_fastrtps_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bodyctrl_msgs__rosidl_typesupport_fastrtps_cpp-c2d9773b043d94477b3a.json",
+					"name" : "bodyctrl_msgs__rosidl_typesupport_fastrtps_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bodyctrl_msgs__rosidl_typesupport_introspection_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bodyctrl_msgs__rosidl_typesupport_introspection_c-5026c99878c558cd3ffc.json",
+					"name" : "bodyctrl_msgs__rosidl_typesupport_introspection_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bodyctrl_msgs__rosidl_typesupport_introspection_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bodyctrl_msgs__rosidl_typesupport_introspection_c__pyext-5ba3f88b61f43ca39dc4.json",
+					"name" : "bodyctrl_msgs__rosidl_typesupport_introspection_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bodyctrl_msgs__rosidl_typesupport_introspection_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bodyctrl_msgs__rosidl_typesupport_introspection_cpp-18227a59120f6748482b.json",
+					"name" : "bodyctrl_msgs__rosidl_typesupport_introspection_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bodyctrl_msgs_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bodyctrl_msgs_uninstall-45e1508c9690cce21aa5.json",
+					"name" : "bodyctrl_msgs_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-2b75720bdbe2e06eff82.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/ubuntu/nk2_ws/build/bodyctrl_msgs",
+		"source" : "/home/ubuntu/nk2_ws/src/bodyctrl_msgs"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

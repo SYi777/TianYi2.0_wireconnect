@@ -1,0 +1,8 @@
+string msg_id
+uint8[] data
+string json_data
+---
+bool result
+string info
+---
+string status

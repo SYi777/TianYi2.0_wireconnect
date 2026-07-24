@@ -1,0 +1,4 @@
+1778061280.2068152 [INFO] [launch]: All log files can be found below /home/ubuntu/ros2ws/log/2026-05-06-17-54-40-205817-ubuntu-1590
+1778061280.2069561 [INFO] [launch]: Default logging verbosity is set to INFO
+1778061280.2672482 [INFO] [component_container-1]: process started with pid [1620]
+1778061280.5405474 [INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/powerboard' in container '/powerboard_container'

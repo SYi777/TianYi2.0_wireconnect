@@ -1,0 +1,22 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from dual_arm_control/srv/PlanRandomJointGoal.srv
+// generated code does not contain a copyright notice
+
+#include "trajectory_msgs/msg/JointTrajectory.idl"
+
+module dual_arm_control {
+  module srv {
+    struct PlanRandomJointGoal_Request {
+      string group_name;
+    };
+    struct PlanRandomJointGoal_Response {
+      boolean success;
+
+      sequence<double> joint_values;
+
+      trajectory_msgs::msg::JointTrajectory trajectory;
+
+      string message;
+    };
+  };
+};

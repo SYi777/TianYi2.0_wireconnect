@@ -1,0 +1,11 @@
+# 目标ee
+eai_manipulator_msgs/DualArmTargetPose target 
+        
+
+---
+bool success
+string result_msg
+---
+float64[] current_err
+string feedback_msg
+

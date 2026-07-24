@@ -1,0 +1,4 @@
+1778142004.3375597 [INFO] [launch]: All log files can be found below /home/ubuntu/ros2ws/log/2026-05-07-16-20-04-336674-ubuntu-1594
+1778142004.3376858 [INFO] [launch]: Default logging verbosity is set to INFO
+1778142004.4425659 [INFO] [component_container_mt-1]: process started with pid [1794]
+1778142006.5877166 [INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/diagnose_tianyi2_upgrade_node' in container '/diagnose_tiangong2_plus_container'

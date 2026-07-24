@@ -1,0 +1,24 @@
+// generated from rosidl_adapter/resource/action.idl.em
+// with input from cm_msgs/action/ReportMotion.action
+// generated code does not contain a copyright notice
+
+
+module cm_msgs {
+  module action {
+    struct ReportMotion_Goal {
+      string msg_id;
+
+      sequence<uint8> data;
+
+      string json_data;
+    };
+    struct ReportMotion_Result {
+      boolean result;
+
+      string info;
+    };
+    struct ReportMotion_Feedback {
+      string status;
+    };
+  };
+};

@@ -1,0 +1,9 @@
+<library path="empty_controller">
+  <class name="empty_controller/EmptyController"
+         type="empty_controller::EmptyController" 
+         base_class_type="controller_interface::ControllerInterface">
+  <description>
+    empty_controller ros2_control controller.
+  </description>
+  </class>
+</library>

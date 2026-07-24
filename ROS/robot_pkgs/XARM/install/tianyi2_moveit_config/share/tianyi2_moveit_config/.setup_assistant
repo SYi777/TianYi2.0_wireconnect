@@ -1,0 +1,27 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: tianyi2_description
+    relative_path: urdf/tianyi2.0_complete_with_hands.xacro
+  srdf:
+    relative_path: config/tianyi2.0_complete.srdf
+  package_settings:
+    author_name: rancho.he
+    author_email: rancho.he@humanoid.com
+    generated_timestamp: 1764670179
+  control_xacro:
+    command:
+      - position
+      - velocity
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+      - velocity
+    state:
+      - position
+      - velocity

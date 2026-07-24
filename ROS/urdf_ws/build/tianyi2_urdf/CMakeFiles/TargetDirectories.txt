@@ -1,0 +1,9 @@
+/home/syi777/WireConnect_ws/urdf_ws/build/tianyi2_urdf/CMakeFiles/uninstall.dir
+/home/syi777/WireConnect_ws/urdf_ws/build/tianyi2_urdf/CMakeFiles/tianyi2_urdf_uninstall.dir
+/home/syi777/WireConnect_ws/urdf_ws/build/tianyi2_urdf/CMakeFiles/test.dir
+/home/syi777/WireConnect_ws/urdf_ws/build/tianyi2_urdf/CMakeFiles/edit_cache.dir
+/home/syi777/WireConnect_ws/urdf_ws/build/tianyi2_urdf/CMakeFiles/rebuild_cache.dir
+/home/syi777/WireConnect_ws/urdf_ws/build/tianyi2_urdf/CMakeFiles/list_install_components.dir
+/home/syi777/WireConnect_ws/urdf_ws/build/tianyi2_urdf/CMakeFiles/install.dir
+/home/syi777/WireConnect_ws/urdf_ws/build/tianyi2_urdf/CMakeFiles/install/local.dir
+/home/syi777/WireConnect_ws/urdf_ws/build/tianyi2_urdf/CMakeFiles/install/strip.dir

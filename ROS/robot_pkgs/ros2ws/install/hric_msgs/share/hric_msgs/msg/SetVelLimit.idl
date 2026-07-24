@@ -1,0 +1,22 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from hric_msgs/msg/SetVelLimit.msg
+// generated code does not contain a copyright notice
+
+
+module hric_msgs {
+  module msg {
+    struct SetVelLimit {
+      @verbatim (language="comment", text=
+        "行走时x方向速度限制")
+      double x_vel_limit_walk;
+
+      @verbatim (language="comment", text=
+        "跑步时x方向速度限制")
+      double x_vel_limit_run;
+
+      @verbatim (language="comment", text=
+        "半身行走时x方向速度限制")
+      double x_vel_limit_halfwalk;
+    };
+  };
+};

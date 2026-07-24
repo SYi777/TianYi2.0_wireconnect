@@ -1,0 +1,154 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)
+-- Added test 'flake8' to check Python code syntax and style conventions
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/syi777/WireConnect_ws/urdf_ws/build/tianyi2_urdf
+-- Install configuration: ""
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/launch
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/launch/display_with_hands.launch.py
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/launch/display.launch.py
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/launch/display_convex.launch.py
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/urdf
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/urdf/tianyi2.0_complete_with_hands.xacro
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/urdf/tianyi2.0_urdf_with_hands.urdf
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/urdf/tianyi2.0_URDF.urdf.xacro
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/urdf/tianyi2.0_URDF_convex.urdf
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/urdf/tianyi2.0_URDF.urdf
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/left_little_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/right_little_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/shoulder_yaw_r_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/left_tcp_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/right_middle_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/elbow_pitch_r_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/right_little_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/wrist_pitch_l_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/right_thumb_3.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/elbow_pitch_l_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/second_leg_pitch_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/wrist_pitch_r_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/camera_head_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/right_ring_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/right_thumb_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/head_yaw_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/right_thumb_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/right_index_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/left_index_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/wrist_roll_l_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/head_pitch_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/right_thumb_4.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/right_tcp_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/left_ring_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/right_middle_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/left_ring_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/shoulder_roll_r_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/left_thumb_4.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/L_base_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/left_thumb_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/right_index_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/waist_yaw_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/left_thumb_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/shoulder_roll_l_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/wrist_roll_r_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/head_roll_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/left_middle_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/left_middle_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/base.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/waist_pitch_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/elbow_yaw_l_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/shoulder_pitch_l_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/R_base_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/first_leg_pitch_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/left_index_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/right_ring_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/elbow_yaw_r_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/left_thumb_3.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/shoulder_pitch_r_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/left_little_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes/shoulder_yaw_l_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/left_little_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/right_little_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/shoulder_yaw_r_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/left_tcp_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/right_middle_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/elbow_pitch_r_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/right_little_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/wrist_pitch_l_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/right_thumb_3.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/elbow_pitch_l_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/second_leg_pitch_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/wrist_pitch_r_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/camera_head_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/right_ring_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/right_thumb_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/head_yaw_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/right_thumb_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/right_index_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/left_index_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/wrist_roll_l_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/head_pitch_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/right_thumb_4.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/right_tcp_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/left_ring_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/right_middle_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/left_ring_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/shoulder_roll_r_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/left_thumb_4.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/L_base_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/left_thumb_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/right_index_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/waist_yaw_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/left_thumb_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/shoulder_roll_l_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/wrist_roll_r_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/head_roll_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/left_middle_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/left_middle_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/base.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/waist_pitch_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/elbow_yaw_l_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/shoulder_pitch_l_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/R_base_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/first_leg_pitch_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/left_index_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/right_ring_1.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/elbow_yaw_r_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/left_thumb_3.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/shoulder_pitch_r_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/left_little_2.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/meshes_convex/shoulder_yaw_l_link.STL
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/config
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/config/display.rviz
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/ament_index/resource_index/package_run_dependencies/tianyi2_urdf
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/ament_index/resource_index/parent_prefix_path/tianyi2_urdf
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/environment/ament_prefix_path.sh
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/environment/ament_prefix_path.dsv
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/environment/path.sh
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/environment/path.dsv
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/local_setup.bash
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/local_setup.sh
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/local_setup.zsh
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/local_setup.dsv
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/package.dsv
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/ament_index/resource_index/packages/tianyi2_urdf
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/cmake/tianyi2_urdfConfig.cmake
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/cmake/tianyi2_urdfConfig-version.cmake
+-- Installing: /home/syi777/WireConnect_ws/urdf_ws/install/tianyi2_urdf/share/tianyi2_urdf/package.xml

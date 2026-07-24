@@ -1,0 +1,9 @@
+<library path="single_arm_qpik_controller">
+  <class name="single_arm_qpik_controller/SingleArmQpikController"
+         type="single_arm_qpik_controller::SingleArmQpikController" 
+         base_class_type="controller_interface::ControllerInterface">
+  <description>
+    single_arm_qpik_controller ros2_control controller.
+  </description>
+  </class>
+</library>

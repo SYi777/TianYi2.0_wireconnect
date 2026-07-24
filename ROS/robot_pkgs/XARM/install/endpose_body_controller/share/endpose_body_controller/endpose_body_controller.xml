@@ -1,0 +1,9 @@
+<library path="endpose_body_controller">
+  <class name="endpose_body_controller/EndposeBodyController"
+         type="endpose_body_controller::EndposeBodyController" 
+         base_class_type="controller_interface::ControllerInterface">
+  <description>
+    endpose_body_controller ros2_control controller.
+  </description>
+  </class>
+</library>

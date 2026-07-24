@@ -1,0 +1,13 @@
+package.xml
+setup.cfg
+setup.py
+../../build/xarm_debug/xarm_debug.egg-info/PKG-INFO
+../../build/xarm_debug/xarm_debug.egg-info/SOURCES.txt
+../../build/xarm_debug/xarm_debug.egg-info/dependency_links.txt
+../../build/xarm_debug/xarm_debug.egg-info/entry_points.txt
+../../build/xarm_debug/xarm_debug.egg-info/requires.txt
+../../build/xarm_debug/xarm_debug.egg-info/top_level.txt
+resource/xarm_debug
+xarm_debug/__init__.py
+xarm_debug/xarmcontroldebug.py
+xarm_debug/xarmdebug.py

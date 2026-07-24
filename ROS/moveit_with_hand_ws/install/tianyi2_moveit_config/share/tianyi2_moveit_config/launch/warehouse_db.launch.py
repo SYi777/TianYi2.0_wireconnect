@@ -1,0 +1,1 @@
+/home/syi777/WireConnect_ws/ROS/moveit_with_hand_ws/src/tianyi2_moveit_config/launch/warehouse_db.launch.py

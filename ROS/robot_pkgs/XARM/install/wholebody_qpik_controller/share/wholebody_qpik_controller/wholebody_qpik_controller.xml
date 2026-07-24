@@ -1,0 +1,9 @@
+<library path="wholebody_qpik_controller">
+  <class name="wholebody_qpik_controller/WholebodyQpikController"
+         type="wholebody_qpik_controller::WholebodyQpikController" 
+         base_class_type="controller_interface::ControllerInterface">
+  <description>
+    wholebody_qpik_controller ros2_control controller.
+  </description>
+  </class>
+</library>

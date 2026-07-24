@@ -1,0 +1,29 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from eai_manipulator_msgs/msg/WarnAndErrorInfo.msg
+// generated code does not contain a copyright notice
+
+#include "std_msgs/msg/Header.idl"
+
+module eai_manipulator_msgs {
+  module msg {
+    struct WarnAndErrorInfo {
+      std_msgs::msg::Header header;
+
+      @verbatim (language="comment", text=
+        "信息级别")
+      string level;
+
+      @verbatim (language="comment", text=
+        "信息代码")
+      uint32 code;
+
+      @verbatim (language="comment", text=
+        "发布源头")
+      string source;
+
+      @verbatim (language="comment", text=
+        "信息内容")
+      string info;
+    };
+  };
+};

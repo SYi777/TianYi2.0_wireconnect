@@ -1,0 +1,5 @@
+/powerboard:
+  ros__parameters:
+    ros:
+      read_frequency: 1     # [1,10]
+      write_frequency: 200  # [100, 500]

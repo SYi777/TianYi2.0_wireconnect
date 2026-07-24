@@ -1,0 +1,22 @@
+[0.533s] Invoking command in '/home/syi777/WireConnect_ws/control_debug_ws/src/bodyctrl_debug': PYTHONPATH=/home/syi777/WireConnect_ws/control_debug_ws/build/bodyctrl_debug/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/syi777/WireConnect_ws/control_debug_ws/install/bodyctrl_debug/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bodyctrl_debug build --build-base /home/syi777/WireConnect_ws/control_debug_ws/build/bodyctrl_debug/build install --record /home/syi777/WireConnect_ws/control_debug_ws/build/bodyctrl_debug/install.log --install-scripts $base/lib/bodyctrl_debug --single-version-externally-managed install_data
+[0.691s] running egg_info
+[0.692s] writing ../../build/bodyctrl_debug/bodyctrl_debug.egg-info/PKG-INFO
+[0.692s] writing dependency_links to ../../build/bodyctrl_debug/bodyctrl_debug.egg-info/dependency_links.txt
+[0.692s] writing entry points to ../../build/bodyctrl_debug/bodyctrl_debug.egg-info/entry_points.txt
+[0.692s] writing requirements to ../../build/bodyctrl_debug/bodyctrl_debug.egg-info/requires.txt
+[0.692s] writing top-level names to ../../build/bodyctrl_debug/bodyctrl_debug.egg-info/top_level.txt
+[0.693s] reading manifest file '../../build/bodyctrl_debug/bodyctrl_debug.egg-info/SOURCES.txt'
+[0.693s] writing manifest file '../../build/bodyctrl_debug/bodyctrl_debug.egg-info/SOURCES.txt'
+[0.693s] running build
+[0.693s] running build_py
+[0.693s] running install
+[0.694s] running install_lib
+[0.695s] running install_data
+[0.695s] running install_egg_info
+[0.696s] removing '/home/syi777/WireConnect_ws/control_debug_ws/install/bodyctrl_debug/lib/python3.10/site-packages/bodyctrl_debug-0.1.0-py3.10.egg-info' (and everything under it)
+[0.696s] Copying ../../build/bodyctrl_debug/bodyctrl_debug.egg-info to /home/syi777/WireConnect_ws/control_debug_ws/install/bodyctrl_debug/lib/python3.10/site-packages/bodyctrl_debug-0.1.0-py3.10.egg-info
+[0.696s] running install_scripts
+[0.710s] Installing bodyctrldebug script to /home/syi777/WireConnect_ws/control_debug_ws/install/bodyctrl_debug/lib/bodyctrl_debug
+[0.710s] Installing headkb script to /home/syi777/WireConnect_ws/control_debug_ws/install/bodyctrl_debug/lib/bodyctrl_debug
+[0.710s] writing list of installed files to '/home/syi777/WireConnect_ws/control_debug_ws/build/bodyctrl_debug/install.log'
+[0.725s] Invoked command in '/home/syi777/WireConnect_ws/control_debug_ws/src/bodyctrl_debug' returned '0': PYTHONPATH=/home/syi777/WireConnect_ws/control_debug_ws/build/bodyctrl_debug/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/syi777/WireConnect_ws/control_debug_ws/install/bodyctrl_debug/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bodyctrl_debug build --build-base /home/syi777/WireConnect_ws/control_debug_ws/build/bodyctrl_debug/build install --record /home/syi777/WireConnect_ws/control_debug_ws/build/bodyctrl_debug/install.log --install-scripts $base/lib/bodyctrl_debug --single-version-externally-managed install_data

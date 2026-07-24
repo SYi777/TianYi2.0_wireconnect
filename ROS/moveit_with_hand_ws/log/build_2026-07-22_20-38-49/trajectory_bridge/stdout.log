@@ -1,0 +1,9 @@
+running egg_info
+creating ../../build/trajectory_bridge/trajectory_bridge.egg-info
+writing ../../build/trajectory_bridge/trajectory_bridge.egg-info/PKG-INFO
+writing dependency_links to ../../build/trajectory_bridge/trajectory_bridge.egg-info/dependency_links.txt
+writing entry points to ../../build/trajectory_bridge/trajectory_bridge.egg-info/entry_points.txt
+writing requirements to ../../build/trajectory_bridge/trajectory_bridge.egg-info/requires.txt
+writing top-level names to ../../build/trajectory_bridge/trajectory_bridge.egg-info/top_level.txt
+writing manifest file '../../build/trajectory_bridge/trajectory_bridge.egg-info/SOURCES.txt'
+reading manifest file '../../build/trajectory_bridge/trajectory_bridge.egg-info/SOURCES.txt'

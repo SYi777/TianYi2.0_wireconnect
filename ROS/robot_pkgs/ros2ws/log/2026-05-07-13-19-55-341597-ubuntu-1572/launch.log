@@ -1,0 +1,4 @@
+1778131195.3422616 [INFO] [launch]: All log files can be found below /home/ubuntu/ros2ws/log/2026-05-07-13-19-55-341597-ubuntu-1572
+1778131195.3423498 [INFO] [launch]: Default logging verbosity is set to INFO
+1778131195.3958867 [INFO] [component_container_mt-1]: process started with pid [1611]
+1778131195.6806803 [INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/bluetooth_server_node' in container '/bluetooth_container'

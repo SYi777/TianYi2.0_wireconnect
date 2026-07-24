@@ -1,0 +1,15 @@
+[Unit]
+Description=ota
+After=network.target network-online.target 
+Wants=network-online.target https_proxy.service log_report.service
+
+[Service]
+User=root
+ExecStart=bash {INSTALL_DIR}/start.sh
+Restart=no
+Type=simple
+RestartSec=1
+StartLimitInterval=0
+
+[Install]
+WantedBy=multi-user.target

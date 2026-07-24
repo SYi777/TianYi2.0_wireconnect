@@ -1,0 +1,710 @@
+[INFO] [1780366859.640596322] [ob_camera_head.camera_container]: Load Library: /home/nvidia/orbbec_camera_ros2/install/orbbec_camera/lib/liborbbec_camera.so
+[INFO] [1780366860.152099507] [ob_camera_head.camera_container]: Found class: rclcpp_components::NodeFactoryTemplate<orbbec_camera::OBCameraNodeDriver>
+[INFO] [1780366860.153936591] [ob_camera_head.camera_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<orbbec_camera::OBCameraNodeDriver>
+[INFO] [1780366860.203308850] [ob_camera_head.ob_camera_head]: setUvcBackendType:v4l2
+[INFO] [1780366861.213977490] [ob_camera_head.ob_camera_head]: startDevice called
+[INFO] [1780366861.224306092] [ob_camera_head.ob_camera_head]: Connecting to the default device
+[INFO] [1780366861.455212876] [ob_camera_head.ob_camera_head]: Select device cost 230 ms
+[INFO] [1780366861.455374959] [ob_camera_head.ob_camera_head]: Try to connect device via USB3.2
+[INFO] [1780366861.455624850] [ob_camera_head.ob_camera_head]: OBCameraNode: use_intra_process: OFF
+[INFO] [1780366861.532808918] [ob_camera_head.ob_camera_head]: current time domain: global
+[INFO] [1780366861.532934712] [ob_camera_head.ob_camera_head]: hdr_index1_laser_control_ 1 hdr_index1_depth_exposure_ 1 hdr_index1_depth_gain_ 16 hdr_index1_ir_brightness_ 30 hdr_index1_ir_ae_max_exposure_ 30458
+
+[INFO] [1780366861.532985464] [ob_camera_head.ob_camera_head]: hdr_index0_laser_control_ 1 hdr_index0_depth_exposure_ 7500 hdr_index0_depth_gain_ 16 hdr_index0_ir_brightness_ 90 hdr_index0_ir_ae_max_exposure_ 30458
+
+[INFO] [1780366861.533003289] [ob_camera_head.ob_camera_head]: laser_index1_laser_control_ 0 laser_index1_depth_exposure_ 3000 laser_index1_depth_gain_ 16 laser_index1_ir_brightness_ 60 laser_index1_ir_ae_max_exposure_ 17000
+
+[INFO] [1780366861.533018265] [ob_camera_head.ob_camera_head]: laser_index0_laser_control_ 1 laser_index0_depth_exposure_ 3000 laser_index0_depth_gain_ 16 laser_index0_ir_brightness_ 60 laser_index0_ir_ae_max_exposure_ 30000
+
+[INFO] [1780366861.825530355] [ob_camera_head.ob_camera_head]: Setting heartbeat to OFF
+[INFO] [1780366861.827292941] [ob_camera_head.ob_camera_head]: Depth process is HW
+[INFO] [1780366861.827404879] [ob_camera_head.ob_camera_head]: Setting LDP to ON
+[INFO] [1780366861.832750431] [ob_camera_head.ob_camera_head]: Setting G300 laser control to 1
+[INFO] [1780366861.834382327] [ob_camera_head.ob_camera_head]: Available presets:
+[INFO] [1780366861.834638587] [ob_camera_head.ob_camera_head]: Preset 0: Default
+[INFO] [1780366861.834667964] [ob_camera_head.ob_camera_head]: Preset 1: AMR with IR-Pass
+[INFO] [1780366861.834684540] [ob_camera_head.ob_camera_head]: Preset 2: High Accuracy
+[INFO] [1780366861.834695900] [ob_camera_head.ob_camera_head]: Preset 3: Factory Calib
+[INFO] [1780366861.834705436] [ob_camera_head.ob_camera_head]: Preset 4: Custom
+[INFO] [1780366861.834715196] [ob_camera_head.ob_camera_head]: Load device preset: Default
+[INFO] [1780366861.846582382] [ob_camera_head.ob_camera_head]: Device preset Default loaded
+[INFO] [1780366861.848132325] [ob_camera_head.ob_camera_head]: Current sync mode: OB_MULTI_DEVICE_SYNC_MODE_STANDALONE
+[INFO] [1780366861.850375559] [ob_camera_head.ob_camera_head]: Set sync mode: OB_MULTI_DEVICE_SYNC_MODE_STANDALONE
+[INFO] [1780366861.850468104] [ob_camera_head.ob_camera_head]: Setting color mirror to OFF
+[INFO] [1780366861.850609162] [ob_camera_head.ob_camera_head]: Setting color flip to OFF
+[INFO] [1780366861.850651979] [ob_camera_head.ob_camera_head]: Setting depth mirror to OFF
+[INFO] [1780366861.850700204] [ob_camera_head.ob_camera_head]: Setting depth flip to OFF
+[INFO] [1780366861.850742316] [ob_camera_head.ob_camera_head]: Setting noise removal filter:OFF
+[INFO] [1780366861.850763148] [ob_camera_head.ob_camera_head]: Setting color auto white balance to ON
+[INFO] [1780366861.852274083] [ob_camera_head.ob_camera_head]: Setting color auto exposure priority to OFF
+[INFO] [1780366861.853876955] [ob_camera_head.ob_camera_head]: Setting color auto exposure to ON
+[INFO] [1780366861.855393426] [ob_camera_head.ob_camera_head]: Setting depth auto exposure priority to OFF
+[INFO] [1780366861.856989450] [ob_camera_head.ob_camera_head]: Setting IR auto exposure to ON
+[INFO] [1780366861.860253563] [ob_camera_head.ob_camera_head]: default noise removal filter min diff: 256
+[INFO] [1780366861.860323708] [ob_camera_head.ob_camera_head]: default noise removal filter max size: 80
+[INFO] [1780366861.861736689] [ob_camera_head.ob_camera_head]: Setting hardware noise removal filter:ON
+[INFO] [1780366861.861805778] [ob_camera_head.ob_camera_head]: Setting accel data correction to ON
+[INFO] [1780366861.861834770] [ob_camera_head.ob_camera_head]: Setting gyro data correction to ON
+[INFO] [1780366861.862256408] [ob_camera_head.ob_camera_head]: Setting DecimationFilter......
+[INFO] [1780366861.862307193] [ob_camera_head.ob_camera_head]: set DecimationFilter to false
+[INFO] [1780366861.862347674] [ob_camera_head.ob_camera_head]: Skip setting filter: DecimationFilter
+[INFO] [1780366861.862369594] [ob_camera_head.ob_camera_head]: Setting ThresholdFilter......
+[INFO] [1780366861.862381882] [ob_camera_head.ob_camera_head]: set ThresholdFilter to false
+[INFO] [1780366861.862392987] [ob_camera_head.ob_camera_head]: Skip setting filter: ThresholdFilter
+[INFO] [1780366861.862405979] [ob_camera_head.ob_camera_head]: Setting HDRMerge......
+[INFO] [1780366861.862416059] [ob_camera_head.ob_camera_head]: set HDRMerge to false
+[INFO] [1780366861.862427355] [ob_camera_head.ob_camera_head]: Skip setting filter: HDRMerge
+[INFO] [1780366861.862439963] [ob_camera_head.ob_camera_head]: Setting SequenceIdFilter......
+[INFO] [1780366861.862449947] [ob_camera_head.ob_camera_head]: set SequenceIdFilter to false
+[INFO] [1780366861.862459132] [ob_camera_head.ob_camera_head]: Skip setting filter: SequenceIdFilter
+[INFO] [1780366861.862470460] [ob_camera_head.ob_camera_head]: Setting SpatialFastFilter......
+[INFO] [1780366861.862480284] [ob_camera_head.ob_camera_head]: set SpatialFastFilter to false
+[INFO] [1780366861.862490652] [ob_camera_head.ob_camera_head]: Skip setting filter: SpatialFastFilter
+[INFO] [1780366861.862502684] [ob_camera_head.ob_camera_head]: Setting SpatialModerateFilter......
+[INFO] [1780366861.862513084] [ob_camera_head.ob_camera_head]: set SpatialModerateFilter to false
+[INFO] [1780366861.862523644] [ob_camera_head.ob_camera_head]: Skip setting filter: SpatialModerateFilter
+[INFO] [1780366861.862535613] [ob_camera_head.ob_camera_head]: Setting SpatialAdvancedFilter......
+[INFO] [1780366861.862550877] [ob_camera_head.ob_camera_head]: set SpatialAdvancedFilter to false
+[INFO] [1780366861.862561117] [ob_camera_head.ob_camera_head]: Skip setting filter: SpatialAdvancedFilter
+[INFO] [1780366861.862572829] [ob_camera_head.ob_camera_head]: Setting TemporalFilter......
+[INFO] [1780366861.862582525] [ob_camera_head.ob_camera_head]: set TemporalFilter to false
+[INFO] [1780366861.862592798] [ob_camera_head.ob_camera_head]: Skip setting filter: TemporalFilter
+[INFO] [1780366861.862604446] [ob_camera_head.ob_camera_head]: Setting HoleFillingFilter......
+[INFO] [1780366861.862614494] [ob_camera_head.ob_camera_head]: set HoleFillingFilter to false
+[INFO] [1780366861.862624894] [ob_camera_head.ob_camera_head]: Skip setting filter: HoleFillingFilter
+[INFO] [1780366861.862636734] [ob_camera_head.ob_camera_head]: Setting DisparityTransform......
+[INFO] [1780366861.862646686] [ob_camera_head.ob_camera_head]: set DisparityTransform to true
+[INFO] [1780366861.862656606] [ob_camera_head.ob_camera_head]: Skip setting filter: DisparityTransform
+[INFO] [1780366861.866993887] [ob_camera_head.ob_camera_head]: Setting DecimationFilter......
+[INFO] [1780366861.867072513] [ob_camera_head.ob_camera_head]: set color DecimationFilter to false
+[INFO] [1780366861.867158402] [ob_camera_head.ob_camera_head]: Setting SequenceIdFilter......
+[INFO] [1780366861.867182946] [ob_camera_head.ob_camera_head]: set right ir SequenceIdFilter to false
+[INFO] [1780366861.867222307] [ob_camera_head.ob_camera_head]: Setting SequenceIdFilter......
+[INFO] [1780366861.867244227] [ob_camera_head.ob_camera_head]: set left ir SequenceIdFilter to false
+[INFO] [1780366861.874756948] [ob_camera_head.ob_camera_head]:  stream color is enabled - width: 1280, height: 720, fps: 30, Format: OB_FORMAT_RGB
+[INFO] [1780366861.876071559] [ob_camera_head.ob_camera_head]:  stream depth is enabled - width: 1280, height: 720, fps: 30, Format: OB_FORMAT_Y16
+[ERROR] [1780366861.988083828] [ob_camera_head.ob_camera_head]: Failed to load plugin image_transport/compressed_pub, error string: According to the loaded plugin descriptions the class image_transport/compressed_pub with base class type image_transport::PublisherPlugin does not exist. Declared types are  image_transport/raw_pub
+
+[ERROR] [1780366861.995230367] [ob_camera_head.ob_camera_head]: Failed to load plugin image_transport/theora_pub, error string: According to the loaded plugin descriptions the class image_transport/theora_pub with base class type image_transport::PublisherPlugin does not exist. Declared types are  image_transport/raw_pub
+
+[ERROR] [1780366862.000422220] [ob_camera_head.ob_camera_head]: Failed to load plugin image_transport/compressedDepth_pub, error string: According to the loaded plugin descriptions the class image_transport/compressedDepth_pub with base class type image_transport::PublisherPlugin does not exist. Declared types are  image_transport/raw_pub
+
+[INFO] [1780366862.007735738] [ob_camera_head.ob_camera_head]: Publish diagnostics every 1 seconds
+[INFO] [1780366862.068022976] [ob_camera_head.ob_camera_head]: Device Orbbec Gemini 336 connected
+[INFO] [1780366862.068179554] [ob_camera_head.ob_camera_head]: Serial number: CP9E163001CK
+[INFO] [1780366862.068208994] [ob_camera_head.ob_camera_head]: Firmware version: 1.6.00
+[INFO] [1780366862.068230659] [ob_camera_head.ob_camera_head]: Hardware version: 0.1
+[INFO] [1780366862.068244451] [ob_camera_head.ob_camera_head]: usb connect type: USB3.2
+[INFO] [1780366862.068257667] [ob_camera_head.ob_camera_head]: device unique id: 2-3.3-4
+[INFO] [1780366862.068278787] [ob_camera_head.ob_camera_head]: Current node pid: 11564
+[INFO] [1780366862.068290628] [ob_camera_head.ob_camera_head]: Start device cost 854 ms
+[INFO] [1780366862.068459302] [ob_camera_head.ob_camera_head]: Enable color stream
+[INFO] [1780366862.068501063] [ob_camera_head.ob_camera_head]: Stream color width: 1280 height: 720 fps: 30 format: RGB888
+[INFO] [1780366862.068554055] [ob_camera_head.ob_camera_head]: Enable depth stream
+[INFO] [1780366862.068582152] [ob_camera_head.ob_camera_head]: Stream depth width: 1280 height: 720 fps: 30 format: Y16
+[INFO] [1780366862.068604168] [ob_camera_head.ob_camera_head]: depth_registration is enabled. Depth stream will be aligned to COLOR stream resolution: width: 1280 height: 720 fps: 30
+[INFO] [1780366862.125644253] [ob_camera_head.ob_camera_head]: Enable frame sync
+[INFO] [1780366862.694603611] [ob_camera_head.ob_camera_head]: Publishing static transform from color to depth
+[INFO] [1780366862.694814654] [ob_camera_head.ob_camera_head]: Translation 13.8117, -0.148717, 1.7365
+[INFO] [1780366862.694844670] [ob_camera_head.ob_camera_head]: Rotation -0.0016393, -0.000668763, -0.000883221, 0.999998
+[INFO] [1780366862.694971552] [ob_camera_head.ob_camera_head]: Publishing static transform from depth to depth
+[INFO] [1780366862.695002849] [ob_camera_head.ob_camera_head]: Translation 0, 0, 0
+[INFO] [1780366862.695024993] [ob_camera_head.ob_camera_head]: Rotation 0, 0, 0, 1
+[INFO] [1780366862.700013228] [ob_camera_head.ob_camera_head]: Setting color AE ROI to 0, 1279, 0, 719
+[INFO] [1780366862.704916597] [ob_camera_head.ob_camera_head]: Setting depth AE ROI to 0, 1279, 0, 719
+[INFO] [1780366863.125932973] [ob_camera_head.ob_camera_head]: Setting interleave mode to nothing
+[INFO] [1780366863.126124784] [ob_camera_head.ob_camera_head]: current interleave_ae_mode_: laser
+[INFO] [1780366863.129310335] [ob_camera_head.ob_camera_head]: Enable enable_interleave_depth_frame to false
+[INFO] [1780366863.129432289] [ob_camera_head.ob_camera_head]: Initialize device cost 1674 ms
+[ERROR] [1780366882.215250217] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366883.214652669] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366884.401301421] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366885.214884188] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366886.214831579] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366887.214589645] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366888.214825308] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366889.215125667] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366890.214608339] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366891.214762629] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366892.214592072] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366893.214635012] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366894.214769657] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366895.253720187] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366896.405880810] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366897.215157437] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366898.215034792] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366899.214986123] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366900.214753442] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366901.215049847] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366902.215066784] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366903.214954717] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366904.214820880] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366905.214835517] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366906.215439434] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366907.257786091] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366908.410023517] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366909.214906871] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366910.214978168] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366911.214754763] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366912.215368802] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366913.215051235] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366914.214998175] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366915.215054131] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366916.215266690] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366917.214977696] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366918.214811063] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366919.367606626] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366920.214836146] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366921.215060949] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366922.215046572] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366923.214948090] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366924.214871776] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366925.215153122] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366926.214937877] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366927.215512043] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366928.215051882] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366929.215018279] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366930.219428123] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366931.372180241] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366932.215215184] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366933.215719955] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366934.215207680] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366935.215057514] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366936.215547125] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366937.215259022] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366938.215139168] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366939.215138188] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366940.215308915] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366941.215193230] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366942.223854462] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366943.376042142] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366944.215172308] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366945.215187026] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366946.215226952] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366947.215606971] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366948.215205051] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366949.215432957] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366950.215253745] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366951.215223552] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366952.215496396] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366953.215280233] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366954.367351751] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366955.215569879] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366956.215781220] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366957.215856040] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366958.215661088] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366959.215432080] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366960.215892739] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366961.215803943] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366962.215609890] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366963.215377686] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366964.215362629] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366965.218673116] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366966.370789077] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366967.215733070] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366968.215791617] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366969.215482089] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366970.216041110] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366971.215549964] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366972.216031914] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366973.215816407] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366974.215767519] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366975.215809698] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366976.215861566] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366977.223361403] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366978.375815640] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366979.215962472] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366980.216250828] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366981.216073442] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366982.216053973] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366983.216077665] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366984.216044261] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366985.216309191] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366986.216024155] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366987.216595125] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366988.216067128] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366989.368239838] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366990.216160763] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366991.216422262] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366992.216164771] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366993.216127661] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366994.216398773] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366995.216208016] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366996.216175399] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366997.216236952] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366998.216213155] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780366999.216419754] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367000.219974169] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367001.372040965] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367002.216302160] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367003.216238618] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367004.216259104] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367005.216551779] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367006.216190391] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367007.216230122] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367008.216030356] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367009.216284959] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367010.216376257] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367011.216293402] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367012.223580531] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367013.376397622] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367014.216113285] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367015.216323947] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367016.217027345] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367017.217281452] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367018.217066235] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367019.216740578] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367020.216660551] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367021.216666183] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367022.216647937] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367023.216464211] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367024.368875367] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367025.216213864] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367026.216235564] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367027.216738993] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367028.216586600] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367029.216837310] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367030.216799563] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367031.216897972] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367032.216774548] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367033.216586895] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367034.216831817] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367035.220724048] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367036.373810848] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367037.216664140] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367038.217291830] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367039.217096496] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367040.217015557] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367041.217100120] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367042.216611934] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367043.216503139] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367044.216603206] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367045.216520865] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367046.216765116] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367047.226437777] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367048.379846460] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367049.216743682] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367050.217321004] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367051.217412651] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367052.217136191] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367053.217554392] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367054.216871869] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367055.216873062] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367056.216990924] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367057.217080492] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367058.217344394] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367059.370618770] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367060.216775335] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367061.217205912] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367062.217389697] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367063.217332994] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367064.217278397] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367065.217019666] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367066.216912451] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367067.217232565] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367068.217416513] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367069.216881758] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367070.221635230] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367071.372946793] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367072.217093234] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367073.217389608] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367074.217616696] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367075.217678817] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367076.217368416] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367077.217169468] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367078.217480091] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367079.217375503] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367080.217323552] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367081.217243691] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367082.224579765] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367083.375823232] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367084.217472377] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367085.217694102] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367086.217898255] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367087.217893505] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367088.217975183] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367089.217115244] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367090.217075312] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367091.217072144] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367092.217383760] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367093.217772332] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367094.370884408] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367095.217497130] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367096.217621174] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367097.217466842] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367098.217300122] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367099.217615643] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367100.217643605] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367101.217638922] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367102.217504889] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367103.217710921] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367104.217859891] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367105.222138416] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367106.373357448] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367107.217618801] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367108.217935981] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367109.218120867] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367110.217840592] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367111.218311458] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367112.217932901] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367113.217650149] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367114.217957064] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367115.217836291] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367116.218054493] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367117.225616501] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367118.379622299] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367119.218323377] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367120.218122134] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367121.218162171] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367122.218007801] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367123.218223992] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367124.218215537] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367125.218628363] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367126.218471418] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367127.218076418] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367128.218483217] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367129.372565478] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367130.218164180] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367131.218200498] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367132.217877480] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367133.217723325] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367134.217737744] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367135.217723455] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367136.217728011] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367137.218310618] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367138.218013979] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367139.217811417] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367140.224577455] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367141.379672990] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367142.218239306] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367143.218304381] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367144.218470414] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367145.218223990] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367146.218361920] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367147.218097856] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367148.217993375] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367149.218262048] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367150.218530333] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367151.217947883] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367152.232647647] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367153.386043176] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367154.218592802] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367155.218421736] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367156.218208234] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367157.218191915] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367158.218421453] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367159.218257477] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367160.218234717] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367161.218433587] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367162.218498181] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367163.218328593] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367164.371920433] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367165.218280321] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367166.218433959] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367167.218591529] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367168.218316291] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367169.218428703] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367170.218559991] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367171.219126354] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367172.218578555] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367173.218874604] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367174.218658228] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367175.224607208] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367176.378932358] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367177.219273319] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367178.218668797] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367179.218649559] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367180.218867793] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367181.218770692] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367182.219226395] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367183.218740835] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367184.219197716] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367185.219041626] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367186.218968286] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367187.230919963] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367188.383378966] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367189.219277919] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367190.218705873] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367191.218792904] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367192.218942525] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367193.218683498] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367194.218925914] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367195.218772578] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367196.218890955] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367197.219659034] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367198.219289527] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367199.373763943] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367200.219010798] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367201.219289643] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367202.219184383] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367203.219117778] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367204.218778974] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367205.218783436] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367206.219203036] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367207.219311302] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367208.219134985] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367209.219033419] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367210.227295509] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367211.380313132] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367212.219462024] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367213.219091291] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367214.218826156] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367215.219051042] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367216.219382902] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367217.219287169] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367218.219123977] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367219.219247027] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367220.219082614] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367221.219025111] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367222.232702695] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367223.385517814] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367224.219059023] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367225.219211113] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367226.219221023] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367227.220290719] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367228.219624711] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367229.219270128] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367230.219264539] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367231.219600232] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367232.219309802] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367233.219171660] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367234.373233291] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367235.219136843] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367236.219231080] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367237.219796521] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367238.219480476] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367239.219365808] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367240.219179391] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367241.219579348] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367242.219812549] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367243.219564396] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367244.219291921] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367245.224974305] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367246.380857429] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367247.219577856] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367248.219927332] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367249.219495643] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367250.219698904] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367251.219477645] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367252.219720102] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367253.219562359] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367254.219553320] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367255.219537078] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367256.219831046] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367257.233984230] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367258.387845760] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367259.219675004] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367260.220082980] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367261.219888579] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367262.219849473] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367263.219942559] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367264.219828952] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367265.219888913] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367266.219947015] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367267.219859706] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367268.219788170] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367269.374693206] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367270.219828295] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367271.219873331] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367272.219891228] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367273.219964580] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367274.220005481] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367275.219796616] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367276.220085964] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367277.219997289] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367278.219832099] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367279.219724956] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367280.227244724] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367281.381277558] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367282.220153475] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367283.220067667] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367284.220059459] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367285.219966287] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367286.219978715] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367287.220281864] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367288.219894698] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367289.220017617] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367290.220042453] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367291.220186328] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367292.233981063] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367293.387273188] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367294.220100655] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367295.220313740] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367296.220079136] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367297.220583676] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367298.219973352] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367299.220275709] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367300.220099211] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367301.220159641] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367302.220484073] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367303.220154031] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367304.374626850] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367305.220322207] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367306.220166242] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367307.220169188] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367308.220089827] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367309.220442919] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367310.220081823] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367311.220244220] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367312.220228693] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367313.220271884] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367314.220126656] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367315.227334223] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367316.381210817] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367317.220765149] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367318.220225093] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367319.220241105] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367320.220226748] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367321.220371782] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367322.220396846] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367323.220419507] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367324.220414135] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367325.220664796] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367326.220472089] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367327.233180536] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367328.386419914] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367329.220250380] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367330.220341158] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367331.220726722] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367332.220718552] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367333.220622987] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367334.220633213] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367335.220750479] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367336.220651869] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367337.220776236] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367338.220813432] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367339.374073044] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367340.220569063] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367341.220825361] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367342.221143098] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367343.220745560] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367344.220857915] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367345.220810778] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367346.220642999] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367347.220686548] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367348.220978163] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367349.220520519] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367350.227218516] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367351.379978323] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367352.220784558] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367353.220783553] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367354.220775731] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367355.220617473] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367356.220883603] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367357.220796767] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367358.220645481] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367359.220994615] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367360.220816605] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367361.220653730] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367362.231751348] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367363.385129126] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367364.220690639] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367365.220746640] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367366.221181781] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367367.221487799] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367368.220972397] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367369.220758757] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367370.220791487] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367371.221115355] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367372.221009585] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367373.221036838] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367374.375193231] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367375.220972523] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367376.221345249] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367377.221244655] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367378.221044794] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367379.221014663] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367380.221241493] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367381.221296255] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367382.221357832] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367383.221294222] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367384.221281044] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367385.227669224] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367386.380456461] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367387.221378493] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367388.221199771] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367389.221280571] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367390.221452602] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367391.221107154] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367392.221537170] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367393.221358569] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367394.221148382] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367395.221593242] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367396.221576943] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367397.232367563] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367398.386247946] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367399.221475814] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367400.221487670] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367401.221486629] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367402.221856023] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367403.221493342] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367404.221398696] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367405.221242768] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367406.221565628] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367407.221644260] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367408.221328518] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367409.373872900] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367410.221374542] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367411.221366960] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367412.221495858] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367413.221600083] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367414.221799604] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367415.221410924] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367416.221678475] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367417.221668005] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367418.221587709] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367419.221529525] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367420.226717517] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367421.378958102] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367422.221881402] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367423.221696011] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367424.221702942] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367425.221675726] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367426.221682590] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367427.221719437] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367428.221820028] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367429.221667590] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367430.221565648] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367431.222003519] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367432.231175995] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367433.384313823] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367434.221599473] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367435.221606934] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367436.222017312] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367437.222327142] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367438.222351849] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367439.221700641] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367440.222069286] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367441.221760800] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367442.222061314] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367443.222102014] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367444.376879529] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367445.221935090] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367446.222130637] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367447.222111685] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367448.222001851] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367449.222100914] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367450.221894308] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367451.222129274] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367452.222209806] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367453.222077406] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367454.222118895] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367455.230779531] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367456.386394961] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367457.222036921] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367458.222059302] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367459.221894031] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367460.222273150] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367461.222483178] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367462.222667412] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367463.221952658] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367464.222657633] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367465.222265953] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367466.222137956] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367467.238268208] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367468.390984740] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367469.222547599] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367470.222683025] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367471.222800978] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367472.222648846] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252
+[ERROR] [1780367473.222844685] [ob_camera_head.ob_camera_head]: Failed to TemperatureUpdate1: Request failed, statusCode: 

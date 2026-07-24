@@ -1,0 +1,9 @@
+<library path="head_ik_controller">
+  <class name="head_ik_controller/HeadIkController"
+         type="head_ik_controller::HeadIkController" 
+         base_class_type="controller_interface::ControllerInterface">
+  <description>
+    head_ik_controller ros2_control controller.
+  </description>
+  </class>
+</library>

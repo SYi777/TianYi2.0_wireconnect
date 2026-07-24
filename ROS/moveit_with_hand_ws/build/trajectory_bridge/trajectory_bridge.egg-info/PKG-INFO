@@ -1,0 +1,8 @@
+Metadata-Version: 2.4
+Name: trajectory_bridge
+Version: 0.1.0
+Summary: Bridge MoveIt FollowJointTrajectory actions to body_control topics
+Maintainer: SYi777
+Maintainer-email: jyh1621839418@163.com
+License: BSD
+Requires-Dist: setuptools

@@ -1,0 +1,4 @@
+1778116989.4452982 [INFO] [launch]: All log files can be found below /home/ubuntu/ros2ws/log/2026-05-07-09-23-09-444323-ubuntu-1562
+1778116989.4454379 [INFO] [launch]: Default logging verbosity is set to INFO
+1778116989.5229230 [INFO] [component_container_mt-1]: process started with pid [1728]
+1778116989.8209846 [INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/audio_node' in container '/audio_node_container'

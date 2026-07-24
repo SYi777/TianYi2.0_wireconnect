@@ -1,0 +1,516 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 125
+    cpu_affinity: 8
+    thread_priority: 50
+
+    moveit_left_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+    moveit_right_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+    moveit_head_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+    moveit_dual_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+    moveit_trunk_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+    
+    empty_L_controller:
+      type: empty_controller/EmptyController
+    empty_R_controller:
+      type: empty_controller/EmptyController
+
+    empty_head_controller:
+      type: empty_controller/EmptyController
+
+
+    jointspace_head_controller:
+      type: jointspace_ruckig_action_controller/JointspaceRuckigActionController
+
+    endpose_head_controller:
+      type: head_ik_controller/HeadIkController
+
+    jointspace_arm_L_controller:
+      type: jointspace_ruckig_action_controller/JointspaceRuckigActionController
+    jointspace_arm_R_controller:
+      type: jointspace_ruckig_action_controller/JointspaceRuckigActionController
+    jointspace_dual_arm_controller:
+      type: jointspace_ruckig_action_controller/JointspaceRuckigActionController
+
+    jointspace_arm_L_collisionfree_controller:
+      type: jointspace_ruckig_rmp_controller/JointspaceRuckigRmpController
+
+    jointspace_arm_R_collisionfree_controller:
+      type: jointspace_ruckig_rmp_controller/JointspaceRuckigRmpController
+      
+    jointspace_ruckig_qp_controller:
+      type: jointspace_ruckig_qp_controller/JointspaceRuckigQpController
+
+    jointspace_single_arm_qpik_L_controller:
+      type: jointspace_qpik_controller/JointspaceQpikController
+    jointspace_single_arm_qpik_R_controller:
+      type: jointspace_qpik_controller/JointspaceQpikController
+
+    endpose_single_arm_qpik_L_controller:
+      type: single_arm_qpik_controller/SingleArmQpikController
+    endpose_single_arm_qpik_R_controller:
+      type: single_arm_qpik_controller/SingleArmQpikController
+    
+
+    endpose_single_arm_qp_L_controller:
+      type: single_arm_qp_controller/SingleArmQpController
+    endpose_single_arm_qp_R_controller:
+      type: single_arm_qp_controller/SingleArmQpController
+
+    endpose_single_arm_qp2_L_controller:
+      type: single_arm_qp2_controller/SingleArmQp2Controller
+    endpose_single_arm_qp2_R_controller:
+      type: single_arm_qp2_controller/SingleArmQp2Controller
+
+    endpose_dual_arm_qp_controller:
+      type: endpose_dual_arm_qp_controller/EndposeDualArmQpController
+joint_state_broadcaster:
+  ros__parameters:
+    use_local_topics: true
+    
+moveit_left_arm_controller:
+  ros__parameters:
+    joints:
+      - shoulder_pitch_l_joint
+      - shoulder_roll_l_joint
+      - shoulder_yaw_l_joint
+      - elbow_pitch_l_joint
+      - elbow_yaw_l_joint
+      - wrist_pitch_l_joint
+      - wrist_roll_l_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+    allow_nonzero_velocity_at_trajectory_end: false
+    set_last_command_interface_value_as_state_on_activation: false
+moveit_right_arm_controller:
+  ros__parameters:
+    joints:
+      - shoulder_pitch_r_joint
+      - shoulder_roll_r_joint
+      - shoulder_yaw_r_joint
+      - elbow_pitch_r_joint
+      - elbow_yaw_r_joint
+      - wrist_pitch_r_joint
+      - wrist_roll_r_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+    allow_nonzero_velocity_at_trajectory_end: false
+    set_last_command_interface_value_as_state_on_activation: false
+moveit_head_controller:
+  ros__parameters:
+    joints:
+      - head_yaw_joint
+      - head_pitch_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+    allow_nonzero_velocity_at_trajectory_end: false
+    set_last_command_interface_value_as_state_on_activation: false
+moveit_dual_arm_controller:
+  ros__parameters:
+    joints:
+      - shoulder_pitch_l_joint
+      - shoulder_roll_l_joint
+      - shoulder_yaw_l_joint
+      - elbow_pitch_l_joint
+      - elbow_yaw_l_joint
+      - wrist_pitch_l_joint
+      - wrist_roll_l_joint
+      - shoulder_pitch_r_joint
+      - shoulder_roll_r_joint
+      - shoulder_yaw_r_joint
+      - elbow_pitch_r_joint
+      - elbow_yaw_r_joint
+      - wrist_pitch_r_joint
+      - wrist_roll_r_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+    allow_nonzero_velocity_at_trajectory_end: false
+    set_last_command_interface_value_as_state_on_activation: false
+moveit_trunk_controller:
+  ros__parameters:
+    joints:
+      - first_leg_pitch_joint
+      - second_leg_pitch_joint
+      - waist_pitch_joint
+      - waist_yaw_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+    allow_nonzero_velocity_at_trajectory_end: false
+    set_last_command_interface_value_as_state_on_activation: false
+
+empty_L_controller:
+  ros__parameters:
+    joints: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint"]
+    interface_name: "position"
+    arm_idx: 0
+
+empty_R_controller:
+  ros__parameters:
+    joints: ["shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    interface_name: "position"
+    arm_idx: 1
+
+
+empty_head_controller:
+  ros__parameters:
+    joints: ["head_yaw_joint", "head_pitch_joint"]
+    interface_name: "position"
+    arm_idx: 3
+
+
+jointspace_head_controller:
+  ros__parameters:
+    joints: ["head_yaw_joint", "head_pitch_joint"]
+    interface_name: "position"
+    arm_idx: 3
+    joint_upper_limits: [1.047, 0.262]
+    joint_lower_limits: [-1.047, -0.96]
+    vel_limits: [1.0, 1.0]
+    acc_limits: [10.0, 10.0]
+    jerk_limits: [50.0, 50.0]
+
+
+
+endpose_head_controller:
+  ros__parameters:
+    joints: ["head_yaw_joint", "head_pitch_joint"]
+    interface_name: "position"
+    arm_idx: 3
+    joint_upper_limits: [1.047, 0.262]
+    joint_lower_limits: [-1.047, -0.96]
+    vel_limits: [1.0, 1.0]
+    acc_limits: [10.0, 10.0]
+    jerk_limits: [50.0, 50.0]
+
+
+
+jointspace_arm_L_controller:
+  ros__parameters:
+    joints: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint"]
+    interface_name: "position"
+    arm_idx: 0
+    joint_upper_limits: [2.96, 3.40, 2.96, 0.261, 2.96, 1.39, 1.39]
+    joint_lower_limits: [-2.96, -0.262, -2.96, -2.61, -2.96, -1.39, -1.39]
+    vel_limits: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
+    acc_limits: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
+    jerk_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+
+jointspace_arm_R_controller:
+  ros__parameters:
+    joints: ["shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    interface_name: "position"
+    arm_idx: 1
+    joint_upper_limits: [2.96, 0.262, 2.96, 0.261, 2.96, 1.39, 1.39]
+    joint_lower_limits: [-2.96, -3.40, -2.96, -2.61, -2.96, -1.39, -1.39]
+    vel_limits: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
+    acc_limits: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
+    jerk_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+
+jointspace_dual_arm_controller:
+  ros__parameters:
+    joints: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint", "shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    interface_name: "position"
+    arm_idx: 7
+    joint_upper_limits: [2.96, 2.616, 2.96, 0.261, 2.96, 1.05, 1.65, 2.96, 0.262, 2.96, 0.261, 2.96, 1.05, 1.65]
+    joint_lower_limits: [-2.96, -0.262, -2.96, -2.61, -2.96, -0.785, -1.3, -2.96, -2.616, -2.96, -2.61, -2.96, -0.785, -1.3]
+    vel_limits: [3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0]
+    acc_limits: [30.0, 30.0, 30.0, 30.0, 30.0, 30.0, 30.0, 30.0, 30.0, 30.0, 30.0, 30.0, 30.0, 30.0]
+    jerk_limits: [100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0]
+
+jointspace_arm_L_collisionfree_controller:
+  ros__parameters:
+    joints: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint"]
+    interface_name: "position"
+    states: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint", "shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    robot_idx: 2
+    arm_idx: 0
+    joint_upper_limits: [2.96, 3.40, 2.96, 0.261, 2.96, 1.39, 1.39]
+    joint_lower_limits: [-2.96, -0.262, -2.96, -2.61, -2.96, -1.39, -1.39]
+    vel_limits: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
+    acc_limits: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
+    jerk_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+    collision_gap : 0.0
+
+
+jointspace_arm_R_collisionfree_controller:
+  ros__parameters:
+    joints: ["shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    interface_name: "position"
+    states: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint", "shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    robot_idx: 2
+    arm_idx: 1
+    joint_upper_limits: [2.96, 0.262, 2.96, 0.261, 2.96, 1.39, 1.39]
+    joint_lower_limits: [-2.96, -3.40, -2.96, -2.61, -2.96, -1.39, -1.39]
+    vel_limits: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
+    acc_limits: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
+    jerk_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+    collision_gap : 0.0
+
+jointspace_single_arm_qpik_L_controller:
+  ros__parameters:
+    joints: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint"]
+    interface_name: "position"
+    states: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint", "shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    robot_idx: 2
+    arm_idx: 0
+    joint_upper_limits: [2.96, 3.40, 2.96, 0.261, 2.96, 1.39, 1.39]
+    joint_lower_limits: [-2.96, -0.262, -2.96, -2.61, -2.96, -1.39, -1.39]
+    vel_limits: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
+    acc_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+    jerk_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+
+
+jointspace_single_arm_qpik_R_controller:
+  ros__parameters:
+    joints: ["shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    interface_name: "position"
+    states: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint", "shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    robot_idx: 2
+    arm_idx: 1
+    joint_upper_limits: [2.96, 0.262, 2.96, 0.261, 2.96, 1.39, 1.39]
+    joint_lower_limits: [-2.96, -3.40, -2.96, -2.61, -2.96, -1.39, -1.39]
+    vel_limits: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
+    acc_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+    jerk_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+
+
+
+
+endpose_single_arm_qpik_L_controller:
+  ros__parameters:
+    joints: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint"]
+    interface_name: "position"
+    states: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint", "shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    robot_idx: 2
+    arm_idx: 0
+    joint_upper_limits: [2.96, 3.40, 2.96, 0.261, 2.96, 1.39, 1.39]
+    joint_lower_limits: [-2.96, -0.262, -2.96, -2.61, -2.96, -1.39, -1.39]
+    vel_limits: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
+    acc_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+    jerk_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+    joint_home_pos: [0.0, 1.18, 0.0, -1.3, 0.0, -0.13, 0.18]
+    dis_err_bound: 0.2
+    ori_err_bound: 1.0
+    otg_r_step: 0.005
+    otg_p_step: 0.001
+    from_frame: "waist_pitch_link"
+    to_frame: "left_tcp_link"
+
+endpose_single_arm_qpik_R_controller:
+  ros__parameters:
+    joints: ["shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    interface_name: "position"
+    states: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint", "shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    robot_idx: 2
+    arm_idx: 1
+    joint_upper_limits: [2.96, 0.262, 2.96, 0.261, 2.96, 1.39, 1.39]
+    joint_lower_limits: [-2.96, -3.40, -2.96, -2.61, -2.96, -1.39, -1.39]
+    vel_limits: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
+    acc_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+    jerk_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+    joint_home_pos: [0.0, -1.18, 0.0, -1.3, 0.0, -0.13, 0.18]
+    dis_err_bound: 0.2
+    ori_err_bound: 1.0
+    otg_r_step: 0.005
+    otg_p_step: 0.001
+    from_frame: "waist_pitch_link"
+    to_frame: "right_tcp_link"
+
+
+endpose_single_arm_qp_R_controller:
+  ros__parameters:
+    joints: ["shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    interface_name: "position"
+    states: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint", "shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    robot_idx: 2
+    arm_idx: 1
+    joint_upper_limits: [2.96, 0.262, 2.96, 0.261, 2.96, 1.39, 1.39]
+    joint_lower_limits: [-2.96, -3.40, -2.96, -2.61, -2.96, -1.39, -1.39]
+    vel_limits: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
+    acc_limits: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
+    jerk_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+    joint_home_pos: [0.0, 1.18, 0.0, -1.3, 0.0, -0.13, 0.18]
+    collision_r: [0.175,0.175,0.045,0.045,0.045,0.045,0.045,0.061,0.081,0.10] # 碰撞小球半径，身体2，关节7，freeball1
+    collision_freeBall_pos: [0.0, 0.0, 0.0,0.10] # 自由碰撞小球xyz半径(半径做抽象参数)
+    OriWeight: [1.0, 1.0, 1.0] #优化中姿态控制权重 0.0～1.0
+    dis_err_bound: 0.2
+    ori_err_bound: 1.0
+    otg_r_step: 0.01
+    otg_p_step: 0.01
+    dis_threshold: 0.005
+    ori_threshold: 0.005
+    step_threshold: 2000
+    redundant_degrees: 0.0
+    redundant_degrees_weight: 20.0
+    collision_idx: 1
+    track_task_gain: [15.0, 15.0, 15.0, 15.0, 15.0, 15.0] #优化位姿跟踪任务的增益
+
+
+
+endpose_single_arm_qp_L_controller:
+  ros__parameters:
+    joints: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint"]
+    interface_name: "position"
+    states: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint", "shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    robot_idx: 2
+    arm_idx: 0
+    joint_upper_limits: [2.96, 3.40, 2.96, 0.261, 2.96, 1.39, 1.39]
+    joint_lower_limits: [-2.96, -0.262, -2.96, -2.61, -2.96, -1.39, -1.39]
+    vel_limits: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
+    acc_limits: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
+    jerk_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+    joint_home_pos: [0.0, 1.18, 0.0, -1.3, 0.0, -0.13, 0.18]
+    collision_r: [0.175,0.175,0.045,0.045,0.045,0.045,0.045,0.061,0.081,0.10] # 碰撞小球半径，身体2，关节7，freeball1
+    collision_freeBall_pos: [0.0, 0.0, 0.0,0.10] # 自由碰撞小球xyz半径(半径做抽象参数)
+    OriWeight: [1.0, 1.0, 1.0] #优化中姿态控制权重 0.0～1.0
+    dis_err_bound: 0.2
+    ori_err_bound: 1.0
+    otg_r_step: 0.01
+    otg_p_step: 0.01
+    dis_threshold: 0.005
+    ori_threshold: 0.005
+    step_threshold: 2000
+    redundant_degrees: 0.0
+    redundant_degrees_weight: 20.0
+    collision_idx: 1
+    track_task_gain: [15.0, 15.0, 15.0, 15.0, 15.0, 15.0] #优化位姿跟踪任务的增益
+
+    
+endpose_single_arm_R_controller_qp:
+  ros__parameters:
+    joints: ["shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    interface_name: "position"
+    arm_idx: 1
+    joint_upper_limits: [2.96, 0.262, 2.96, 0.261, 2.96, 1.39, 1.39]
+    joint_lower_limits: [-2.96, -3.40, -2.96, -2.61, -2.96, -1.39, -1.39]
+    vel_limits: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
+    acc_limits: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
+    jerk_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+    joint_home_pos: [0.0, -1.18, 0.0, -1.3, 0.0, -0.13, 0.18]
+    dis_err_bound: 0.2
+    ori_err_bound: 1.0
+    otg_r_step: 0.001
+    otg_p_step: 0.001
+
+    
+jointspace_ruckig_qp_controller:
+  ros__parameters:
+    joints: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint", "shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    states: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint", "shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    interface_name: "position"
+    robot_idx: 2
+    arm_idx: 4
+    joint_upper_limits: [2.96, 3.40, 2.96, 0.261, 2.96, 1.39, 1.39,   2.96, 0.262, 2.96, 0.261, 2.96, 1.39, 1.39]
+    joint_lower_limits: [-2.96, -0.262, -2.96, -2.61, -2.96, -1.39, -1.39, -2.96, -3.40, -2.96, -2.61, -2.96, -1.39, -1.39]
+    vel_limits: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
+    acc_limits: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
+    jerk_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+    collision_r: [0.175,0.175,0.045,0.045,0.045,0.045,0.045,0.061,0.081,0.045,0.045,0.045,0.045,0.045,0.061,0.081,0.065] # 碰撞小球半径，身体2，关节7+7，freeball1
+    collision_freeBall_pos: [0.0, 0.0, -0.175,0.185] # 自由碰撞小球xyz半径(半径做抽象参数)
+    collision_idx: 1
+
+
+
+
+endpose_dual_arm_qp_controller:
+  ros__parameters:
+    joints: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint", "shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    states: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint", "shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    interface_name: "position"
+    robot_idx: 2
+    arm_idx: 1
+    joint_upper_limits: [2.96, 3.40, 2.96, 0.261, 2.96, 1.39, 1.39,   2.96, 0.262, 2.96, 0.261, 2.96, 1.39, 1.39]
+    joint_lower_limits: [-2.96, -0.262, -2.96, -2.61, -2.96, -1.39, -1.39, -2.96, -3.40, -2.96, -2.61, -2.96, -1.39, -1.39]
+    vel_limits: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
+    acc_limits: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
+    jerk_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+    joint_home_pos: [0.0, 1.18, 0.0, -1.3, 0.0, -0.13, 0.18, 0.0, -1.18, 0.0, -1.3, 0.0, -0.13, 0.18]
+    collision_r: [0.175,0.175,0.045,0.045,0.045,0.045,0.045,0.061,0.081,0.045,0.045,0.045,0.045,0.045,0.061,0.081,0.065] # 碰撞小球半径，身体2，关节7+7，freeball1
+    collision_freeBall_pos: [0.0, 0.0, 0.0,0.10] # 自由碰撞小球xyz半径(半径做抽象参数)
+    OriWeight: [1.0, 1.0, 1.0] #优化中姿态控制权重 0.0～1.0
+    dis_err_bound: 0.2
+    ori_err_bound: 1.0
+    otg_r_step: 0.001
+    otg_p_step: 0.001
+    redundant_degrees_left: 0.0
+    redundant_degrees_right: 0.0
+    redundant_degrees_weight: 0.0
+    collision_idx: 1
+
+
+endpose_single_arm_qp2_R_controller:
+  ros__parameters:
+    states: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint", "shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint", "first_leg_pitch_joint", "second_leg_pitch_joint", "waist_pitch_joint", "waist_yaw_joint"]
+    joints: ["shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    interface_name: "position"
+    states: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint", "shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    robot_idx: 1
+    arm_idx: 1
+    joint_upper_limits: [2.96, 0.262, 2.96, 0.261, 2.96, 1.05, 1.65]
+    joint_lower_limits: [-2.96, -2.616, -2.96, -2.61, -2.96, -0.785, -1.3]
+    vel_limits: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
+    acc_limits: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
+    jerk_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+    joint_home_pos: [0.0, 1.18, 0.0, -1.3, 0.0, -0.13, 0.18]
+    collision_r: [0.175,0.175,0.045,0.045,0.045,0.045,0.045,0.061,0.081,0.10] # 碰撞小球半径，身体2，关节7，freeball1
+    collision_freeBall_pos: [0.0, 0.0, 0.0,0.10] # 自由碰撞小球xyz半径(半径做抽象参数)
+    OriWeight: [1.0, 1.0, 1.0] #优化中姿态控制权重 0.0～1.0
+    dis_err_bound: 0.2
+    ori_err_bound: 1.0
+    otg_r_step: 0.001
+    otg_p_step: 0.001
+    redundant_degrees: 0.0
+    redundant_degrees_weight: 0.0
+    collision_idx: 1
+    
+
+endpose_single_arm_qp2_L_controller:
+  ros__parameters:
+    states: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint", "shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint", "first_leg_pitch_joint", "second_leg_pitch_joint", "waist_pitch_joint", "waist_yaw_joint"]
+    joints: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint"]
+    interface_name: "position"
+    states: ["shoulder_pitch_l_joint", "shoulder_roll_l_joint", "shoulder_yaw_l_joint", "elbow_pitch_l_joint", "elbow_yaw_l_joint", "wrist_pitch_l_joint", "wrist_roll_l_joint", "shoulder_pitch_r_joint", "shoulder_roll_r_joint", "shoulder_yaw_r_joint", "elbow_pitch_r_joint", "elbow_yaw_r_joint", "wrist_pitch_r_joint", "wrist_roll_r_joint"]
+    robot_idx: 1
+    arm_idx: 0
+    joint_upper_limits: [2.96, 2.616, 2.96, 0.261, 2.96, 1.05, 1.3]
+    joint_lower_limits: [-2.96, -0.262, -2.96, -2.61, -2.96, -0.785, -1.65]
+    vel_limits: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
+    acc_limits: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
+    jerk_limits: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+    joint_home_pos: [0.0, 1.18, 0.0, -1.3, 0.0, -0.13, 0.18]
+    collision_r: [0.175,0.175,0.045,0.045,0.045,0.045,0.045,0.061,0.081,0.10] # 碰撞小球半径，身体2，关节7，freeball1
+    collision_freeBall_pos: [0.0, 0.0, 0.0,0.10] # 自由碰撞小球xyz半径(半径做抽象参数)
+    OriWeight: [1.0, 1.0, 1.0] #优化中姿态控制权重 0.0～1.0
+    dis_err_bound: 0.2
+    ori_err_bound: 1.0
+    otg_r_step: 0.001
+    otg_p_step: 0.001
+    redundant_degrees: 0.0
+    redundant_degrees_weight: 0.0
+    collision_idx: 1

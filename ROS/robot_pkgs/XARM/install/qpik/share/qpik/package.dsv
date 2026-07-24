@@ -1,0 +1,11 @@
+source;share/qpik/hook/cmake_prefix_path.ps1
+source;share/qpik/hook/cmake_prefix_path.dsv
+source;share/qpik/hook/cmake_prefix_path.sh
+source;share/qpik/hook/ld_library_path_lib.ps1
+source;share/qpik/hook/ld_library_path_lib.dsv
+source;share/qpik/hook/ld_library_path_lib.sh
+source;share/qpik/local_setup.bash
+source;share/qpik/local_setup.dsv
+source;share/qpik/local_setup.ps1
+source;share/qpik/local_setup.sh
+source;share/qpik/local_setup.zsh

@@ -1,0 +1,37 @@
+[0.516s] Invoking command in '/home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge': PYTHONPATH=/home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/syi777/WireConnect_ws/ROS/moveit_ws/install/trajectory_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/build
+[0.664s] running develop
+[0.739s] Removing /home/syi777/WireConnect_ws/ROS/moveit_ws/install/trajectory_bridge/lib/python3.10/site-packages/trajectory-bridge.egg-link (link to .)
+[0.754s] Invoked command in '/home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge' returned '0': PYTHONPATH=/home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/syi777/WireConnect_ws/ROS/moveit_ws/install/trajectory_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/build
+[0.754s] Invoking command in '/home/syi777/WireConnect_ws/ROS/moveit_ws/src/trajectory_bridge': PYTHONPATH=/home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/syi777/WireConnect_ws/ROS/moveit_ws/install/trajectory_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/trajectory_bridge build --build-base /home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/build install --record /home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/install.log --single-version-externally-managed install_data --force
+[0.877s] running egg_info
+[0.878s] writing ../../build/trajectory_bridge/trajectory_bridge.egg-info/PKG-INFO
+[0.878s] writing dependency_links to ../../build/trajectory_bridge/trajectory_bridge.egg-info/dependency_links.txt
+[0.878s] writing entry points to ../../build/trajectory_bridge/trajectory_bridge.egg-info/entry_points.txt
+[0.878s] writing requirements to ../../build/trajectory_bridge/trajectory_bridge.egg-info/requires.txt
+[0.878s] writing top-level names to ../../build/trajectory_bridge/trajectory_bridge.egg-info/top_level.txt
+[0.879s] reading manifest file '../../build/trajectory_bridge/trajectory_bridge.egg-info/SOURCES.txt'
+[0.879s] writing manifest file '../../build/trajectory_bridge/trajectory_bridge.egg-info/SOURCES.txt'
+[0.879s] running build
+[0.879s] running build_py
+[0.879s] creating /home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/build
+[0.879s] creating /home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/build/lib
+[0.879s] creating /home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/build/lib/trajectory_bridge
+[0.879s] copying trajectory_bridge/bridge_node.py -> /home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/build/lib/trajectory_bridge
+[0.880s] copying trajectory_bridge/__init__.py -> /home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/build/lib/trajectory_bridge
+[0.880s] running install
+[0.880s] running install_lib
+[0.880s] creating /home/syi777/WireConnect_ws/ROS/moveit_ws/install/trajectory_bridge/lib/python3.10/site-packages/trajectory_bridge
+[0.880s] copying /home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/build/lib/trajectory_bridge/bridge_node.py -> /home/syi777/WireConnect_ws/ROS/moveit_ws/install/trajectory_bridge/lib/python3.10/site-packages/trajectory_bridge
+[0.880s] copying /home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/build/lib/trajectory_bridge/__init__.py -> /home/syi777/WireConnect_ws/ROS/moveit_ws/install/trajectory_bridge/lib/python3.10/site-packages/trajectory_bridge
+[0.880s] byte-compiling /home/syi777/WireConnect_ws/ROS/moveit_ws/install/trajectory_bridge/lib/python3.10/site-packages/trajectory_bridge/bridge_node.py to bridge_node.cpython-310.pyc
+[0.881s] byte-compiling /home/syi777/WireConnect_ws/ROS/moveit_ws/install/trajectory_bridge/lib/python3.10/site-packages/trajectory_bridge/__init__.py to __init__.cpython-310.pyc
+[0.881s] running install_data
+[0.882s] copying resource/trajectory_bridge -> /home/syi777/WireConnect_ws/ROS/moveit_ws/install/trajectory_bridge/share/ament_index/resource_index/packages
+[0.882s] copying package.xml -> /home/syi777/WireConnect_ws/ROS/moveit_ws/install/trajectory_bridge/share/trajectory_bridge
+[0.882s] copying launch/moveit_real_robot.launch.py -> /home/syi777/WireConnect_ws/ROS/moveit_ws/install/trajectory_bridge/share/trajectory_bridge/launch
+[0.882s] running install_egg_info
+[0.883s] Copying ../../build/trajectory_bridge/trajectory_bridge.egg-info to /home/syi777/WireConnect_ws/ROS/moveit_ws/install/trajectory_bridge/lib/python3.10/site-packages/trajectory_bridge-0.1.0-py3.10.egg-info
+[0.883s] running install_scripts
+[0.895s] Installing trajectory_bridge script to /home/syi777/WireConnect_ws/ROS/moveit_ws/install/trajectory_bridge/bin
+[0.895s] writing list of installed files to '/home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/install.log'
+[0.910s] Invoked command in '/home/syi777/WireConnect_ws/ROS/moveit_ws/src/trajectory_bridge' returned '0': PYTHONPATH=/home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/syi777/WireConnect_ws/ROS/moveit_ws/install/trajectory_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/trajectory_bridge build --build-base /home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/build install --record /home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge/install.log --single-version-externally-managed install_data --force

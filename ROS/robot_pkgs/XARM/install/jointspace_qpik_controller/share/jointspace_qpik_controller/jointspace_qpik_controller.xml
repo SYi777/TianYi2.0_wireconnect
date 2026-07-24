@@ -1,0 +1,9 @@
+<library path="jointspace_qpik_controller">
+  <class name="jointspace_qpik_controller/JointspaceQpikController"
+         type="jointspace_qpik_controller::JointspaceQpikController" 
+         base_class_type="controller_interface::ControllerInterface">
+  <description>
+    jointspace_qpik_controller ros2_control controller.
+  </description>
+  </class>
+</library>

@@ -1,0 +1,23 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: tiangong2dex_description
+    relative_path: urdf/tiangong2dex_upperbody.urdf.xacro
+  srdf:
+    relative_path: config/tiangong2dex_upperbody.srdf
+  package_settings:
+    author_name: rancho
+    author_email: rancho.he@humanoid.com
+    generated_timestamp: 1762854116
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position

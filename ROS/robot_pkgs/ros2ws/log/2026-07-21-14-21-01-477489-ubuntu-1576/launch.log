@@ -1,0 +1,4 @@
+1784614861.4783185 [INFO] [launch]: All log files can be found below /home/ubuntu/ros2ws/log/2026-07-21-14-21-01-477489-ubuntu-1576
+1784614861.4784062 [INFO] [launch]: Default logging verbosity is set to INFO
+1784614861.4896591 [INFO] [init.sh-1]: process started with pid [1604]
+1784625651.3461311 [INFO] [init.sh-1]: process has finished cleanly [pid 1604]

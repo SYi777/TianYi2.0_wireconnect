@@ -1,0 +1,4 @@
+1784527435.8014390 [INFO] [launch]: All log files can be found below /home/ubuntu/ros2ws/log/2026-07-20-14-03-55-800835-ubuntu-1545
+1784527435.8015120 [INFO] [launch]: Default logging verbosity is set to INFO
+1784527435.8475363 [INFO] [component_container_mt-1]: process started with pid [1559]
+1784527436.1410396 [INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/proc_manager_node' in container '/proc_manager_nodes'

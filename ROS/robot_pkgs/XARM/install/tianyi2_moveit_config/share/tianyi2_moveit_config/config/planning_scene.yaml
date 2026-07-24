@@ -1,0 +1,12 @@
+collision_detection:
+  link_padding:
+    L_base_link: 0.03
+    R_base_link: 0.03
+    base: 0.03
+    left_index_1: 0.02
+    left_index_2: 0.02
+    left_middle_1: 0.02
+    left_middle_2: 0.02
+    left_ring_1: 0.02
+    left_little_1: 0.02
+    left_little_2: 0.02

@@ -1,0 +1,3 @@
+[console_scripts]
+xarmcontroldebug = xarm_debug.xarmcontroldebug:main
+xarmdebug = xarm_debug.xarmdebug:main

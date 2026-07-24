@@ -1,0 +1,26 @@
+[0.749s] Invoking command in '/home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge': PYTHONPATH=/home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/build --no-deps symlink_data
+[0.941s] running develop
+[1.028s] running egg_info
+[1.028s] creating joint_state_bridge.egg-info
+[1.028s] writing joint_state_bridge.egg-info/PKG-INFO
+[1.028s] writing dependency_links to joint_state_bridge.egg-info/dependency_links.txt
+[1.028s] writing entry points to joint_state_bridge.egg-info/entry_points.txt
+[1.028s] writing requirements to joint_state_bridge.egg-info/requires.txt
+[1.028s] writing top-level names to joint_state_bridge.egg-info/top_level.txt
+[1.028s] writing manifest file 'joint_state_bridge.egg-info/SOURCES.txt'
+[1.029s] reading manifest file 'joint_state_bridge.egg-info/SOURCES.txt'
+[1.029s] writing manifest file 'joint_state_bridge.egg-info/SOURCES.txt'
+[1.030s] running build_ext
+[1.030s] Creating /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/lib/python3.10/site-packages/joint-state-bridge.egg-link (link to .)
+[1.031s] Installing joint_state_bridge script to /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/lib/joint_state_bridge
+[1.031s] 
+[1.031s] Installed /home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge
+[1.031s] running symlink_data
+[1.031s] creating /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/share/ament_index
+[1.031s] creating /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/share/ament_index/resource_index
+[1.031s] creating /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/share/ament_index/resource_index/packages
+[1.031s] symbolically linking /home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/resource/joint_state_bridge -> /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/share/ament_index/resource_index/packages
+[1.031s] symbolically linking /home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/package.xml -> /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/share/joint_state_bridge
+[1.031s] creating /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/share/joint_state_bridge/launch
+[1.031s] symbolically linking /home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/launch/joint_state_bridge.launch.py -> /home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/share/joint_state_bridge/launch
+[1.050s] Invoked command in '/home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge' returned '0': PYTHONPATH=/home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/syi777/WireConnect_ws/ROS/moveit_ws/install/joint_state_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/syi777/WireConnect_ws/ROS/moveit_ws/build/joint_state_bridge/build --no-deps symlink_data

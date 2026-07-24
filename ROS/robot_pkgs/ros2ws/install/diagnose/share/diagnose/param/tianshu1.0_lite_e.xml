@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<Data>
+  <robot name="工站" date="0000-00-00" desp="robot" type="TS1.0LITE-E"></robot>
+
+  <topic name="/arm/status" msgtype="bodyctrl_msgs::MotorStatusMsg" enable="1" simulated="0" />
+  <topic name="/head/status" msgtype="bodyctrl_msgs::MotorStatusMsg" enable="1" simulated="0" />
+  <topic name="/inspire_gripper/left_error" msgtype="std_msgs::UInt32" enable="1" simulated="0" />
+  <topic name="/inspire_gripper/right_error" msgtype="std_msgs::UInt32" enable="1" simulated="0" />
+  <topic name="/arm_6dof_left" msgtype="geometry_msgs::WrenchStamped" enable="1" simulated="0" />
+  <topic name="/arm_6dof_right" msgtype="geometry_msgs::WrenchStamped" enable="1" simulated="0" />
+  <topic name="/encoder_identical_error" msgtype="std_msgs::UInt32MultiArray" enable="1" simulated="0" />
+  <topic name="/sbus_data" msgtype="sensor_msgs::Joy" enable="1" simulated="0" />
+  <topic name="/power/board/key_status" msgtype="bodyctrl_msgs::PowerBoardKeyStatus" enable="1" simulated="0" />
+  <topic name="/power/board/status" msgtype="bodyctrl_msgs::PowerStatus" enable="1" simulated="0" />
+  <topic name="/audio/config/notify" msgtype="std_msgs::String" enable="1" pub="1" simulated="0" />
+  <topic name="/proc_manager/config/notify" msgtype="std_msgs::String" enable="1" pub="1" simulated="0" />
+  <topic name="/robot/trace/event_data" msgtype="cloud_service::TraceDatas" enable="1" pub="1" simulated="0" />
+
+  <service name="/diagnose/version/upgrade" msgtype="bodyctrl_msgs::srv::VersionUpgrade" enable="1" simulated="0" server="true" type="diagnose_service"/>
+  <service name="/ota/version/upgrade" msgtype="bodyctrl_msgs::srv::VersionUpgrade" enable="1" simulated="0" server="false" type="ota_service"/>
+  <service name="/proc_manager/version/upgrade" msgtype="bodyctrl_msgs::srv::VersionUpgrade" enable="1" simulated="0" server="false" type="proc_service"/>
+  
+  <device id="21" name="motor16" type="motor" group="左臂" desp="左肩关节俯仰" topic="/arm/status"  index="0" canid="11"/>
+  <device id="22" name="motor18" type="motor" group="左臂" desp="左肩关节侧展" topic="/arm/status"  index="0" canid="12"/>
+  <device id="23" name="motor17" type="motor" group="左臂" desp="左肩关节周转" topic="/arm/status"  index="0" canid="13"/>
+  <device id="24" name="motor24" type="motor" group="左臂" desp="左肘关节侧展" topic="/arm/status"  index="0" canid="14"/>
+
+  <device id="11" name="motor16" type="motor" group="右臂" desp="右肩关节俯仰" topic="/arm/status"  index="0" canid="21"/>
+  <device id="12" name="motor18" type="motor" group="右臂" desp="右肩关节侧展" topic="/arm/status"  index="0" canid="22"/>
+  <device id="13" name="motor17" type="motor" group="右臂" desp="右肩关节周转" topic="/arm/status"  index="0" canid="23"/>
+  <device id="14" name="motor24" type="motor" group="右臂" desp="右肘关节侧展" topic="/arm/status"  index="0" canid="24"/>
+
+  <device id="501" name="motor501" type="isomorphic_motor" group="同构左臂" desp="同构左关节1" topic="/encoder_identical_error"  index="0" canid="0"/>
+  <device id="502" name="motor502" type="isomorphic_motor" group="同构左臂" desp="同构左关节2" topic="/encoder_identical_error"  index="1" canid="0"/>
+  <device id="503" name="motor503" type="isomorphic_motor" group="同构左臂" desp="同构左关节3" topic="/encoder_identical_error"  index="2" canid="0"/>
+  <device id="504" name="motor504" type="isomorphic_motor" group="同构左臂" desp="同构左关节4" topic="/encoder_identical_error"  index="3" canid="0"/>
+  <device id="505" name="motor505" type="isomorphic_motor" group="同构左臂" desp="同构左关节5" topic="/encoder_identical_error"  index="4" canid="0"/>
+  <device id="506" name="motor506" type="isomorphic_motor" group="同构左臂" desp="同构左关节6" topic="/encoder_identical_error"  index="5" canid="0"/>
+  <device id="507" name="motor507" type="isomorphic_motor" group="同构左臂" desp="同构左关节7" topic="/encoder_identical_error"  index="6" canid="0"/>
+  <device id="508" name="motor508" type="isomorphic_motor" group="同构左臂" desp="同构左关节8" topic="/encoder_identical_error"  index="7" canid="0"/>
+
+  <device id="509" name="motor509" type="isomorphic_motor" group="同构右臂" desp="同构右关节1" topic="/encoder_identical_error"  index="8" canid="0"/>
+  <device id="510" name="motor510" type="isomorphic_motor" group="同构右臂" desp="同构右关节2" topic="/encoder_identical_error"  index="9" canid="0"/>
+  <device id="511" name="motor511" type="isomorphic_motor" group="同构右臂" desp="同构右关节3" topic="/encoder_identical_error"  index="10" canid="0"/>
+  <device id="512" name="motor512" type="isomorphic_motor" group="同构右臂" desp="同构右关节4" topic="/encoder_identical_error"  index="11" canid="0"/>
+  <device id="513" name="motor513" type="isomorphic_motor" group="同构右臂" desp="同构右关节5" topic="/encoder_identical_error"  index="12" canid="0"/>
+  <device id="514" name="motor514" type="isomorphic_motor" group="同构右臂" desp="同构右关节6" topic="/encoder_identical_error"  index="13" canid="0"/>
+  <device id="515" name="motor515" type="isomorphic_motor" group="同构右臂" desp="同构右关节7" topic="/encoder_identical_error"  index="14" canid="0"/>
+  <device id="516" name="motor516" type="isomorphic_motor" group="同构右臂" desp="同构右关节8" topic="/encoder_identical_error"  index="15" canid="0"/>
+
+
+  <device id="41" name="right_6dof" type="6dof" group="右手" desp="右六维力" topic="/arm_6dof_right"  index="0" canid="0"/>
+  <device id="42" name="right_hand" type="hand" group="右手" desp="右手" topic="/inspire_hand/state/right_hand"  index="0" canid="0"/>
+  <device id="43" name="left_6dof" type="6dof" group="左手" desp="左六维力" topic="/arm_6dof_left"  index="0" canid="0"/>
+  <device id="44" name="left_hand" type="hand" group="左手" desp="左手" topic="/inspire_hand/state/left_hand"  index="0" canid="0"/>
+
+  <device id="103" name="version" type="version" remote="0" ip="192.168.41.1" desp="整机版本" user="ubuntu" pwd="123" />
+  <device id="104" name="x86"   type="system" remote="0" ip="192.168.41.1" desp="x86 system" user="ubuntu" pwd="123" />
+
+
+  <device id="201" name="upgrade all" type="upgrade" desp="upgrade control">
+    <service name="/diagnose/version/upgrade" />
+    <service name="/ota/version/upgrade" />
+    <service name="/proc_manager/version/upgrade" />
+  </device>
+
+  <config key="status_update_interval" val="1000"></config>
+  <config key="localhost" val="192.168.41.1"></config>
+  <config key="web_dir" val="web/dist"></config>
+  <config key="log_level" val="1"></config>
+  <config key="version_upgrade_wait_estop_pressed_timeout" val="120"></config>
+  <config key="version_upgrade_wait_estop_release_timeout" val="120"></config>
+  <config key="version_upgrade_upload_file_interval" val="10"></config>
+
+  <config key="enable_auto_update_topic" val="1"></config>
+  <config key="enable_auto_update_alarm" val="1"></config>
+  <config key="enable_auto_update_battery" val="0"></config>
+  <config key="enable_auto_update_chassis" val="0"></config>
+  <config key="enable_auto_update_motor" val="1"></config>
+  <config key="enable_auto_update_power" val="0"></config>
+  <config key="enable_auto_update_radar" val="0"></config>
+  <config key="enable_auto_update_switch" val="1"></config>
+  <config key="enable_auto_update_remote_control" val="0"></config>
+  <config key="enable_auto_update_audio" val="0"></config>
+  <config key="enable_auto_update_hand" val="1"></config>
+  <config key="enable_auto_update_6dof" val="1"></config>
+  <config key="enable_auto_update_system" val="1"></config>
+  <config key="enable_auto_update_version" val="1"></config>
+  <config key="enable_auto_update_gripper" val="1"></config>
+  <config key="enable_auto_update_isomorphic_motor" val="1"></config>
+
+
+  <config key="enable_upgrade_check_proc_manager" val="0"></config>
+  <config key="enable_upgrade_check_ota_service" val="0"></config>
+  <config key="enable_upgrade_check_powerboard" val="1"></config>
+  <config key="enable_upgrade_check_estop_status" val="1"></config>
+  <config key="enable_upgrade_wait_status_ok" val="1"></config>
+
+</Data>

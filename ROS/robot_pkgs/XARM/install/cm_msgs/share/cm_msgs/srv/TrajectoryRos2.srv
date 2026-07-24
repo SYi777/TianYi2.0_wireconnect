@@ -1,0 +1,7 @@
+string  msg_id
+trajectory_msgs/JointTrajectory trajectory
+---
+
+bool    result
+
+

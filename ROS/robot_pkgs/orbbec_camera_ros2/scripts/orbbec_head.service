@@ -1,0 +1,11 @@
+[Unit]
+Description=orbbec_camera_head
+
+[Service]
+ExecStart=/home/nvidia/data/scripts/start_orbbec_camera.sh head
+Restart=always
+RestartSec=3
+StartLimitInterval=0
+
+[Install]
+WantedBy = default.target

@@ -1,0 +1,25 @@
+// generated from rosidl_adapter/resource/action.idl.em
+// with input from eai_manipulator_msgs/action/EndPosDualTarget.action
+// generated code does not contain a copyright notice
+
+#include "eai_manipulator_msgs/msg/DualArmTargetPose.idl"
+
+module eai_manipulator_msgs {
+  module action {
+    @verbatim (language="comment", text=
+      "目标ee")
+    struct EndPosDualTarget_Goal {
+      eai_manipulator_msgs::msg::DualArmTargetPose target;
+    };
+    struct EndPosDualTarget_Result {
+      boolean success;
+
+      string result_msg;
+    };
+    struct EndPosDualTarget_Feedback {
+      sequence<double> current_err;
+
+      string feedback_msg;
+    };
+  };
+};

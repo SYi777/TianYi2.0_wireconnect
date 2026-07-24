@@ -1,0 +1,4 @@
+srv/PlanRandomJointGoal.idl
+srv/PlanRandomJointGoal.srv
+srv/PlanRandomJointGoal_Request.msg
+srv/PlanRandomJointGoal_Response.msg

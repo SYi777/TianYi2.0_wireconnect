@@ -1,0 +1,4 @@
+1778121577.5562091 [INFO] [launch]: All log files can be found below /home/ubuntu/ros2ws/log/2026-05-07-10-39-37-555610-ubuntu-2801
+1778121577.5562992 [INFO] [launch]: Default logging verbosity is set to INFO
+1778121577.6000519 [INFO] [component_container-1]: process started with pid [2815]
+1778121591.9097693 [INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/bodyctrl_component' in container '/body_container'

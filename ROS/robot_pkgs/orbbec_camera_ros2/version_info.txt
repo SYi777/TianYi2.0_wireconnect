@@ -1,0 +1,6 @@
+product:OrbbecCamera
+platform:linux-aarch64
+version:a351a5b6
+ros_version:humble
+commit:bu/project/common/orbbec_camera,a351a5b6c8e71a9d50339c013463dd35443836d0
+release_time:2026-03-09 17:05:21

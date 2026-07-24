@@ -1,0 +1,18 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from cm_msgs/srv/TrajectoryRos2.srv
+// generated code does not contain a copyright notice
+
+#include "trajectory_msgs/msg/JointTrajectory.idl"
+
+module cm_msgs {
+  module srv {
+    struct TrajectoryRos2_Request {
+      string msg_id;
+
+      trajectory_msgs::msg::JointTrajectory trajectory;
+    };
+    struct TrajectoryRos2_Response {
+      boolean result;
+    };
+  };
+};

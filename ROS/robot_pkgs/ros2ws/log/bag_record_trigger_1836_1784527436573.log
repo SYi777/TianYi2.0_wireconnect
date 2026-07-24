@@ -1,0 +1,52 @@
+[INFO] [1784527436.590450450] [record_bag_node]: bag record config trigger_switch: 0 
+[INFO] [1784527436.590842391] [record_bag_node]: bag record config storage_disk_switch: 1 
+[INFO] [1784527436.590854894] [record_bag_node]: bag record config max_bag_size_mb: 100 
+[INFO] [1784527436.590858280] [record_bag_node]: bag record config bag_files_num: 40 
+[INFO] [1784527436.590862398] [record_bag_node]: bag record config output_path: /home/ubuntu/bags 
+[INFO] [1784527436.590865125] [record_bag_node]: bag record config record_type: list 
+[INFO] [1784527436.590867892] [record_bag_node]: bag record config bag_ctrl_topic: /bag_record/control/notify 
+[INFO] [1784527436.590870610] [record_bag_node]: bag record config topic list:
+[INFO] [1784527436.590874420] [record_bag_node]:  /imu/status 
+[INFO] [1784527436.590877018] [record_bag_node]:  /head/status 
+[INFO] [1784527436.590879318] [record_bag_node]:  /arm/status 
+[INFO] [1784527436.590881625] [record_bag_node]:  /waist/status 
+[INFO] [1784527436.590884029] [record_bag_node]:  /leg/status 
+[INFO] [1784527436.590886373] [record_bag_node]:  /inspire_hand/state/left_hand 
+[INFO] [1784527436.590888869] [record_bag_node]:  /inspire_hand/state/right_hand 
+[INFO] [1784527436.590891259] [record_bag_node]:  /power/board/status 
+[INFO] [1784527436.590893653] [record_bag_node]:  /power/board/key_status 
+[INFO] [1784527436.590895978] [record_bag_node]:  /power/battery/status 
+[INFO] [1784527436.590898310] [record_bag_node]:  /head/cmd_pos 
+[INFO] [1784527436.590900649] [record_bag_node]:  /head/cmd_ctrl 
+[INFO] [1784527436.590903012] [record_bag_node]:  /head/cmd_vel 
+[INFO] [1784527436.590905289] [record_bag_node]:  /head/cmd_set_zero 
+[INFO] [1784527436.590907610] [record_bag_node]:  /waist/cmd_pos 
+[INFO] [1784527436.590909897] [record_bag_node]:  /waist/cmd_ctrl 
+[INFO] [1784527436.590912182] [record_bag_node]:  /waist/cmd_vel 
+[INFO] [1784527436.590914457] [record_bag_node]:  /waist/cmd_set_zero 
+[INFO] [1784527436.590916752] [record_bag_node]:  /arm/cmd_pos 
+[INFO] [1784527436.590919078] [record_bag_node]:  /arm/cmd_ctrl 
+[INFO] [1784527436.590921492] [record_bag_node]:  /arm/cmd_vel 
+[INFO] [1784527436.590923828] [record_bag_node]:  /arm/cmd_current 
+[INFO] [1784527436.590926195] [record_bag_node]:  /arm/cmd_set_zero 
+[INFO] [1784527436.590928536] [record_bag_node]:  /leg/cmd_pos 
+[INFO] [1784527436.590930859] [record_bag_node]:  /leg/cmd_ctrl 
+[INFO] [1784527436.590936816] [record_bag_node]:  /leg/cmd_vel 
+[INFO] [1784527436.590939205] [record_bag_node]:  /leg/cmd_set_zero 
+[INFO] [1784527436.590942848] [record_bag_node]:  /sbus_data 
+[INFO] [1784527436.590945217] [record_bag_node]:  /sbus_data/event 
+[INFO] [1784527436.590948349] [record_bag_node]:  /monitor/cpu_monitor_data 
+[INFO] [1784527436.590951925] [record_bag_node]:  /monitor/mem_monitor_data 
+[INFO] [1784527436.590955986] [record_bag_node]:  /monitor/proc_monitor_data 
+[INFO] [1784527436.590959413] [record_bag_node]:  /hric/robot/cmd_vel 
+[INFO] [1784527436.590961971] [record_bag_node]:  /hric/motion/status 
+[INFO] [1784527436.590964299] [record_bag_node]:  /hric/robot/float_base_rpyz_cmd 
+[INFO] [1784527436.590966694] [record_bag_node]:  /hric/robot/float_base_rpyz_status 
+[INFO] [1784527436.590969082] [record_bag_node]:  /wbc_absolute_motion 
+[INFO] [1784527436.595172266] [rosbag2_storage]: Opened database '/home/ubuntu/bags/rosbag2_2026_07_20-14_03_56/bag_2026_07_20-14_03_56_0.db3' for READ_WRITE.
+[INFO] [1784527437.596059016] [record_bag_node]: proccess start record
+[INFO] [1784527437.596342092] [record_bag_node]: Recording topic: /waist/status (type: bodyctrl_msgs/msg/MotorStatusMsg)
+[INFO] [1784527437.596348725] [record_bag_node]: add metadata name /waist/status type bodyctrl_msgs/msg/MotorStatusMsg
+[INFO] [1784527437.597757363] [record_bag_node]: Recording topic: /sbus_data/event (type: bodyctrl_msgs/msg/SbusData)
+[INFO] [1784527437.597782351] [record_bag_node]: add metadata name /sbus_data/event type bodyctrl_msgs/msg/SbusData
+[INFO] [1784527437.598362141] [record_bag_node]: Recording topic: /sbus_data (type: sensor_m

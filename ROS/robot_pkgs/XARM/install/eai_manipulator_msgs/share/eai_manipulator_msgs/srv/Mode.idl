@@ -1,0 +1,17 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from eai_manipulator_msgs/srv/Mode.srv
+// generated code does not contain a copyright notice
+
+
+module eai_manipulator_msgs {
+  module srv {
+    struct Mode_Request {
+      int16 mode;
+    };
+    struct Mode_Response {
+      boolean result;
+
+      string info;
+    };
+  };
+};

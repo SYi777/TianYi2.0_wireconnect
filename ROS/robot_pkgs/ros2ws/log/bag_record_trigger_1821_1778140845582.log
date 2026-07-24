@@ -1,0 +1,52 @@
+[INFO] [1778140845.605527458] [record_bag_node]: bag record config trigger_switch: 0 
+[INFO] [1778140845.606005830] [record_bag_node]: bag record config storage_disk_switch: 1 
+[INFO] [1778140845.606031363] [record_bag_node]: bag record config max_bag_size_mb: 100 
+[INFO] [1778140845.606044160] [record_bag_node]: bag record config bag_files_num: 40 
+[INFO] [1778140845.606052667] [record_bag_node]: bag record config output_path: /home/ubuntu/bags 
+[INFO] [1778140845.606061486] [record_bag_node]: bag record config record_type: list 
+[INFO] [1778140845.606069633] [record_bag_node]: bag record config bag_ctrl_topic: /bag_record/control/notify 
+[INFO] [1778140845.606077624] [record_bag_node]: bag record config topic list:
+[INFO] [1778140845.606085747] [record_bag_node]:  /imu/status 
+[INFO] [1778140845.606093845] [record_bag_node]:  /head/status 
+[INFO] [1778140845.606101486] [record_bag_node]:  /arm/status 
+[INFO] [1778140845.606109149] [record_bag_node]:  /waist/status 
+[INFO] [1778140845.606118496] [record_bag_node]:  /leg/status 
+[INFO] [1778140845.606126122] [record_bag_node]:  /inspire_hand/state/left_hand 
+[INFO] [1778140845.606134126] [record_bag_node]:  /inspire_hand/state/right_hand 
+[INFO] [1778140845.606142740] [record_bag_node]:  /power/board/status 
+[INFO] [1778140845.606151479] [record_bag_node]:  /power/board/key_status 
+[INFO] [1778140845.606159076] [record_bag_node]:  /power/battery/status 
+[INFO] [1778140845.606167635] [record_bag_node]:  /head/cmd_pos 
+[INFO] [1778140845.606175609] [record_bag_node]:  /head/cmd_ctrl 
+[INFO] [1778140845.606184168] [record_bag_node]:  /head/cmd_vel 
+[INFO] [1778140845.606191734] [record_bag_node]:  /head/cmd_set_zero 
+[INFO] [1778140845.606199153] [record_bag_node]:  /waist/cmd_pos 
+[INFO] [1778140845.606206415] [record_bag_node]:  /waist/cmd_ctrl 
+[INFO] [1778140845.606214077] [record_bag_node]:  /waist/cmd_vel 
+[INFO] [1778140845.606225193] [record_bag_node]:  /waist/cmd_set_zero 
+[INFO] [1778140845.606233975] [record_bag_node]:  /arm/cmd_pos 
+[INFO] [1778140845.606241445] [record_bag_node]:  /arm/cmd_ctrl 
+[INFO] [1778140845.606248805] [record_bag_node]:  /arm/cmd_vel 
+[INFO] [1778140845.606257340] [record_bag_node]:  /arm/cmd_current 
+[INFO] [1778140845.606264862] [record_bag_node]:  /arm/cmd_set_zero 
+[INFO] [1778140845.606272380] [record_bag_node]:  /leg/cmd_pos 
+[INFO] [1778140845.606279691] [record_bag_node]:  /leg/cmd_ctrl 
+[INFO] [1778140845.606287137] [record_bag_node]:  /leg/cmd_vel 
+[INFO] [1778140845.606294633] [record_bag_node]:  /leg/cmd_set_zero 
+[INFO] [1778140845.606302081] [record_bag_node]:  /sbus_data 
+[INFO] [1778140845.606309709] [record_bag_node]:  /sbus_data/event 
+[INFO] [1778140845.606317113] [record_bag_node]:  /monitor/cpu_monitor_data 
+[INFO] [1778140845.606324540] [record_bag_node]:  /monitor/mem_monitor_data 
+[INFO] [1778140845.606332022] [record_bag_node]:  /monitor/proc_monitor_data 
+[INFO] [1778140845.606339485] [record_bag_node]:  /hric/robot/cmd_vel 
+[INFO] [1778140845.606346894] [record_bag_node]:  /hric/motion/status 
+[INFO] [1778140845.606354133] [record_bag_node]:  /hric/robot/float_base_rpyz_cmd 
+[INFO] [1778140845.606361672] [record_bag_node]:  /hric/robot/float_base_rpyz_status 
+[INFO] [1778140845.606370374] [record_bag_node]:  /wbc_absolute_motion 
+[INFO] [1778140845.611953080] [rosbag2_storage]: Opened database '/home/ubuntu/bags/rosbag2_2026_05_07-16_00_45/bag_2026_05_07-16_00_45_0.db3' for READ_WRITE.
+[INFO] [1778140846.613399858] [record_bag_node]: proccess start record
+[INFO] [1778140846.613874027] [record_bag_node]: Recording topic: /waist/status (type: bodyctrl_msgs/msg/MotorStatusMsg)
+[INFO] [1778140846.613890576] [record_bag_node]: add metadata name /waist/status type bodyctrl_msgs/msg/MotorStatusMsg
+[INFO] [1778140846.616429529] [record_bag_node]: Recording topic: /sbus_data/event (type: bodyctrl_msgs/msg/SbusData)
+[INFO] [1778140846.616466702] [record_bag_node]: add metadata name /sbus_data/event type bodyctrl_msgs/msg/SbusData
+[INFO] [1778140846.617324612] [record_bag_node]: Recording topic: /arm/cmd_pos (type: bodyct

@@ -1,0 +1,6 @@
+Invoking command in '/home/ubuntu/nk2_ws/build/bodyctrl_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/ubuntu/nk2_ws/src/bodyctrl_msgs -DCMAKE_INSTALL_PREFIX=/home/ubuntu/nk2_ws/install/bodyctrl_msgs
+Invoked command in '/home/ubuntu/nk2_ws/build/bodyctrl_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/ubuntu/nk2_ws/src/bodyctrl_msgs -DCMAKE_INSTALL_PREFIX=/home/ubuntu/nk2_ws/install/bodyctrl_msgs
+Invoking command in '/home/ubuntu/nk2_ws/build/bodyctrl_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/ubuntu/nk2_ws/build/bodyctrl_msgs -- -j12 -l12
+Invoked command in '/home/ubuntu/nk2_ws/build/bodyctrl_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/ubuntu/nk2_ws/build/bodyctrl_msgs -- -j12 -l12
+Invoking command in '/home/ubuntu/nk2_ws/build/bodyctrl_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/ubuntu/nk2_ws/build/bodyctrl_msgs
+Invoked command in '/home/ubuntu/nk2_ws/build/bodyctrl_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/ubuntu/nk2_ws/build/bodyctrl_msgs

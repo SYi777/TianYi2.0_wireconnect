@@ -1,0 +1,3 @@
+source;share/endpose_dual_arm_qp_controller/environment/ament_prefix_path.sh
+source;share/endpose_dual_arm_qp_controller/environment/library_path.sh
+source;share/endpose_dual_arm_qp_controller/environment/path.sh

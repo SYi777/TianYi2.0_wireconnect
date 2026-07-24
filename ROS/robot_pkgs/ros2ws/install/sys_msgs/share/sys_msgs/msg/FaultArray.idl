@@ -1,0 +1,15 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from sys_msgs/msg/FaultArray.msg
+// generated code does not contain a copyright notice
+
+#include "sys_msgs/msg/Fault.idl"
+
+module sys_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "支持单次上报故障数组")
+    struct FaultArray {
+      sequence<sys_msgs::msg::Fault> fault_array;
+    };
+  };
+};

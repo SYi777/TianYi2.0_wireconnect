@@ -1,0 +1,14 @@
+running develop
+running egg_info
+writing trajectory_bridge.egg-info/PKG-INFO
+writing dependency_links to trajectory_bridge.egg-info/dependency_links.txt
+writing entry points to trajectory_bridge.egg-info/entry_points.txt
+writing requirements to trajectory_bridge.egg-info/requires.txt
+writing top-level names to trajectory_bridge.egg-info/top_level.txt
+reading manifest file 'trajectory_bridge.egg-info/SOURCES.txt'
+writing manifest file 'trajectory_bridge.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/syi777/WireConnect_ws/ROS/moveit_ws/install/trajectory_bridge/lib/python3.10/site-packages/trajectory-bridge.egg-link (link to .)
+Installing trajectory_bridge script to /home/syi777/WireConnect_ws/ROS/moveit_ws/install/trajectory_bridge/lib/trajectory_bridge
+
+Installed /home/syi777/WireConnect_ws/ROS/moveit_ws/build/trajectory_bridge

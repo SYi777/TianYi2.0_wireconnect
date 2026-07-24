@@ -1,0 +1,117 @@
+[INFO] [1776165421.388853943] [ob_camera_head.camera_container]: Load Library: /home/nvidia/orbbec_camera_ros2/install/orbbec_camera/lib/liborbbec_camera.so
+[INFO] [1776165421.825813993] [ob_camera_head.camera_container]: Found class: rclcpp_components::NodeFactoryTemplate<orbbec_camera::OBCameraNodeDriver>
+[INFO] [1776165421.825947211] [ob_camera_head.camera_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<orbbec_camera::OBCameraNodeDriver>
+[INFO] [1776165421.852094979] [ob_camera_head.ob_camera_head]: setUvcBackendType:v4l2
+[INFO] [1776165422.861836084] [ob_camera_head.ob_camera_head]: startDevice called
+[INFO] [1776165422.872379064] [ob_camera_head.ob_camera_head]: Connecting to the default device
+[INFO] [1776165423.095503265] [ob_camera_head.ob_camera_head]: Select device cost 223 ms
+[INFO] [1776165423.095698756] [ob_camera_head.ob_camera_head]: Try to connect device via USB3.2
+[INFO] [1776165423.096124555] [ob_camera_head.ob_camera_head]: OBCameraNode: use_intra_process: OFF
+[INFO] [1776165423.136815906] [ob_camera_head.ob_camera_head]: current time domain: global
+[INFO] [1776165423.136965284] [ob_camera_head.ob_camera_head]: hdr_index1_laser_control_ 1 hdr_index1_depth_exposure_ 1 hdr_index1_depth_gain_ 16 hdr_index1_ir_brightness_ 30 hdr_index1_ir_ae_max_exposure_ 30458
+
+[INFO] [1776165423.137001349] [ob_camera_head.ob_camera_head]: hdr_index0_laser_control_ 1 hdr_index0_depth_exposure_ 7500 hdr_index0_depth_gain_ 16 hdr_index0_ir_brightness_ 90 hdr_index0_ir_ae_max_exposure_ 30458
+
+[INFO] [1776165423.137024997] [ob_camera_head.ob_camera_head]: laser_index1_laser_control_ 0 laser_index1_depth_exposure_ 3000 laser_index1_depth_gain_ 16 laser_index1_ir_brightness_ 60 laser_index1_ir_ae_max_exposure_ 17000
+
+[INFO] [1776165423.137047942] [ob_camera_head.ob_camera_head]: laser_index0_laser_control_ 1 laser_index0_depth_exposure_ 3000 laser_index0_depth_gain_ 16 laser_index0_ir_brightness_ 60 laser_index0_ir_ae_max_exposure_ 30000
+
+[INFO] [1776165423.396056408] [ob_camera_head.ob_camera_head]: Setting heartbeat to OFF
+[INFO] [1776165423.397976118] [ob_camera_head.ob_camera_head]: Depth process is HW
+[INFO] [1776165423.398057335] [ob_camera_head.ob_camera_head]: Setting LDP to ON
+[INFO] [1776165423.403489260] [ob_camera_head.ob_camera_head]: Setting G300 laser control to 1
+[INFO] [1776165423.404998275] [ob_camera_head.ob_camera_head]: Available presets:
+[INFO] [1776165423.405061092] [ob_camera_head.ob_camera_head]: Preset 0: Default
+[INFO] [1776165423.405079268] [ob_camera_head.ob_camera_head]: Preset 1: AMR with IR-Pass
+[INFO] [1776165423.405091044] [ob_camera_head.ob_camera_head]: Preset 2: High Accuracy
+[INFO] [1776165423.405100645] [ob_camera_head.ob_camera_head]: Preset 3: Factory Calib
+[INFO] [1776165423.405108677] [ob_camera_head.ob_camera_head]: Preset 4: Custom
+[INFO] [1776165423.405116613] [ob_camera_head.ob_camera_head]: Load device preset: Default
+[INFO] [1776165423.416416500] [ob_camera_head.ob_camera_head]: Device preset Default loaded
+[INFO] [1776165423.417872875] [ob_camera_head.ob_camera_head]: Current sync mode: OB_MULTI_DEVICE_SYNC_MODE_STANDALONE
+[INFO] [1776165423.419374786] [ob_camera_head.ob_camera_head]: Set sync mode: OB_MULTI_DEVICE_SYNC_MODE_STANDALONE
+[INFO] [1776165423.419441923] [ob_camera_head.ob_camera_head]: Setting color mirror to OFF
+[INFO] [1776165423.419509220] [ob_camera_head.ob_camera_head]: Setting color flip to OFF
+[INFO] [1776165423.419548325] [ob_camera_head.ob_camera_head]: Setting depth mirror to OFF
+[INFO] [1776165423.419576261] [ob_camera_head.ob_camera_head]: Setting depth flip to OFF
+[INFO] [1776165423.419608070] [ob_camera_head.ob_camera_head]: Setting noise removal filter:OFF
+[INFO] [1776165423.419626758] [ob_camera_head.ob_camera_head]: Setting color auto white balance to ON
+[INFO] [1776165423.421024092] [ob_camera_head.ob_camera_head]: Setting color auto exposure priority to OFF
+[INFO] [1776165423.422494674] [ob_camera_head.ob_camera_head]: Setting color auto exposure to ON
+[INFO] [1776165423.424024266] [ob_camera_head.ob_camera_head]: Setting depth auto exposure priority to OFF
+[INFO] [1776165423.425507745] [ob_camera_head.ob_camera_head]: Setting IR auto exposure to ON
+[INFO] [1776165423.428760436] [ob_camera_head.ob_camera_head]: default noise removal filter min diff: 256
+[INFO] [1776165423.428818229] [ob_camera_head.ob_camera_head]: default noise removal filter max size: 80
+[INFO] [1776165423.430246475] [ob_camera_head.ob_camera_head]: Setting hardware noise removal filter:ON
+[INFO] [1776165423.430307340] [ob_camera_head.ob_camera_head]: Setting accel data correction to ON
+[INFO] [1776165423.430341484] [ob_camera_head.ob_camera_head]: Setting gyro data correction to ON
+[INFO] [1776165423.430722994] [ob_camera_head.ob_camera_head]: Setting DecimationFilter......
+[INFO] [1776165423.430771475] [ob_camera_head.ob_camera_head]: set DecimationFilter to false
+[INFO] [1776165423.430816564] [ob_camera_head.ob_camera_head]: Skip setting filter: DecimationFilter
+[INFO] [1776165423.430840852] [ob_camera_head.ob_camera_head]: Setting ThresholdFilter......
+[INFO] [1776165423.430853716] [ob_camera_head.ob_camera_head]: set ThresholdFilter to false
+[INFO] [1776165423.430866100] [ob_camera_head.ob_camera_head]: Skip setting filter: ThresholdFilter
+[INFO] [1776165423.430880149] [ob_camera_head.ob_camera_head]: Setting HDRMerge......
+[INFO] [1776165423.430891797] [ob_camera_head.ob_camera_head]: set HDRMerge to false
+[INFO] [1776165423.430903157] [ob_camera_head.ob_camera_head]: Skip setting filter: HDRMerge
+[INFO] [1776165423.430916725] [ob_camera_head.ob_camera_head]: Setting SequenceIdFilter......
+[INFO] [1776165423.430927189] [ob_camera_head.ob_camera_head]: set SequenceIdFilter to false
+[INFO] [1776165423.430937525] [ob_camera_head.ob_camera_head]: Skip setting filter: SequenceIdFilter
+[INFO] [1776165423.430950038] [ob_camera_head.ob_camera_head]: Setting SpatialFastFilter......
+[INFO] [1776165423.430960534] [ob_camera_head.ob_camera_head]: set SpatialFastFilter to false
+[INFO] [1776165423.430971638] [ob_camera_head.ob_camera_head]: Skip setting filter: SpatialFastFilter
+[INFO] [1776165423.430984502] [ob_camera_head.ob_camera_head]: Setting SpatialModerateFilter......
+[INFO] [1776165423.430995126] [ob_camera_head.ob_camera_head]: set SpatialModerateFilter to false
+[INFO] [1776165423.431006198] [ob_camera_head.ob_camera_head]: Skip setting filter: SpatialModerateFilter
+[INFO] [1776165423.431019159] [ob_camera_head.ob_camera_head]: Setting SpatialAdvancedFilter......
+[INFO] [1776165423.431029943] [ob_camera_head.ob_camera_head]: set SpatialAdvancedFilter to false
+[INFO] [1776165423.431041079] [ob_camera_head.ob_camera_head]: Skip setting filter: SpatialAdvancedFilter
+[INFO] [1776165423.431053783] [ob_camera_head.ob_camera_head]: Setting TemporalFilter......
+[INFO] [1776165423.431063863] [ob_camera_head.ob_camera_head]: set TemporalFilter to false
+[INFO] [1776165423.431075192] [ob_camera_head.ob_camera_head]: Skip setting filter: TemporalFilter
+[INFO] [1776165423.431087896] [ob_camera_head.ob_camera_head]: Setting HoleFillingFilter......
+[INFO] [1776165423.431098520] [ob_camera_head.ob_camera_head]: set HoleFillingFilter to false
+[INFO] [1776165423.431109848] [ob_camera_head.ob_camera_head]: Skip setting filter: HoleFillingFilter
+[INFO] [1776165423.431122328] [ob_camera_head.ob_camera_head]: Setting DisparityTransform......
+[INFO] [1776165423.431132280] [ob_camera_head.ob_camera_head]: set DisparityTransform to true
+[INFO] [1776165423.431142777] [ob_camera_head.ob_camera_head]: Skip setting filter: DisparityTransform
+[INFO] [1776165423.433388763] [ob_camera_head.ob_camera_head]: Setting DecimationFilter......
+[INFO] [1776165423.433465949] [ob_camera_head.ob_camera_head]: set color DecimationFilter to false
+[INFO] [1776165423.433550174] [ob_camera_head.ob_camera_head]: Setting SequenceIdFilter......
+[INFO] [1776165423.433576766] [ob_camera_head.ob_camera_head]: set right ir SequenceIdFilter to false
+[INFO] [1776165423.433623167] [ob_camera_head.ob_camera_head]: Setting SequenceIdFilter......
+[INFO] [1776165423.433649279] [ob_camera_head.ob_camera_head]: set left ir SequenceIdFilter to false
+[INFO] [1776165423.440251718] [ob_camera_head.ob_camera_head]:  stream color is enabled - width: 1280, height: 720, fps: 30, Format: OB_FORMAT_RGB
+[INFO] [1776165423.441569114] [ob_camera_head.ob_camera_head]:  stream depth is enabled - width: 1280, height: 720, fps: 30, Format: OB_FORMAT_Y16
+[ERROR] [1776165423.492343022] [ob_camera_head.ob_camera_head]: Failed to load plugin image_transport/compressed_pub, error string: According to the loaded plugin descriptions the class image_transport/compressed_pub with base class type image_transport::PublisherPlugin does not exist. Declared types are  image_transport/raw_pub
+
+[ERROR] [1776165423.498983957] [ob_camera_head.ob_camera_head]: Failed to load plugin image_transport/theora_pub, error string: According to the loaded plugin descriptions the class image_transport/theora_pub with base class type image_transport::PublisherPlugin does not exist. Declared types are  image_transport/raw_pub
+
+[ERROR] [1776165423.502009668] [ob_camera_head.ob_camera_head]: Failed to load plugin image_transport/compressedDepth_pub, error string: According to the loaded plugin descriptions the class image_transport/compressedDepth_pub with base class type image_transport::PublisherPlugin does not exist. Declared types are  image_transport/raw_pub
+
+[INFO] [1776165423.505695037] [ob_camera_head.ob_camera_head]: Publish diagnostics every 1 seconds
+[INFO] [1776165423.564400684] [ob_camera_head.ob_camera_head]: Device Orbbec Gemini 336 connected
+[INFO] [1776165423.564539470] [ob_camera_head.ob_camera_head]: Serial number: CP9E163001CK
+[INFO] [1776165423.564570639] [ob_camera_head.ob_camera_head]: Firmware version: 1.4.60
+[INFO] [1776165423.564596463] [ob_camera_head.ob_camera_head]: Hardware version: 0.1
+[INFO] [1776165423.564610511] [ob_camera_head.ob_camera_head]: usb connect type: USB3.2
+[INFO] [1776165423.564621712] [ob_camera_head.ob_camera_head]: device unique id: 2-3.3-4
+[INFO] [1776165423.564641744] [ob_camera_head.ob_camera_head]: Current node pid: 12338
+[INFO] [1776165423.564674736] [ob_camera_head.ob_camera_head]: Start device cost 702 ms
+[INFO] [1776165423.564854707] [ob_camera_head.ob_camera_head]: Enable color stream
+[INFO] [1776165423.564923444] [ob_camera_head.ob_camera_head]: Stream color width: 1280 height: 720 fps: 30 format: RGB888
+[INFO] [1776165423.564989493] [ob_camera_head.ob_camera_head]: Enable depth stream
+[INFO] [1776165423.565033814] [ob_camera_head.ob_camera_head]: Stream depth width: 1280 height: 720 fps: 30 format: Y16
+[INFO] [1776165423.565069559] [ob_camera_head.ob_camera_head]: depth_registration is enabled. Depth stream will be aligned to COLOR stream resolution: width: 1280 height: 720 fps: 30
+[INFO] [1776165423.608909407] [ob_camera_head.ob_camera_head]: Enable frame sync
+[INFO] [1776165424.205612996] [ob_camera_head.ob_camera_head]: Publishing static transform from color to depth
+[INFO] [1776165424.206000138] [ob_camera_head.ob_camera_head]: Translation 13.8117, -0.148717, 1.7365
+[INFO] [1776165424.206029642] [ob_camera_head.ob_camera_head]: Rotation -0.0016393, -0.000668763, -0.000883221, 0.999998
+[INFO] [1776165424.206137132] [ob_camera_head.ob_camera_head]: Publishing static transform from depth to depth
+[INFO] [1776165424.206168844] [ob_camera_head.ob_camera_head]: Translation 0, 0, 0
+[INFO] [1776165424.206189997] [ob_camera_head.ob_camera_head]: Rotation 0, 0, 0, 1
+[INFO] [1776165424.212033287] [ob_camera_head.ob_camera_head]: Setting depth AE ROI to 0, 1279, 0, 719
+[INFO] [1776165424.609167502] [ob_camera_head.ob_camera_head]: Setting interleave mode to nothing
+[INFO] [1776165424.609443219] [ob_camera_head.ob_camera_head]: current interleave_ae_mode_: laser
+[INFO] [1776165424.612563875] [ob_camera_head.ob_camera_head]: Enable enable_interleave_depth_frame to false
+[INFO] [1776165424.612764070] [ob_camera_head.ob_camera_head]: Initialize device cost 1517 ms

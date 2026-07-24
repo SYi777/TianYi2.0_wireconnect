@@ -1,0 +1,14 @@
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+libv4l-dev is already the newest version (1.22.1-2build1).
+sshpass is already the newest version (1.09-1).
+ros-humble-backward-ros is already the newest version (1.0.8-2jammy.20260306.212100).
+0 upgraded, 0 newly installed, 0 to remove and 794 not upgraded.
+robot type TY
+--dst: /opt/PARTITIONS/entry/orbbec_camera_ros2
+install orbbec camera to path /opt/PARTITIONS/entry/orbbec_camera_ros2
+mv /home/nvidia/orbbec_camera_ros2 to /home/nvidia/orbbec_camera_ros2.bk.20260424_140222

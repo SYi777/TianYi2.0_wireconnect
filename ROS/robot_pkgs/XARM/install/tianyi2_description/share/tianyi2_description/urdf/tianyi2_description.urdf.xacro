@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"
+  name="tianyi2_description">
+  <link name="base_footprint"/>
+  <joint name="world_to_base_link" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <link
+    name="base">
+    <inertial>
+      <origin
+        xyz="-0.000670 -0.002625 0.150395"
+        rpy="0 0 0" />
+      <mass
+        value="47.555667" />
+      <inertia
+        ixx="1.277779"
+        ixy="-0.001232"
+        ixz="-0.093599"
+        iyy="1.293166"
+        iyz="0.003600"
+        izz="1.385346" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianyi2_description/meshes/visual/base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0.175"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.5 0.45 0.3"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin
+        xyz="0.05 0 0.35"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <cylinder length="0.3" radius="0.1" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="first_leg_pitch_link">
+    <inertial>
+      <origin
+        xyz="-0.105847 -0.000632 0.041305"
+        rpy="0 0 0" />
+      <mass
+        value="2.460134" />
+      <inertia
+        ixx="0.012918"
+        ixy="0.000516"
+        ixz="0.006600"
+        iyy="0.028707"
+        iyz="-0.000254"
+        izz="0.027239" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianyi2_description/meshes/visual/first_leg_pitch_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianyi2_description/meshes/collision/first_leg_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="first_leg_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0.049182 0 0.37"
+      rpy="0 0 0" />
+    <parent
+      link="base" />
+    <child
+      link="first_leg_pitch_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.418878"
+      upper="1.047197"
+      effort="332"
+      velocity="3.93" />
+  </joint>
+  <link
+    name="second_leg_pitch_link">
+    <inertial>
+      <origin
+        xyz="0.056775 0.000389 0.045258"
+        rpy="0 0 0" />
+      <mass
+        value="2.430846" />
+      <inertia
+        ixx="0.011853"
+        ixy="0.000046"
+        ixz="-0.009109"
+        iyy="0.025086"
+        iyz="0.000056"
+        izz="0.022169" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianyi2_description/meshes/visual/second_leg_pitch_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianyi2_description/meshes/collision/second_leg_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="second_leg_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="-0.20785 0 0.12"
+      rpy="0 0 0" />
+    <parent
+      link="first_leg_pitch_link" />
+    <child
+      link="second_leg_pitch_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.506145"
+      upper="1.745328"
+      effort="332"
+      velocity="3.93" />
+  </joint>
+  <link
+    name="waist_pitch_link">
+    <inertial>
+      <origin
+        xyz="0.000008 0.012369 0.001276"
+        rpy="0 0 0" />
+      <mass
+        value="3.382380" />
+      <inertia
+        ixx="0.005589"
+        ixy="0.000001"
+        ixz="-0.000001"
+        iyy="0.006064"
+        iyz="0.000049"
+        izz="0.005334" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianyi2_description/meshes/visual/waist_pitch_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianyi2_description/meshes/collision/waist_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="waist_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0.20785 0 0.12"
+      rpy="0 0 0" />
+    <parent
+      link="second_leg_pitch_link" />
+    <child
+      link="waist_pitch_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-2.094393" 
+      upper="0.785398"
+      effort="332"
+      velocity="3.93" />
+  </joint>
+
+  <xacro:include filename="$(find tianyi2_description)/urdf/upper_body.urdf.xacro"/>
+  <joint name="waist_yaw_joint" type="revolute">
+    <origin xyz="0 0 0.07" rpy="0 0 0" />
+    <parent link="waist_pitch_link" />
+    <child link="waist_yaw_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.879790" upper="2.879790" effort="10" velocity="1" />
+  </joint>
+
+
+  <!-- <xacro:include filename="$(find tianyi2_description)/urdf/collision_ball_base.xacro"/>
+  <xacro:include filename="$(find tianyi2_description)/urdf/collision_ball_armR.xacro"/>
+  <xacro:include filename="$(find tianyi2_description)/urdf/collision_ball_armL.xacro"/>
+  <xacro:include filename="$(find tianyi2_description)/urdf/tracking_point.xacro"/> -->
+
+
+</robot>
