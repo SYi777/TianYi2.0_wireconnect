@@ -1,0 +1,29 @@
+# ROS 编译输出，绝对不要提交
+**/install/
+**/build/
+**/log/
+
+# 压缩包、安装包
+*.tar
+*.tar.gz
+*.zip
+*.7z
+*.rar
+
+# Python 二进制包
+*.whl
+
+# 预编译动态库
+*.so
+*.so.*
+
+# 备份文件
+*.bak
+*.bak.*
+
+# 其他临时文件
+*.log
+*.swp
+.DS_Store
+__pycache__/
+*.pyc
