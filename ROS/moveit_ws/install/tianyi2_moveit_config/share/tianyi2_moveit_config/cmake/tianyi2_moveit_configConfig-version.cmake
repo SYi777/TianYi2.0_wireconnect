@@ -1,1 +1,0 @@
-/home/syi777/WireConnect_ws/ROS/moveit_ws/build/tianyi2_moveit_config/ament_cmake_core/tianyi2_moveit_configConfig-version.cmake

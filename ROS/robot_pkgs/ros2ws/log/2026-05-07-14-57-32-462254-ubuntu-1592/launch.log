@@ -1,4 +1,0 @@
-1778137052.4630373 [INFO] [launch]: All log files can be found below /home/ubuntu/ros2ws/log/2026-05-07-14-57-32-462254-ubuntu-1592
-1778137052.4631484 [INFO] [launch]: Default logging verbosity is set to INFO
-1778137052.5283804 [INFO] [component_container-1]: process started with pid [1633]
-1778137052.7981510 [INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/xsys' in container '/xsys_container'

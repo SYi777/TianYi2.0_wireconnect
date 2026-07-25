@@ -1,2 +1,0 @@
-Invoking command in '/home/syi777/WireConnect_ws/ROS/moveit_ws/build/tianyi2_moveit_config': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/syi777/WireConnect_ws/ROS/moveit_ws/build/tianyi2_moveit_config -- -j20 -l20
-Invoked command in '/home/syi777/WireConnect_ws/ROS/moveit_ws/build/tianyi2_moveit_config' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/syi777/WireConnect_ws/ROS/moveit_ws/build/tianyi2_moveit_config -- -j20 -l20

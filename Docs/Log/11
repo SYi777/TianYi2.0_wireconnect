@@ -1,0 +1,12 @@
+nano .local/lib/python3.10/site-packages/xtele/scripts/fast_sync/fast_sync_config.toml 
+[basic]
+hover_enable = true  # 同构臂悬停使能
+
+sudo systemctl restart xtele-monitor.service 
+
+B+Z 段按锁腰
+
+C/Z 单个按下锁住同构臂
+
+
+数采可以拿重力补偿模式

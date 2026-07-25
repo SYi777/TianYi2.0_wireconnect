@@ -1,3 +1,0 @@
-[console_scripts]
-trajectory_bridge = trajectory_bridge.bridge_node:main
-

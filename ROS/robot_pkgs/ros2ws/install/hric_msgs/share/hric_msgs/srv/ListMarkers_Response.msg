@@ -1,2 +1,0 @@
-
-hric_msgs/MarkerInfo[] markers #返回的marker信息列表

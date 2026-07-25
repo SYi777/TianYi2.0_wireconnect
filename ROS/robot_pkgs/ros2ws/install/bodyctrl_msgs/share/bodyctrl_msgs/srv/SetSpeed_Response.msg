@@ -1,2 +1,0 @@
-
-bool speed_accepted

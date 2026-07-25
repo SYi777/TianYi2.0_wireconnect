@@ -1,4 +1,0 @@
-[0mCMake Error: The current CMakeCache.txt directory /home/syi777/WireConnect_ws/ROS/moveit_ws/build/tianyi2_moveit_config/CMakeCache.txt is different than the directory /home/syi777/WireConnect_ws/moveit_ws/build/tianyi2_moveit_config where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt[0m
-[0mCMake Error: The source directory "/home/syi777/WireConnect_ws/moveit_ws/src/tianyi2_moveit_config" does not exist.
-Specify --help for usage, or press the help button on the CMake GUI.[0m
-gmake: *** [Makefile:226：cmake_check_build_system] 错误 1

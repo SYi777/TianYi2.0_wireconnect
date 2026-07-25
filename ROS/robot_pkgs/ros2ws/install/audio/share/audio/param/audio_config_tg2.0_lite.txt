@@ -1,3 +1,0 @@
-audio_player=192.168.41.1
-audio_path=/home/ubuntu/data/speech/sbus
-audio_list=100000.mp3,100001.mp3

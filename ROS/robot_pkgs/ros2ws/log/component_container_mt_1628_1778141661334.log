@@ -1,4 +1,0 @@
-[INFO] [1778141661.573221616] [diagnose_tiangong2_plus_container]: Load Library: /home/ubuntu/ros2ws/install/diagnose/lib/libdiagnose.so
-[INFO] [1778141661.616950831] [diagnose_tiangong2_plus_container]: Found class: rclcpp_components::NodeFactoryTemplate<debugger::DebuggerNodelet>
-[INFO] [1778141661.616978764] [diagnose_tiangong2_plus_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<debugger::DebuggerNodelet>
-[INFO] [1778141713.074730586] [rclcpp]: signal_handler(signum=15)

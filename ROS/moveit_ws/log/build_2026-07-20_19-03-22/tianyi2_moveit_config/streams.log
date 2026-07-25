@@ -1,6 +1,0 @@
-[0.164s] Invoking command in '/home/syi777/WireConnect_ws/ROS/moveit_ws/build/tianyi2_moveit_config': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/syi777/WireConnect_ws/ROS/moveit_ws/build/tianyi2_moveit_config -- -j20 -l20
-[0.169s] [0mCMake Error: The current CMakeCache.txt directory /home/syi777/WireConnect_ws/ROS/moveit_ws/build/tianyi2_moveit_config/CMakeCache.txt is different than the directory /home/syi777/WireConnect_ws/moveit_ws/build/tianyi2_moveit_config where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt[0m
-[0.175s] [0mCMake Error: The source directory "/home/syi777/WireConnect_ws/moveit_ws/src/tianyi2_moveit_config" does not exist.
-[0.175s] Specify --help for usage, or press the help button on the CMake GUI.[0m
-[0.176s] gmake: *** [Makefile:226：cmake_check_build_system] 错误 1
-[0.299s] Invoked command in '/home/syi777/WireConnect_ws/ROS/moveit_ws/build/tianyi2_moveit_config' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/syi777/WireConnect_ws/ROS/moveit_ws/build/tianyi2_moveit_config -- -j20 -l20

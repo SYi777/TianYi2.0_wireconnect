@@ -1,2 +1,0 @@
-
-bool calibration_accepted

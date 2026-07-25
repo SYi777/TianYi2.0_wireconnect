@@ -1,4 +1,0 @@
-[INFO] [1778141661.660561786] [xsys_container]: Load Library: /home/ubuntu/ros2ws/install/xsys/lib/libxsys_component.so
-[INFO] [1778141661.662478936] [xsys_container]: Found class: rclcpp_components::NodeFactoryTemplate<x::sys::Node>
-[INFO] [1778141661.662515860] [xsys_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<x::sys::Node>
-[INFO] [1778141713.073967763] [rclcpp]: signal_handler(signum=15)

@@ -1,3 +1,0 @@
-builtin_interfaces/Time timestamp
-float64 disk_read
-float64 disk_write

@@ -1,4 +1,0 @@
-1778551129.8658357 [INFO] [launch]: All log files can be found below /home/ubuntu/ros2ws/log/2026-05-12-09-58-49-865111-ubuntu-1524
-1778551129.8659115 [INFO] [launch]: Default logging verbosity is set to INFO
-1778551129.9062350 [INFO] [component_container_mt-1]: process started with pid [1538]
-1778551130.2019477 [INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/proc_manager_node' in container '/proc_manager_nodes'

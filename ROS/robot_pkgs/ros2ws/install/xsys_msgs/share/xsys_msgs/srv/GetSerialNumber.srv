@@ -1,4 +1,0 @@
-string SERVICE_NAME = /xsys/get_serial_number
-
----
-string serial_number
