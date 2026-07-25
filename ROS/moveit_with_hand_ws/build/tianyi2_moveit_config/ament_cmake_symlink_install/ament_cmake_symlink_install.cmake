@@ -366,5 +366,11 @@ ament_cmake_symlink_install_directory("/home/syi777/WireConnect_ws/ROS/moveit_wi
 # install(DIRECTORY "urdf" "DESTINATION" "share/tianyi2_moveit_config")
 ament_cmake_symlink_install_directory("/home/syi777/WireConnect_ws/ROS/moveit_with_hand_ws/src/tianyi2_moveit_config" DIRECTORY "urdf" "DESTINATION" "share/tianyi2_moveit_config")
 
+# install(DIRECTORY "meshes" "DESTINATION" "share/tianyi2_moveit_config")
+ament_cmake_symlink_install_directory("/home/syi777/WireConnect_ws/ROS/moveit_with_hand_ws/src/tianyi2_moveit_config" DIRECTORY "meshes" "DESTINATION" "share/tianyi2_moveit_config")
+
+# install(DIRECTORY "meshes_convex" "DESTINATION" "share/tianyi2_moveit_config")
+ament_cmake_symlink_install_directory("/home/syi777/WireConnect_ws/ROS/moveit_with_hand_ws/src/tianyi2_moveit_config" DIRECTORY "meshes_convex" "DESTINATION" "share/tianyi2_moveit_config")
+
 # install(FILES ".setup_assistant" "DESTINATION" "share/tianyi2_moveit_config")
 ament_cmake_symlink_install_files("/home/syi777/WireConnect_ws/ROS/moveit_with_hand_ws/src/tianyi2_moveit_config" FILES ".setup_assistant" "DESTINATION" "share/tianyi2_moveit_config")
