@@ -31,6 +31,7 @@
 /home/syi777/WireConnect_ws/ROS/moveit_with_hand_ws/install/tianyi2_moveit_config/share/tianyi2_moveit_config/config/ompl_planning.yaml
 /home/syi777/WireConnect_ws/ROS/moveit_with_hand_ws/install/tianyi2_moveit_config/share/tianyi2_moveit_config/config/pilz_cartesian_limits.yaml
 /home/syi777/WireConnect_ws/ROS/moveit_with_hand_ws/install/tianyi2_moveit_config/share/tianyi2_moveit_config/config/tianyi2.0_complete.srdf
+/home/syi777/WireConnect_ws/ROS/moveit_with_hand_ws/install/tianyi2_moveit_config/share/tianyi2_moveit_config/urdf/tianyi2.0_URDF.urdf.xacro
 /home/syi777/WireConnect_ws/ROS/moveit_with_hand_ws/install/tianyi2_moveit_config/share/tianyi2_moveit_config/urdf/tianyi2.0_complete.urdf
 /home/syi777/WireConnect_ws/ROS/moveit_with_hand_ws/install/tianyi2_moveit_config/share/tianyi2_moveit_config/urdf/tianyi2.0_complete_with_hands.xacro
 /home/syi777/WireConnect_ws/ROS/moveit_with_hand_ws/install/tianyi2_moveit_config/share/tianyi2_moveit_config/.setup_assistant

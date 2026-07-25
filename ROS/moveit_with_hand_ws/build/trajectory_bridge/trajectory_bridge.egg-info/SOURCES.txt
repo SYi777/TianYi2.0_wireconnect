@@ -1,0 +1,13 @@
+package.xml
+setup.cfg
+setup.py
+../../build/trajectory_bridge/trajectory_bridge.egg-info/PKG-INFO
+../../build/trajectory_bridge/trajectory_bridge.egg-info/SOURCES.txt
+../../build/trajectory_bridge/trajectory_bridge.egg-info/dependency_links.txt
+../../build/trajectory_bridge/trajectory_bridge.egg-info/entry_points.txt
+../../build/trajectory_bridge/trajectory_bridge.egg-info/requires.txt
+../../build/trajectory_bridge/trajectory_bridge.egg-info/top_level.txt
+launch/moveit_real_robot.launch.py
+resource/trajectory_bridge
+trajectory_bridge/__init__.py
+trajectory_bridge/bridge_node.py
