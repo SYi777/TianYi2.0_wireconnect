@@ -37,6 +37,58 @@
       "shape_type": "rectangle",
       "flags": {},
       "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          454.85,
+          259.79999999999995
+        ],
+        [
+          455.25145001981286,
+          233.60538620720024
+        ],
+        [
+          467.95000000000005,
+          233.79999999999998
+        ],
+        [
+          467.5485499801872,
+          259.99461379279967
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          554.5500000000001,
+          263.7
+        ],
+        [
+          566.1819086304866,
+          237.4510026480192
+        ],
+        [
+          577.35,
+          242.4
+        ],
+        [
+          565.7180913695134,
+          268.6489973519808
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
     }
   ],
   "imagePath": "00167.jpg",

@@ -73,6 +73,110 @@
       "shape_type": "rectangle",
       "flags": {},
       "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          456.35,
+          259.29999999999995
+        ],
+        [
+          455.62849798549576,
+          233.6351426269137
+        ],
+        [
+          467.55,
+          233.29999999999998
+        ],
+        [
+          468.27150201450434,
+          258.9648573730862
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          558.65,
+          262.7
+        ],
+        [
+          566.7855990840353,
+          236.86397588178107
+        ],
+        [
+          578.65,
+          240.6
+        ],
+        [
+          570.5144009159646,
+          266.4360241182189
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          634.15,
+          269.9
+        ],
+        [
+          623.576428043354,
+          245.91365620946016
+        ],
+        [
+          634.95,
+          240.9
+        ],
+        [
+          645.5235719566459,
+          264.8863437905398
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          726.95,
+          264.7
+        ],
+        [
+          720.299255215048,
+          240.01162920737494
+        ],
+        [
+          731.85,
+          236.9
+        ],
+        [
+          738.5007447849522,
+          261.5883707926251
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
     }
   ],
   "imagePath": "00140.jpg",

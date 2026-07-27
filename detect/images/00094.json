@@ -73,6 +73,110 @@
       "shape_type": "rectangle",
       "flags": {},
       "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          459.75,
+          262.9
+        ],
+        [
+          460.25814662565017,
+          235.35845288977208
+        ],
+        [
+          473.35,
+          235.6
+        ],
+        [
+          472.84185337434985,
+          263.1415471102279
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          555.0500000000001,
+          263.5
+        ],
+        [
+          558.5477149703366,
+          236.6498939041818
+        ],
+        [
+          572.75,
+          238.50000000000003
+        ],
+        [
+          569.2522850296635,
+          265.3501060958182
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          633.75,
+          271.29999999999995
+        ],
+        [
+          624.2757020134246,
+          243.36048859060236
+        ],
+        [
+          636.25,
+          239.29999999999998
+        ],
+        [
+          645.7242979865754,
+          267.23951140939755
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          727.45,
+          266.59999999999997
+        ],
+        [
+          720.3034960986653,
+          240.33176944374588
+        ],
+        [
+          732.5500000000001,
+          237.00000000000003
+        ],
+        [
+          739.6965039013347,
+          263.26823055625414
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
     }
   ],
   "imagePath": "00094.jpg",

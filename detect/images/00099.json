@@ -73,6 +73,110 @@
       "shape_type": "rectangle",
       "flags": {},
       "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          459.75,
+          264.4
+        ],
+        [
+          460.16506268081,
+          234.51548698167795
+        ],
+        [
+          473.45000000000005,
+          234.70000000000002
+        ],
+        [
+          473.03493731919,
+          264.58451301832207
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          554.95,
+          262.7
+        ],
+        [
+          558.6939999999987,
+          236.49200000000042
+        ],
+        [
+          572.0500000000001,
+          238.4
+        ],
+        [
+          568.3060000000013,
+          264.6079999999996
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          634.45,
+          270.9
+        ],
+        [
+          624.1850836699358,
+          244.01569532602497
+        ],
+        [
+          635.75,
+          239.6
+        ],
+        [
+          646.0149163300642,
+          266.48430467397503
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          728.25,
+          266.79999999999995
+        ],
+        [
+          721.0553259451546,
+          240.51945449410164
+        ],
+        [
+          732.45,
+          237.4
+        ],
+        [
+          739.6446740548455,
+          263.6805455058983
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
     }
   ],
   "imagePath": "00099.jpg",

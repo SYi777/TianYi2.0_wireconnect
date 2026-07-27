@@ -19,6 +19,32 @@
       "shape_type": "rectangle",
       "flags": {},
       "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          454.75,
+          258.9
+        ],
+        [
+          455.7657076229545,
+          233.2025971392473
+        ],
+        [
+          468.35,
+          233.70000000000002
+        ],
+        [
+          467.33429237704553,
+          259.3974028607527
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
     }
   ],
   "imagePath": "00197.jpg",

@@ -1,0 +1,222 @@
+{
+  "version": "6.3.1",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          574.5500000000001,
+          200.20000000000002
+        ],
+        [
+          553.6648808030111,
+          182.36062735257283
+        ],
+        [
+          560.5500000000001,
+          174.3
+        ],
+        [
+          581.435119196989,
+          192.13937264742717
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          593.85,
+          231.20000000000002
+        ],
+        [
+          564.1321696556278,
+          232.87841566729003
+        ],
+        [
+          563.45,
+          220.8
+        ],
+        [
+          593.1678303443724,
+          219.12158433270997
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          617.65,
+          321.2
+        ],
+        [
+          580.7616188329754,
+          329.319453463394
+        ],
+        [
+          578.0500000000001,
+          317.0
+        ],
+        [
+          614.9383811670247,
+          308.88054653660606
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Plug",
+      "points": [
+        [
+          649.0500000000001,
+          377.5
+        ],
+        [
+          616.8845861649054,
+          364.0081242880156
+        ],
+        [
+          619.95,
+          356.7
+        ],
+        [
+          652.1154138350946,
+          370.19187571198444
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Port",
+      "points": [
+        [
+          811.15,
+          235.6
+        ],
+        [
+          819.15,
+          245.70000000000002
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Port",
+      "points": [
+        [
+          831.0500000000001,
+          242.70000000000002
+        ],
+        [
+          839.85,
+          252.9
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Port",
+      "points": [
+        [
+          853.35,
+          251.4
+        ],
+        [
+          861.85,
+          260.9
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Port",
+      "points": [
+        [
+          873.0500000000001,
+          259.9
+        ],
+        [
+          881.35,
+          269.59999999999997
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Port",
+      "points": [
+        [
+          892.95,
+          267.09999999999997
+        ],
+        [
+          902.25,
+          277.59999999999997
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "USB-A_Port",
+      "points": [
+        [
+          912.75,
+          275.0
+        ],
+        [
+          920.85,
+          285.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "00331.jpg",
+  "imageData": null,
+  "imageHeight": 720,
+  "imageWidth": 1280
+}
