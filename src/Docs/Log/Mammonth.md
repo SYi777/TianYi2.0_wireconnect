@@ -82,23 +82,30 @@
 
 ### 2.2 跳过自检（手动启动 body_control）
 
-没插灵巧手或不需要遥控器时：
+遥控器自检失败、没插遥控器、或需要灵活配置时：
 
 ```bash
 ssh ubuntu@192.168.41.1   # 密码: 123
 sudo su
 sudo systemctl stop proc_manager.service
+```
 
-# 没插灵巧手必做：关手部检查，否则 body_control 不 Ready
-# 编辑文件: /home/ubuntu/ros2ws/install/body_control/share/body_control/param/inspire_hands.yaml
-# 把 enable: true 改成 enable: false
+**手部使能开关：** 编辑 `/home/ubuntu/data/param/u2c_sn.yaml`，改 `enable_hands` 字段：
 
+```yaml
+# enable_hands: false   # 没插灵巧手时关掉，否则 body_control 不 Ready
+# enable_hands: true    # 插了灵巧手时打开
+```
+
+然后启动：
+
+```bash
 cd /home/ubuntu/ros2ws
 source install/setup.bash
 ros2 launch body_control body.launch.py
 ```
 
-旧版机器也可：`/home/ubuntu/data/param/u2c_sn.yaml` → `enable_hands: false`
+> 另一处手部配置 `/home/ubuntu/ros2ws/install/body_control/share/body_control/param/inspire_hands.yaml`（`enable: true/false`），旧版机器也在那里改。
 
 ### 2.3 控制体系 —— 双系统并存
 
@@ -283,6 +290,8 @@ Inspire Hand 3，CAN 总线。手指 ID: 1=小指 2=无名指 3=中指 4=食指 
 ros2 topic pub --once /inspire_hand/ctrl/left_hand sensor_msgs/msg/JointState \
   '{name: ["1","2","3","4","5","6"], position: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5]}'
 ```
+
+> **手部话题无数据/无法控制？** 说明 body_control 的手部驱动没跑。检查 `/home/ubuntu/data/param/u2c_sn.yaml` 里 `enable_hands: true`，然后重启 body_control。参考 §2.2。
 
 ### 2.8 传感器总览
 

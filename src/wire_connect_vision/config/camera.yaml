@@ -1,0 +1,8 @@
+# Orbbec Gemini 330 head camera intrinsics (1280x720)
+# source: /ob_camera_head/color/camera_info
+detect_both_node:
+  ros__parameters:
+    fx: 689.21
+    fy: 689.26
+    cx: 644.15
+    cy: 360.16

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>wire_connect_vision</name>
+  <version>0.1.0</version>
+  <description>YOLO dual-model detection for USB-A plugs and ports, with depth back-projection and TF transform</description>
+  <maintainer email="syi777@example.com">syi777</maintainer>
+  <license>Apache-2.0</license>
+
+  <depend>rclpy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>visualization_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf2_geometry_msgs</depend>
+  <depend>wire_connect_msgs</depend>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
