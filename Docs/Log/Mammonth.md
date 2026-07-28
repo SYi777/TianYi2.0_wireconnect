@@ -304,44 +304,6 @@ ros2 topic pub --once /inspire_hand/ctrl/left_hand sensor_msgs/msg/JointState \
 
 关键告警码: `300100` warn=目标超跟踪限, `600100` error=优化不可行, `600101/2`=关节超限, `600120/30`=frame 错误
 
-### 2.9 xrocs Python SDK
-
-v3.1.6.1，Cython 编译。安装：`pip install xrocs-3.1.6.1-cp310-cp310-linux_x86_64.whl`
-
-**Station 模式：**
-```
-Station
-├── Robot → state / head_ctrler / arm_ctrler / waist_ctrler / leg_ctrler
-│   ├── mc.direct_ctrler  → /jointspace_commands_*, /endposetarget_*
-│   ├── mc.moveit_ctrler  → MoveIt 规划
-│   └── pin_kine          → Pinocchio 正运动学
-├── Hand (InspireHand3Ros2)
-├── Camera (OrbbecCameraRos2)
-└── ForceSensor
-```
-
-**基本用法：**
-```python
-from xrocs.entity.station import Station
-
-station = Station("tianyi2_pro")
-station.connect()
-
-# 关节控制
-station.robot.mc.direct_ctrler.pub_jointspace_commands_l([0.0, 1.18, 0.0, -1.3, 0.0, -0.13, 0.18])
-
-# 笛卡尔控制（需 endpose controller active）
-station.robot.mc.direct_ctrler.pub_endposetarget_l(x=0.35, y=0.20, z=-0.10, qx=0,qy=0,qz=0,qw=1)
-
-# 手控制
-station.hand.left.sync_target_joint([0.5] * 6)
-
-# 相机
-rgb, depth = station.camera.read()
-```
-
-不依赖 xrocs 时可直接用底层 Topic（`/arm/cmd_pos`、`/endposetarget_L`、`/inspire_hand/ctrl/left_hand` 等）。
-
 ---
 
 ## 三、遥操与数采
@@ -361,10 +323,10 @@ rgb, depth = station.camera.read()
 
 [机器人 192.168.41.1]
   DDS → freq_change(力位混合) → bodyctrl → EtherCAT/CAN → 电机
-  xrocs --mode data_collect → HDF5 (关节60Hz + 相机30Hz + 六维力100Hz)
+  data_collect → HDF5 (关节60Hz + 相机30Hz + 六维力100Hz)
 ```
 
-同构臂和手套数据分开传输，xrocs 在机器人端通过 ZMQ 同时收两路数据后汇总。
+同构臂和手套数据分开传输，在机器人端通过 ZMQ 同时收两路数据后汇总。
 
 ### 3.2 完整启动流程
 
@@ -379,7 +341,7 @@ rgb, depth = station.camera.read()
 | 4 | 笔记本 | `conda activate eai_env && xhumanoid-xtele --zmqpub manus` |
 | 5 | 机器人 | `ros2 launch freq_change freq_change.launch.py`（力位混合控制） |
 | 6 | Orin | 启动 orbbec_camera (640×480@30Hz) |
-| 7 | 机器人 | `uv run xhumanoid-xrocs --mode data_collect`（HDF5 录制） |
+| 7 | 机器人 | 启动数采录制（HDF5） |
 
 **工控机验证：** `curl http://192.168.41.100:8000`（关节 REST API）
 
@@ -403,10 +365,10 @@ cd ~/inspire_hand
 | 数据 | 频率 | 来源 |
 |------|:--:|------|
 | 全身关节角度 | 60Hz | bodyctrl |
-| 同构臂主端关节角 | 60Hz | fast_sync → ZMQ → xrocs |
+| 同构臂主端关节角 | 60Hz | fast_sync → ZMQ |
 | 六维力 | 100Hz | SRI (CAN) |
 | RGB / Depth | 30Hz | Gemini 330 (Orin) |
-| 手部关节角 | — | retargeting → xtele → xrocs |
+| 手部关节角 | — | retargeting → xtele |
 
 存储: HDF5 → `~/Data/sim_data/`
 
@@ -422,11 +384,11 @@ cd ~/inspire_hand
 
 当前问题：多设备经交换机 ZMQ/WebSocket 中转，链路长，设备多。
 
-**优化方向：** 手套接收器 + dev 直接装在机器人上，ZMQ 自回环给 xrocs。同构臂仍走工控机 CAN → ZMQ → 机器人。
+**优化方向：** 手套接收器 + dev 直接装在机器人上，ZMQ 自回环。同构臂仍走工控机 CAN → ZMQ → 机器人。
 
 ```
-[机器人] 手套接收器(USB) → ZMQ 自回环 → xrocs → DDS → freq_change → bodyctrl
-[工控机] 同构臂(CAN) → ZMQ → 机器人 xrocs
+[机器人] 手套接收器(USB) → ZMQ 自回环 → DDS → freq_change → bodyctrl
+[工控机] 同构臂(CAN) → ZMQ → 机器人
 ```
 
 ---
@@ -558,6 +520,5 @@ rviz2
 | 机器人配置 | `/home/ubuntu/Documents/configuration.toml` |
 | DDS 配置 | `/home/ubuntu/data/param/dds_profile.xml` |
 | 灵巧手 SDK | `/home/ubuntu/inspire_hand` |
-| xrocs whl | `/home/ubuntu/eai/syseai/xrocs-3.1.6.1-cp310-cp310-linux_x86_64.whl` |
 | Bag 存储 | `/home/ubuntu/bags` |
 | U2C 序列号 | `31F10005E45/E44/E40/C57` （头腰腿/右臂/左臂/手&力） |
