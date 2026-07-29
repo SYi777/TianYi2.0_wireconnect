@@ -205,14 +205,13 @@
   ping 192.168.41.100    # 工控机
 ```
 
-- 步骤 1 绕过自检，从而优化掉遥控器
+- 步骤 1 ─ 机器人: 手动启动 body_control（绕过自检，优化掉遥控器）
 
 ```bash
-ssh ubuntu@192.168.41.1	# 密码: 123
-sudo su
+ssh ubuntu@192.168.41.1   # 密码: 123
 sudo systemctl stop proc_manager.service
-systemctl status proc_manager.service #可选，检查服务状态
-cd ros2ws
+# 遥操时灵巧手插着，enable_hands 保持 true（默认），无需改配置
+cd /home/ubuntu/ros2ws
 source install/setup.bash
 ros2 launch body_control body.launch.py
 ```

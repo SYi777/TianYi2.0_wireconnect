@@ -69,7 +69,16 @@
 
 ## 二、机器人控制
 
-### 2.1 开机自检
+### 2.1 开机启动 —— 两种方式
+
+机器人支持两种启动方式，**二选一**。
+
+| 方式 | 适用场景 | 操作 |
+|------|------|------|
+| **A 键自检** | 有遥控器、有灵巧手、正常使用 | 开机等音效结束 → F 拨杆中间挡位 → 按遥控器 **A 键** |
+| **手动启动** | 调试、没遥控器、没插灵巧手 | 跳过自检，直接 launch body_control（§2.2） |
+
+**A 键自检流程：**
 
 1. 按下总开关 → 短按开机键 → 急停按钮顺时针弹出
 2. 等待开机音效结束，整机状态灯变为蓝绿缓慢呼吸
@@ -80,24 +89,23 @@
 
 未自检的机器人无法使用 ROS2 控制。
 
-### 2.2 跳过自检（手动启动 body_control）
+### 2.2 手动启动 body_control（跳过自检）
 
-遥控器自检失败、没插遥控器、或需要灵活配置时：
+当遥控器不可用、没插灵巧手、或需要灵活配置时使用。
 
 ```bash
 ssh ubuntu@192.168.41.1   # 密码: 123
-sudo su
 sudo systemctl stop proc_manager.service
 ```
 
-**手部使能开关：** 编辑 `/home/ubuntu/data/param/u2c_sn.yaml`，改 `enable_hands` 字段：
+**手部使能开关：** 如果没插灵巧手，body_control 会因手部检查失败而不 Ready。编辑 `/home/ubuntu/data/param/u2c_sn.yaml`：
 
 ```yaml
-# enable_hands: false   # 没插灵巧手时关掉，否则 body_control 不 Ready
-# enable_hands: true    # 插了灵巧手时打开
+enable_hands: false   # 没插灵巧手时必须关掉
+# enable_hands: true  # 插了灵巧手保持打开（默认）
 ```
 
-然后启动：
+然后启动 body_control：
 
 ```bash
 cd /home/ubuntu/ros2ws
@@ -105,9 +113,26 @@ source install/setup.bash
 ros2 launch body_control body.launch.py
 ```
 
-> 另一处手部配置 `/home/ubuntu/ros2ws/install/body_control/share/body_control/param/inspire_hands.yaml`（`enable: true/false`），旧版机器也在那里改。
+> 旧版机器手部配置在 `/home/ubuntu/ros2ws/install/body_control/share/body_control/param/inspire_hands.yaml`（`enable: true/false`）。
 
-### 2.3 控制体系 —— 双系统并存
+### 2.3 XARM 上层框架启动
+
+body_control 启动后，在**机器人另一个终端**启动 XARM（不要 source ros2ws，否则 bodyctrl_msgs 符号冲突导致崩溃）：
+
+```bash
+source /home/ubuntu/XARM/install/setup.bash
+ros2 launch tianyi2_bringup tianyi2.launch.py hardware:=real
+```
+
+**笔记本环境：**
+
+```bash
+source /opt/ros/humble/setup.bash
+source ~/WireConnect_ws/ROS/robot_pkgs/nk2_ws/install/setup.bash   # bodyctrl_msgs
+source ~/WireConnect_ws/ROS/robot_pkgs/XARM/install/setup.bash    # eai_manipulator_msgs
+```
+
+### 2.4 控制体系 —— 双系统并存
 
 机器人上有两套并行的控制体系，共享同一组电机硬件。同一时间只能一个控制器占用硬件。
 
@@ -123,7 +148,7 @@ ros2 launch body_control body.launch.py
 
 XARM 通过 ros2_control 管理。EAIHardware 在 250Hz 下持续写 `/arm/cmd_pos` 保持当前位置，外部 `--once` 指令会被覆盖。需切 `empty_controller` 释放控制权。
 
-### 2.4 body_control 底层控制
+### 2.5 body_control 底层控制
 
 | 部位 | Topic | 消息类型 | 电机 ID |
 |------|-------|---------|--------|
@@ -154,20 +179,9 @@ ros2 topic pub --once /arm/cmd_pos bodyctrl_msgs/msg/CmdSetMotorPosition \
 
 错误码: `33072`=设备掉线, `33073`=关节超限, `1`=过温, `2`=过流, `5`=堵转, `8`=编码器错误
 
-### 2.5 XARM 上层框架
+### 2.6 XARM 上层框架 (控制器详解)
 
-**启动（机器人侧，干净终端，不要 source ros2ws，否则 bodyctrl_msgs 符号冲突导致崩溃）：**
-```bash
-source /home/ubuntu/XARM/install/setup.bash
-ros2 launch tianyi2_bringup tianyi2.launch.py hardware:=real
-```
-
-**笔记本环境：**
-```bash
-source /opt/ros/humble/setup.bash
-source ~/WireConnect_ws/ROS/robot_pkgs/nk2_ws/install/setup.bash   # bodyctrl_msgs
-source ~/WireConnect_ws/ROS/robot_pkgs/XARM/install/setup.bash    # eai_manipulator_msgs
-```
+> 启动命令见 §2.3。
 
 #### 硬件使能与模式（使用手臂前必做）
 ```bash
@@ -259,7 +273,7 @@ ros2 control auto_switch_mode --enable   # 自动切换
 | 其他 controller active + 无指令 | 250Hz hold 当前位置（死锁） |
 | 其他 controller active + 有指令 | 正常执行 |
 
-### 2.6 控制链路决策
+### 2.7 控制链路决策
 
 ```
 需要避碰     → XARM endpose_qp 或 ruckig_qp
@@ -270,7 +284,7 @@ ros2 control auto_switch_mode --enable   # 自动切换
 比赛任务     → 感知算 pose → XARM endpose_qp → 力监控 → 手松
 ```
 
-### 2.7 灵巧手控制
+### 2.8 灵巧手控制
 
 Inspire Hand 3，CAN 总线。手指 ID: 1=小指 2=无名指 3=中指 4=食指 5=拇指弯曲 6=拇指旋转
 
@@ -293,7 +307,7 @@ ros2 topic pub --once /inspire_hand/ctrl/left_hand sensor_msgs/msg/JointState \
 
 > **手部话题无数据/无法控制？** 说明 body_control 的手部驱动没跑。检查 `/home/ubuntu/data/param/u2c_sn.yaml` 里 `enable_hands: true`，然后重启 body_control。参考 §2.2。
 
-### 2.8 传感器总览
+### 2.9 传感器总览
 
 | 传感器 | Topic | 类型 | 频率 |
 |--------|-------|------|:--:|
@@ -312,6 +326,18 @@ ros2 topic pub --once /inspire_hand/ctrl/left_hand sensor_msgs/msg/JointState \
 | 告警 | `/manipulator/warn_and_error_info` | WarnAndErrorInfo | — |
 
 关键告警码: `300100` warn=目标超跟踪限, `600100` error=优化不可行, `600101/2`=关节超限, `600120/30`=frame 错误
+
+### 2.10 相机启动
+
+相机在 Orin 上（`ssh nvidia@192.168.41.2`，密码 `nvidia`），按场景选一种方式：
+
+| 场景 | 命令 | 说明 |
+|------|------|------|
+| **日常快速** | `sudo systemctl start orbbec_head.service` | 1280×720 默认参数，开箱即用 |
+| **数采 / 低带宽** | `ros2 launch orbbec_camera gemini_330_series.launch.py color_width:=640 color_height:=480 depth_width:=640 depth_height:=480 color_fps:=30 depth_fps:=30` | 640×480 节省 DDS 带宽 |
+| **避碰感知** | `ros2 launch orbbec_camera gemini_330_series.launch.py enable_point_cloud:=true publish_tf:=true` | 需发布 `/camera/depth/points` + TF 外参 |
+
+> 手动 launch 前需 `source /home/nvidia/orbbec_camera_ros2/install/setup.bash`（systemd 方式不需要）。
 
 ---
 

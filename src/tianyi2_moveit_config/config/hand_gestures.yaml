@@ -1,0 +1,30 @@
+# Hand gesture presets for tianyi2.0 Pro
+# Joint values in radians for the 6 independent joints per hand.
+# Mimic joints are auto-computed from URDF mimic tags.
+#
+# SDK finger ID mapping (inspire SDK):
+#   1=little  2=ring  3=middle  4=index  5=thumb_bend  6=thumb_rotate
+#
+# URDF joint order per hand:
+#   [thumb_1, thumb_2, index_1, middle_1, ring_1, little_1]
+
+gestures:
+  open:
+    description: "Full open hand, all fingers extended — default / reset pose"
+    left:  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    right: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+  cable_grasp:
+    description: "Grasp posture for cylindrical cable/connector, ~40% closure"
+    left:  [0.50, 0.19, 0.53, 0.53, 0.53, 0.53]
+    right: [0.50, 0.19, 0.53, 0.53, 0.53, 0.53]
+
+  usb_grasp:
+    description: "Precision grasp for USB-A connector, ~60% closure"
+    left:  [0.75, 0.29, 0.80, 0.80, 0.80, 0.80]
+    right: [0.75, 0.29, 0.80, 0.80, 0.80, 0.80]
+
+  fist:
+    description: "Full fist closure, 100% — for power grasp or transport"
+    left:  [1.246, 0.48, 1.333, 1.333, 1.333, 1.333]
+    right: [1.246, 0.48, 1.333, 1.333, 1.333, 1.333]

@@ -24,6 +24,7 @@ setup(
     entry_points={
         "console_scripts": [
             "detect_both = wire_connect_vision.detect_both_node:main",
+            "table_detector = wire_connect_vision.table_detector:main",
         ],
     },
 )

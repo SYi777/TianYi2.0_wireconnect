@@ -1,33 +1,52 @@
 # 线缆连接 — 自研规划链路
 
 > 目标: 检测插头位姿 → 自研 move_group 避碰规划 → 手掌到线缆正上方5cm
-> 最后更新: 2026-07-28
+> 最后更新: 2026-07-28 17:30
+
+---
+
+## 进度总览
+
+| # | 任务 | 状态 | 备注 |
+|---|------|:--:|------|
+| 1 | workspace 整合 (src/ 统一构建) | ✅ | 9 packages, colcon build 通过 |
+| 2 | `wire_connect_msgs` 自定义消息 | ✅ | 5 个 msg, 编译安装正常 |
+| 3 | `wire_connect_vision` 视觉包 | ✅ | YOLO双模型 + 深度反投影 + TF变换 + 左/右分配 |
+| 4 | 视觉节点真机测试 | ⚠️ | 识别效果不错，相机话题频繁掉线 |
+| 5 | RViz 可视化验证 | ❌ | 相机掉线无法验证 MarkerArray |
+| 6 | RViz 拖拽验证手掌朝向 | ⬜ | 待做 |
+| 7 | `wire_connect_planner` 规划包 | ⬜ | cable_tracker |
+| 8 | 真机规划执行 | ⬜ | |
+
+### 2026-07-28 测试记录
+
+- **相机话题掉线**: `/ob_camera_head/color/image_raw/compressed` 和 depth 话题不持续稳定，时有时无
+- **识别效果**: 从少数有效帧来看，YOLO 双模型推理正常，插头 OBB + 端口框均能检出
+- **可视化未验证**: 因相机掉线，RViz `/vision/detected_objects` MarkerArray 未能持续观察
 
 ---
 
 ## 架构全景
 
 ```
-相机 (Orin)                     笔记本 (192.168.41.5)                      机器人 (192.168.41.1)
-                          ┌─────────────────────────────────┐
-  YOLO detect (端口) ─┐   │  detect_both.py (扩展)           │
-  YOLO OBB (插头+方向) ─┤  │   → /detected_plug (PoseStamped) │
-  深度图 ──────────────┘  │                                  │
-                          │  table_from_depth.py (新建)       │
-                          │   深度采样 → 桌面z → PlanningScene │
-                          │                                  │
-                          │  cable_tracker.py (新建) ⭐核心    │
-                          │   PlanningScene:                  │
-                          │   ├─ 桌面障碍物 box                │
-                          │   ├─ 目标位姿 (插头上方5cm)         │
-                          │   └─ OMPL 避碰规划                 │
-                          │   execute:                        │
-                          │   move_group.plan() → trajectory  │
-                          │        ↓                          │
-                          │   trajectory_bridge               │
-                          │        ↓                          │
+Orin (相机)                      笔记本 (192.168.41.5)                         机器人 (192.168.41.1)
+                          ┌──────────────────────────────────┐
+                          │ wire_connect_vision (已就绪 ✅)    │
+  color/compressed ────→  │  detect_both_node                 │
+  depth/image_raw ─────→  │   → /vision/plugs (PlugDetectArray)│
+                          │   → /vision/ports (PortDetectArray)│
+                          │   → /vision/left_target (ArmTarget)│
+                          │   → /vision/right_target (ArmTarget)│
+                          │   → /vision/detected_objects (MarkerArray)│
+                          │                                   │
+                          │ wire_connect_planner (待建 ⬜)       │
+                          │   PlanningScene + TableBox + OMPL   │
+                          │   → FollowJointTrajectory           │
+                          │        ↓                            │
+                          │   trajectory_bridge                 │
+                          │        ↓                            │
                           │   /jointspace_commands_L ──DDS──→ XARM Ruckig → 电机
-                          └─────────────────────────────────┘
+                          └──────────────────────────────────┘
 
 不经过 XARM QP笛卡尔 → 不受 0.2m dis_err_bound 限制
 ```
@@ -130,49 +149,46 @@ L_base_link 方向 (在 left_tcp_link 坐标系下):
 
 ## 3. 桌面障碍物策略
 
-### 核心思路: 障碍物低于线缆
+### 思路: 对绿色桌面区域采深度 → 局部平面 → 5cm 厚 box
+
+桌子不总完整可见（相机视野有限/手臂遮挡），直接 RANSAC 全局平面不可靠。
+改用颜色+深度联合：
 
 ```
-waist_yaw_link Z ↑
-  ┌─────────────────────────────┐
-  │  🎯 目标 z = cable_z + 0.05 │  ← 规划目标 (插头上方5cm)
-  │  ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ │
-  │  🔌 线缆 z = cable_z        │  ← 检测值 (线缆平放桌面)
-  │  ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ │
-  │  📦 障碍物 top = cable_z-0.02│  ← 故意低于检测面2cm
-  │  ████████████████████████████│  ← 桌面 box (5cm厚)
-  │  📦 障碍物 bottom = z-0.05  │
-  └─────────────────────────────┘
+1. 彩色图提取绿色区域 (工作台面为绿色)
+   → mask: HSV 绿色范围 或 YOLO 检测桌面
+2. 绿色 mask 内采样深度点 → back_project → waist_yaw_link
+3. 对采样点拟合水平面 → z + XY 范围
+4. 生成 5cm 厚 box 障碍物
 ```
 
-**关键设计:**
-- 障碍物 top face 故意低于线缆检测值 2cm → 线缆总是在障碍物上方
-- 深度图噪声 ±1cm 不会导致线缆被包
-- 2cm 余量对机械臂刚度安全可行
-- 桌面 z 直接从插头检测 z 取（线缆平放桌面=桌面高度）
+**优势：**
+- 只看桌子不看线缆/杂物
+- 桌子局部可见就能工作
+- 不依赖线缆位置推断
 
-### 获取桌面 z
+### 桌面 box 参数
+
+```
+box center Z  = table_z - 0.025  (top = table_z, 5cm厚)
+box center XY = 绿色区域采样点 XY 范围的均值
+box size      = (x_range, y_range, 0.05)
+```
+
+### 深度采样 + 绿色过滤
 
 ```python
-from collections import deque
-import numpy as np
+# 1. 绿色 mask
+hsv = cv2.cvtColor(color_img, cv2.COLOR_BGR2HSV)
+green_mask = cv2.inRange(hsv, (35, 40, 40), (85, 255, 255))
 
-class TableEstimator:
-    def __init__(self, window=10):
-        self._z_buffer = deque(maxlen=window)
-
-    def update(self, cable_z: float):
-        """每帧检测到插头后更新"""
-        self._z_buffer.append(cable_z)
-
-    @property
-    def table_z(self) -> float:
-        return float(np.median(self._z_buffer))
-
-    @property
-    def obstacle_top(self) -> float:
-        """障碍物顶面 = 桌面 - 2cm"""
-        return self.table_z - 0.02
+# 2. 绿色区域内采样深度
+ys, xs = np.where(green_mask & depth_mm > 0)
+if len(xs) > 100:
+    pts_3d = [back_project(x, y, depth_mm[y,x]) for x,y in zip(xs, ys)]
+    # TF → waist_yaw_link
+    # 取 z 中值 → table_z
+    # 取 x,y 分位数 [10%,90%] → x_range, y_range
 ```
 
 ---
@@ -181,68 +197,47 @@ class TableEstimator:
 
 | # | 文件 | 位置 | 功能 | 状态 |
 |---|------|------|------|:--:|
-| 1 | `detect_both.py` | `detect/scripts/` | **扩展**: 加 PoseStamped topic | ⬜ |
-| 2 | `cable_tracker.py` | `detect/scripts/` | **新建**: 规划+跟踪核心 | ⬜ |
-| 3 | `work_chain.md` | 根目录 | 本文档 | ✅ |
+| 1 | `wire_connect_msgs/` | `src/wire_connect_msgs/` | 自定义消息 (5 msg) | ✅ |
+| 2 | `wire_connect_vision/` | `src/wire_connect_vision/` | 视觉检测包 (YOLO+深度+TF+分配) | ✅ |
+| 3 | `cable_tracker.py` | 待建 | 规划+跟踪核心 | ⬜ |
+| 4 | `work_chain.md` | `src/` | 本文档 | ✅ |
 
-### `detect_both.py` 扩展点 (改10行)
+### 已废弃
 
-当前只发 `MarkerArray`(SPHERE)，需要加发 `PoseStamped`:
-
-```python
-# 新增 import
-from geometry_msgs.msg import PoseStamped
-
-# 在 __init__ 中加 publisher
-self._pose_pub = self.create_publisher(PoseStamped, "/detected_plug", 10)
-
-# 在 _make_marker 后面，对每个插头 OBB 发布 PoseStamped:
-# - position: 3D 坐标 (已有)
-# - orientation: OBB 长边方向角 → 四元数 (新增)
-```
-
-### `cable_tracker.py` 伪代码
-
-```python
-class CableTracker(Node):
-    def __init__(self):
-        # Sub: /detected_plug, /joint_states
-        # Init: move_group("left_arm"), planning_scene
-        # 加桌面 box 到 PlanningScene
-        # 设手部手势: cable_grasp
-
-    def update_table(self, plug_z):
-        """中值滤波更新桌面高度"""
-        self._z_buffer.append(plug_z)
-        table_z = median(self._z_buffer)
-        # 移动 table box: top = table_z - 0.02
-
-    def compute_target(self, plug_pose):
-        """插头位姿 → 目标位姿"""
-        target = Pose()
-        target.position.x = plug_pose.position.x
-        target.position.y = plug_pose.position.y
-        target.position.z = plug_pose.position.z + 0.05  # 上方5cm
-        # orientation = 手掌朝下 × 拇指⊥线缆 (见 §2)
-        return target
-
-    def run(self):
-        # 等待第一帧检测
-        # while rclpy.ok():
-        #   plug = latest /detected_plug
-        #   update_table(plug.z)
-        #   target = compute_target(plug)
-        #   move_group.set_pose_target(target)
-        #   plan = move_group.plan()
-        #   if plan: move_group.execute(plan)
-        #   到位后等待下一帧, 判断偏移 >阈值 → 重规划
-```
+| 文件 | 原因 |
+|------|------|
+| `detect/scripts/detect_both.py` | 逻辑已迁移到 `wire_connect_vision/detect_both_node.py` |
+| `detect/scripts/detect_3d.py` | 被 detect_both_node 覆盖 |
+| `detect/scripts/detect_live.py` | 被 detect_both_node 覆盖 |
 
 ---
 
 ## 5. 环境启动命令速查
 
 ```bash
+# ===== 所有终端 =====
+source /opt/ros/humble/setup.bash
+source ~/WireConnect_ws/install/setup.bash
+
+# ===== 本机 =====
+# 终端1: 视觉检测
+ros2 launch wire_connect_vision detect_both.launch.py
+
+# 带可视化窗口:
+ros2 launch wire_connect_vision detect_both.launch.py show_display:=true
+
+# 终端2: RViz (订阅 /vision/detected_objects)
+rviz2
+# Fixed Frame: waist_yaw_link
+# Add → MarkerArray → Topic: /vision/detected_objects
+
+# ===== 以下待规划包完成后启用 =====
+# 终端3: move_group (本地规划)
+ros2 launch tianyi2_moveit_config move_group.launch.py
+
+# 终端4: trajectory_bridge (MoveIt→XARM)
+ros2 run trajectory_bridge trajectory_bridge --ros-args -p debug:=false
+
 # ===== 机器人侧 (SSH ubuntu@192.168.41.1) =====
 # 终端1: XARM 启动
 source /home/ubuntu/XARM/install/setup.bash
@@ -253,23 +248,6 @@ source /home/ubuntu/XARM/install/setup.bash
 ros2 service call /EAIHardware/set_arm_mode eai_manipulator_msgs/srv/Mode "{mode: 3}"
 ros2 service call /EAIHardware/set_arm_enable std_srvs/srv/SetBool "data: true"
 ros2 control switch_controllers --activate jointspace_arm_L_controller
-
-# ===== 本机 =====
-# 每个终端:
-source /opt/ros/humble/setup.bash
-source ~/WireConnect_ws/ROS/moveit_with_hand_ws/install/setup.bash
-
-# 终端1: move_group
-ros2 launch tianyi2_moveit_config move_group.launch.py
-
-# 终端2: trajectory_bridge (MoveIt→XARM)
-ros2 run trajectory_bridge trajectory_bridge --ros-args -p debug:=false
-
-# 终端3: 视觉检测
-python3 ~/WireConnect_ws/detect/scripts/detect_both.py
-
-# 终端4: 规划跟踪 (今天要写)
-python3 ~/WireConnect_ws/detect/scripts/cable_tracker.py
 ```
 
 ---

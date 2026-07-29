@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>wire_connect_planner</name>
+  <version>0.1.0</version>
+  <description>Planner node: ArmTarget → table obstacle → OMPL planning → execute via trajectory_bridge</description>
+  <maintainer email="syi777@example.com">syi777</maintainer>
+  <license>Apache-2.0</license>
+
+  <depend>rclpy</depend>
+  <depend>geometry_msgs</depend>
+  <depend>shape_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>moveit_msgs</depend>
+  <depend>wire_connect_msgs</depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

@@ -90,7 +90,7 @@ class DetectBothNode(Node):
         self.create_subscription(CompressedImage,
             "/ob_camera_head/color/image_raw/compressed", self._cb_color, qos_img)
         self.create_subscription(Image,
-            "/ob_camera_head/depth/image_raw", self._cb_depth, 10)
+            "/ob_camera_head/depth/image_raw", self._cb_depth, qos_img)
 
         # ── TF ───────────────────────────────────────────────────────
         import tf2_ros
@@ -113,13 +113,15 @@ class DetectBothNode(Node):
 
     # ── callbacks ────────────────────────────────────────────────────
     def _cb_color(self, msg: CompressedImage):
+        if self._color_data is None:
+            self.get_logger().info("first color frame received")
         self._color_data = msg.data
 
     def _cb_depth(self, msg: Image):
-        # .copy() required — numpy array shares ROS buffer otherwise
+        if self._depth_arr is None:
+            self.get_logger().info(f"first depth frame {msg.width}x{msg.height}")
         self._depth_arr = np.frombuffer(msg.data, np.uint16).reshape(
-            msg.height, msg.width
-        ).copy()
+            msg.height, msg.width).copy()
 
     # ── per-frame processing ─────────────────────────────────────────
     def process(self):
@@ -292,7 +294,7 @@ class DetectBothNode(Node):
         return t
 
     def _draw_overlay(self, img, r_port, r_plug, n_valid: int) -> None:
-        """OpenCV overlay window (optional)."""
+        """OpenCV overlay window (optional) — only called when _show_disp=True."""
         import cv2
 
         # draw port boxes
@@ -313,7 +315,7 @@ class DetectBothNode(Node):
         cv2.putText(img, f"plugs:{n_valid}  frame:{self._frame_n}",
                     (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
         cv2.imshow("detect_both", img)
-        cv2.waitKey(1)
+        # waitKey is called from main() loop for responsiveness
 
 
 # ── pure functions (no ROS deps) ─────────────────────────────────────
@@ -336,24 +338,31 @@ def quat_from_yaw(yaw: float) -> Quaternion:
 # ── main ─────────────────────────────────────────────────────────────
 
 def main():
+    import cv2
+
     rclpy.init()
     node = DetectBothNode()
+    show = node._show_disp
 
-    # warmup: spin to fill image buffer
-    for _ in range(30):
-        rclpy.spin_once(node, timeout_sec=0.05)
+    if show:
+        cv2.namedWindow("detect_both", cv2.WINDOW_NORMAL)
+        cv2.resizeWindow("detect_both", 960, 540)
+
+    # warmup
+    for _ in range(10):
+        rclpy.spin_once(node, timeout_sec=0.01)
 
     try:
         while rclpy.ok():
-            # drain DDS buffer
-            for _ in range(5):
-                rclpy.spin_once(node, timeout_sec=0.005)
+            rclpy.spin_once(node, timeout_sec=0.001)
             node.process()
+            if show:
+                cv2.waitKey(1)
     except KeyboardInterrupt:
         pass
     finally:
-        import cv2
-        cv2.destroyAllWindows()
+        if show:
+            cv2.destroyWindow("detect_both")
         node.destroy_node()
         try:
             rclpy.shutdown()

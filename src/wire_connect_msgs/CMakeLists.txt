@@ -16,6 +16,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/PortDetect.msg"
   "msg/PortDetectArray.msg"
   "msg/ArmTarget.msg"
+  "msg/TableInfo.msg"
   DEPENDENCIES geometry_msgs std_msgs
 )
 

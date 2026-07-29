@@ -46,24 +46,19 @@
 # === 机器人侧 (SSH ubuntu@192.168.41.1, 密码 123) ===
 
 # Step 1: 停掉开机自启管理器
-sudo systemctl stop proc_manager
+sudo systemctl stop proc_manager.service
 
-# Step 2: 关掉手部检查（没插灵巧手时必做，否则 body_control 不 Ready）
-/home/ubuntu/ros2ws/install/body_control/share/body_control/param/inspire_hands.yaml
-inspire_hands:
-  left:
-    enable: false
-  right:
-    enable: false
-
+# Step 2: 没插灵巧手时，关手部检查（否则 body_control 不 Ready）
+# 编辑 /home/ubuntu/data/param/u2c_sn.yaml：
+#   enable_hands: false
+# 插了灵巧手保持 enable_hands: true（默认），跳过此步
 
 # Step 3: 启动 body_control（终端1，保持运行）
-sudo su
 cd /home/ubuntu/ros2ws
 source install/setup.bash
 ros2 launch body_control body.launch.py
 
-# Step 4: 启动 XARM（终端2，保持运行）
+# Step 4: 启动 XARM（终端2，保持运行，不要 source ros2ws）
 source /home/ubuntu/XARM/install/setup.bash
 ros2 launch tianyi2_bringup tianyi2.launch.py hardware:=real
 ```
@@ -77,8 +72,8 @@ ros2 launch tianyi2_bringup tianyi2.launch.py hardware:=real
 ```bash
 # 每个新终端都要：
 source /opt/ros/humble/setup.bash
-source ~/WireConnect_ws/ROS/nk2_ws/install/setup.bash       # bodyctrl_msgs (匹配机器人)
-source ~/WireConnect_ws/XARM/install/setup.bash            # eai_manipulator_msgs eai_manipulator_msgs
+source ~/WireConnect_ws/ROS/robot_pkgs/nk2_ws/install/setup.bash   # bodyctrl_msgs (匹配机器人)
+source ~/WireConnect_ws/ROS/robot_pkgs/XARM/install/setup.bash    # eai_manipulator_msgs
 ```
 
 ### 2.3 验证启动成功
