@@ -22,6 +22,7 @@ setup(
     entry_points={
         "console_scripts": [
             "cable_tracker = wire_connect_planner.cable_tracker:main",
+            "planning_scene_manager = wire_connect_planner.planning_scene_manager:main",
         ],
     },
 )

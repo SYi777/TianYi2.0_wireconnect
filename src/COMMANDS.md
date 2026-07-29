@@ -45,9 +45,21 @@ ros2 launch tianyi2_moveit_config move_group.launch.py
 # 轨迹桥接 MoveIt→XARM
 ros2 run trajectory_bridge trajectory_bridge --ros-args -p debug:=false
 
-# 规划节点
+# 场景管理 (持续更新桌面障碍物)
+ros2 run wire_connect_planner planning_scene_manager
+
+# 规划节点 (状态机: 检测→规划→执行→跟踪)
 ros2 launch wire_connect_planner planner.launch.py arm:=left
 ros2 launch wire_connect_planner planner.launch.py arm:=right
+```
+
+### 规划状态机流程
+
+```
+IDLE → PLANNING(重试≤3) → EXECUTING → TRACKING
+  ↑                                    ↓ 偏移>3cm非遮挡→PLANNING
+  └── 失败回IDLE                       ↓ 遮挡(z跳变>5cm)→忽略
+                                       ↓ target丢失>3s→保持
 ```
 
 ## 笔记本 — 可视化
@@ -107,9 +119,12 @@ cd ~/jyh_ws
 colcon build --symlink-install --packages-select wire_connect_msgs wire_connect_vision wire_connect_debug
 source install/setup.bash
 
-# Orin 运行
+# Orin 运行 (必须加 PYTHONPATH 加载 vendor 依赖)
 PYTHONPATH=$HOME/jyh_ws/src/wire_connect_vision/vendor:$PYTHONPATH \
   ros2 launch wire_connect_vision detect_both.launch.py
+
+PYTHONPATH=$HOME/jyh_ws/src/wire_connect_vision/vendor:$PYTHONPATH \
+  ros2 run wire_connect_vision table_detector
 ```
 
 ## Orin — 依赖 (离线)
