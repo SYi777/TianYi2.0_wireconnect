@@ -106,7 +106,7 @@ ros2 topic list | grep vision
 
 ---
 
-## Orin — 部署 & 运行
+## Orin — 部署
 
 ```bash
 # 同步代码 (笔记本→Orin)
@@ -118,11 +118,20 @@ source /opt/ros/humble/setup.bash
 cd ~/jyh_ws
 colcon build --symlink-install --packages-select wire_connect_msgs wire_connect_vision wire_connect_debug
 source install/setup.bash
+```
 
-# Orin 运行 (必须加 PYTHONPATH 加载 vendor 依赖)
+## Orin — 视觉 (每个终端 source)
+
+```bash
+# 每个终端:
+source /opt/ros/humble/setup.bash
+source ~/jyh_ws/install/setup.bash
+
+# 终端1: 线缆+端口识别
 PYTHONPATH=$HOME/jyh_ws/src/wire_connect_vision/vendor:$PYTHONPATH \
   ros2 launch wire_connect_vision detect_both.launch.py
 
+# 终端2: 桌子识别
 PYTHONPATH=$HOME/jyh_ws/src/wire_connect_vision/vendor:$PYTHONPATH \
   ros2 run wire_connect_vision table_detector
 ```
