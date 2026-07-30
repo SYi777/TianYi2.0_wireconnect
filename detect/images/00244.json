@@ -1,0 +1,196 @@
+{
+  "version": "6.3.1",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "usb_a_port",
+      "points": [
+        [
+          710.5500000000001,
+          359.4
+        ],
+        [
+          729.85,
+          366.4
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "usb_a_port",
+      "points": [
+        [
+          762.25,
+          360.0
+        ],
+        [
+          780.5500000000001,
+          367.2
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "usb_a_port",
+      "points": [
+        [
+          810.85,
+          360.0
+        ],
+        [
+          829.45,
+          368.5
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "usb_a_port",
+      "points": [
+        [
+          715.0500000000001,
+          382.5
+        ],
+        [
+          734.25,
+          391.59999999999997
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "usb_a_port",
+      "points": [
+        [
+          766.25,
+          386.29999999999995
+        ],
+        [
+          783.45,
+          393.2
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "usb_a_port",
+      "points": [
+        [
+          814.35,
+          386.7
+        ],
+        [
+          834.15,
+          396.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "usb_a_plug",
+      "points": [
+        [
+          506.9909208819714,
+          423.0998702983139
+        ],
+        [
+          558.0709550566783,
+          438.3295374796909
+        ],
+        [
+          552.905317769131,
+          455.65499351491565
+        ],
+        [
+          501.8252835944242,
+          440.4253263335387
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "usb_a_plug",
+      "points": [
+        [
+          477.9377431906614,
+          517.911802853437
+        ],
+        [
+          530.115237946317,
+          519.7149128233957
+        ],
+        [
+          529.5590142671854,
+          535.810635538262
+        ],
+        [
+          477.38151951152975,
+          534.0075255683034
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "usb_a_plug",
+      "points": [
+        [
+          504.13748378728917,
+          571.219195849546
+        ],
+        [
+          557.4154040439014,
+          575.5585739699936
+        ],
+        [
+          555.8884565499351,
+          594.3060959792477
+        ],
+        [
+          502.6105362933229,
+          589.9667178588002
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "oriented_rectangle",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "00244.jpg",
+  "imageData": null,
+  "imageHeight": 720,
+  "imageWidth": 1280
+}

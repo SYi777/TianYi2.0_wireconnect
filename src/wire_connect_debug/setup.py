@@ -15,6 +15,9 @@ setup(
     description="Debug tools for WireConnect",
     license="Apache-2.0",
     entry_points={
-        "console_scripts": ["camera_view = wire_connect_debug.camera_view:main"],
+        "console_scripts": [
+            "camera_view = wire_connect_debug.camera_view:main",
+            "joint_relay = wire_connect_debug.joint_state_relay:main",
+        ],
     },
 )

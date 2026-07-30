@@ -1,0 +1,6 @@
+path: /home/syi777/WireConnect_ws/detect/dataset_plug_obb
+train: train/images
+val: val/images
+names:
+  0: usb_a_plug
+nc: 1

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Green-table detector — colour + depth, runs every 5s.
+"""Table edge detector — find floor→table depth jump, compute base→table distance.
 
-Extracts green pixels from colour image, samples depth within that region,
-back-projects to waist_yaw_link, fits a horizontal plane → TableInfo + Marker.
+Camera looks forward+down from head. Bottom rows = ground (far).
+Move up = table surface (closer). Depth discontinuity = table front edge.
 
 Publishes:
-  /vision/table          (TableInfo)
+  /vision/table          (TableInfo) — table z + XY bounds in waist_yaw_link
   /vision/table_marker   (Marker)
 """
 
@@ -16,17 +16,13 @@ import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy
 
-from sensor_msgs.msg import CompressedImage, Image
+from sensor_msgs.msg import Image
 from geometry_msgs.msg import Point, Pose, Vector3
 from std_msgs.msg import ColorRGBA
 from visualization_msgs.msg import Marker
 
 from wire_connect_msgs.msg import TableInfo
 from .depth_projection import back_project, project_to_frame
-
-# HSV green range (tune if lighting changes)
-GREEN_LOW  = (35, 40, 40)
-GREEN_HIGH = (85, 255, 255)
 
 
 class TableDetector(Node):
@@ -39,113 +35,122 @@ class TableDetector(Node):
         self.declare_parameter("cy", 360.16)
         self.declare_parameter("target_frame", "waist_yaw_link")
         self.declare_parameter("optical_frame", "ob_camera_head_color_optical_frame")
-        self.declare_parameter("interval_sec", 5.0)
+        self.declare_parameter("interval_sec", 2.0)
+        self.declare_parameter("jump_thresh", 0.10)     # 10cm depth jump = edge
+        self.declare_parameter("table_thickness", 0.05)
         self.declare_parameter("show_debug", False)
 
         self._fx = self.get_parameter("fx").value
-        self._show_dbg = self.get_parameter("show_debug").value
         self._fy = self.get_parameter("fy").value
         self._cx = self.get_parameter("cx").value
         self._cy = self.get_parameter("cy").value
         self._target = self.get_parameter("target_frame").value
         self._optical = self.get_parameter("optical_frame").value
+        self._thresh = self.get_parameter("jump_thresh").value
+        self._table_h = self.get_parameter("table_thickness").value
+        self._show_dbg = self.get_parameter("show_debug").value
 
-        # subscribers
         qos = QoSProfile(depth=10, reliability=ReliabilityPolicy.BEST_EFFORT)
-        self.create_subscription(CompressedImage,
-            "/ob_camera_head/color/image_raw/compressed", self._cb_color, qos)
-        self.create_subscription(Image,
-            "/ob_camera_head/depth/image_raw", self._cb_depth, qos)
-
-        self._color_data = None
+        self.create_subscription(Image, "/ob_camera_head/depth/image_raw",
+                                 self._cb_depth, qos)
         self._depth_arr = None
 
-        # TF
         import tf2_ros
         self._tf_buf = tf2_ros.Buffer()
         self._tf_listener = tf2_ros.TransformListener(self._tf_buf, self)
 
-        # publishers
         self._pub = self.create_publisher(TableInfo, "/vision/table", 10)
+        from visualization_msgs.msg import Marker
         self._marker_pub = self.create_publisher(Marker, "/vision/table_marker", 10)
 
-        # smoothing
         self._z_hist = deque(maxlen=3)
         self._x_hist = deque(maxlen=3)
         self._y_hist = deque(maxlen=3)
 
         self.create_timer(self.get_parameter("interval_sec").value, self._tick)
-        self.get_logger().info("green-table detector ready")
-
-    def _cb_color(self, m):
-        self._color_data = m.data
+        self.get_logger().info("table edge detector ready")
 
     def _cb_depth(self, m):
         self._depth_arr = np.frombuffer(m.data, np.uint16).reshape(
             m.height, m.width).copy()
 
     def _tick(self):
-        if self._color_data is None or self._depth_arr is None:
+        if self._depth_arr is None:
             return
+        h, w = self._depth_arr.shape
 
-        import cv2
-        img = cv2.imdecode(np.frombuffer(self._color_data, np.uint8), cv2.IMREAD_COLOR)
-        if img is None:
-            return
+        # Scan columns, find first depth jump going upward from bottom
+        edge_pts = []
+        for col in range(w // 4, 3 * w // 4, 8):  # middle 50% columns
+            prev_d = 0
+            for row in range(h - 40, h // 4, -1):  # bottom → up
+                d = float(self._depth_arr[row, col])
+                if d == 0:
+                    continue
+                if prev_d > 0:
+                    jump = prev_d - d  # closer = smaller depth
+                    if abs(jump) > self._thresh * 1000:  # mm
+                        v = row if jump > 0 else row - 1
+                        X, Y, Z = back_project(col, v, int(self._depth_arr[v, col]),
+                                               self._fx, self._fy, self._cx, self._cy)
+                        edge_pts.append((X, Y, Z))
+                        break
+                prev_d = d
 
-        # 1. green mask
-        hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-        mask = cv2.inRange(hsv, GREEN_LOW, GREEN_HIGH)
+        if len(edge_pts) < 20:
+            # fallback: sample bottom-middle depth as floor
+            pts = []
+            for col in range(w // 4, 3 * w // 4, 16):
+                for row in range(h - 80, h - 20, 8):
+                    d = int(self._depth_arr[row, col])
+                    if d > 0:
+                        X, Y, Z = back_project(col, row, d, self._fx, self._fy, self._cx, self._cy)
+                        pts.append((X, Y, Z))
+                if len(pts) > 50:
+                    break
+            self.get_logger().warn(f"no edge found, using {len(pts)} floor pts")
+            edge_pts = pts
 
-        if self._show_dbg:
-            overlay = img.copy()
-            overlay[mask > 0] = overlay[mask > 0] // 2 + [0, 127, 0]
-            cv2.imshow("table_mask", overlay)
-            cv2.waitKey(1)
-
-        # 2. sample depth in green region (stride 4)
-        ys, xs = np.where((mask > 0) & (self._depth_arr > 0))
-        if len(xs) < 200:
-            self.get_logger().warn(f"too few green+deep points: {len(xs)}")
-            return
-
-        # subsample
-        idx = np.random.choice(len(xs), min(800, len(xs)), replace=False)
-        pts_3d = []
-        for i in idx:
-            u, v = xs[i], ys[i]
-            d = int(self._depth_arr[v, u])
-            X, Y, Z = back_project(u, v, d, self._fx, self._fy, self._cx, self._cy)
-            pts_3d.append((X, Y, Z))
-
-        # 3. TF → target frame
-        pts_target = []
-        for X, Y, Z in pts_3d:
+        # TF → target frame
+        pts_t = []
+        for X, Y, Z in edge_pts:
             try:
                 pt = project_to_frame(X, Y, Z, self._optical, self._target, self._tf_buf, 0.5)
-                pts_target.append((pt.x, pt.y, pt.z))
+                pts_t.append((pt.x, pt.y, pt.z))
             except Exception:
                 continue
 
-        if len(pts_target) < 100:
-            self.get_logger().warn(f"too few TF'd points: {len(pts_target)}")
+        if len(pts_t) < 10:
+            self.get_logger().warn(f"too few TF points: {len(pts_t)}")
             return
 
-        pts = np.array(pts_target)
+        arr = np.array(pts_t)
 
-        # 4. horizontal plane: median Z, XY 10%-90% range
-        z_med = float(np.median(pts[:, 2]))
-        # filter outliers > 3cm from median
-        ok = np.abs(pts[:, 2] - z_med) < 0.03
-        pts_f = pts[ok]
-        if len(pts_f) < 50:
+        # Table surface = the closer points (higher Z = nearer plane)
+        z_cluster = arr[:, 2]
+        z_med = float(np.median(z_cluster))
+        # Keep points near dominant Z (table surface)
+        ok = np.abs(z_cluster - z_med) < 0.05
+        table_pts = arr[ok]
+        if len(table_pts) < 10:
             return
 
-        x_min, x_max = float(np.percentile(pts_f[:, 0], 5)), float(np.percentile(pts_f[:, 0], 95))
-        y_min, y_max = float(np.percentile(pts_f[:, 1], 5)), float(np.percentile(pts_f[:, 1], 95))
+        # table surface Z from detected edge points
+        edge_z = float(np.median(table_pts[:, 2]))
+        # edge is the front of table (closest to robot)
+        edge_x = float(np.median(table_pts[:, 0]))
+        edge_y_center = float(np.median(table_pts[:, 1]))
 
-        # 5. smooth
-        self._z_hist.append(z_med)
+        # Rules: table = 80cm depth(X) × 120cm width(Y), robot at long side centre
+        TABLE_DEPTH = 0.8  # X (forward, away from robot along short side)
+        TABLE_WIDTH = 1.2  # Y (left-right, along long side)
+
+        x_min = edge_x
+        x_max = edge_x + TABLE_DEPTH
+        y_min = edge_y_center - TABLE_WIDTH / 2
+        y_max = edge_y_center + TABLE_WIDTH / 2
+
+        self._z_hist.append(edge_z)
         self._x_hist.append((x_min, x_max))
         self._y_hist.append((y_min, y_max))
 
@@ -161,24 +166,20 @@ class TableDetector(Node):
         self._pub.publish(msg)
 
         self.get_logger().info(
-            f"table z={msg.z:.3f} x=[{msg.x_min:.2f},{msg.x_max:.2f}] "
-            f"y=[{msg.y_min:.2f},{msg.y_max:.2f}] n={len(pts_f)}",
-            throttle_duration_sec=4.0)
+            f"edge x={edge_x:.3f}  table: {TABLE_DEPTH:.1f}d×{TABLE_WIDTH:.1f}w m  "
+            f"z={msg.z:.3f}  xy=[{msg.x_min:.2f}~{msg.x_max:.2f}][{msg.y_min:.2f}~{msg.y_max:.2f}]",
+            throttle_duration_sec=2.0)
 
-        # 6. marker
-        w = msg.x_max - msg.x_min
-        d = msg.y_max - msg.y_min
-        h = 0.05
+        # marker: full table box
         m = Marker()
-        m.header = msg.header
-        m.ns = "table"; m.id = 0; m.type = Marker.CUBE; m.action = Marker.ADD
-        m.pose.position = Point(
-            x=(msg.x_min + msg.x_max) / 2,
-            y=(msg.y_min + msg.y_max) / 2,
-            z=msg.z - h / 2)
-        m.scale = Vector3(x=w, y=d, z=h)
+        m.header = msg.header; m.ns = "table"; m.id = 0
+        m.type = Marker.CUBE; m.action = Marker.ADD
+        m.pose.position = Point(x=(x_min + x_max) / 2,
+                                y=float(edge_y_center),
+                                z=msg.z - self._table_h / 2)
+        m.scale = Vector3(x=TABLE_DEPTH, y=TABLE_WIDTH, z=self._table_h)
         m.color = ColorRGBA(r=0.0, g=0.5, b=1.0, a=0.35)
-        m.lifetime.sec = 10
+        m.lifetime.sec = 5
         self._marker_pub.publish(m)
 
 
@@ -196,7 +197,6 @@ def main():
         node.destroy_node()
         try: rclpy.shutdown()
         except: pass
-
 
 if __name__ == "__main__":
     main()
