@@ -2,9 +2,7 @@
 
 Usage:
     source /opt/ros/humble/setup.bash
-    source ~/WireConnect_ws/ROS/urdf_ws/install/setup.bash
-    source ~/WireConnect_ws/moveit_ws/install/setup.bash
-    source ~/WireConnect_ws/ROS/ros2ws/install/setup.bash
+    source ~/WireConnect_ws/install/setup.bash
     ros2 launch trajectory_bridge moveit_real_robot.launch.py
 
 RViz 中拖拽末端球 → move_group 规划 → bridge 发布 /arm/cmd_pos → 机器人执行

@@ -1,1 +1,0 @@
-/home/syi777/WireConnect_ws/ROS/moveit_with_hand_ws/src/tianyi2_moveit_config/launch/demo_with_hands.launch.py

@@ -1,3 +1,0 @@
-
-bool action_completed
-

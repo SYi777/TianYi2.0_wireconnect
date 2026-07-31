@@ -1,1 +1,0 @@
-/home/syi777/WireConnect_ws/ROS/moveit_with_hand_ws/src/tianyi2_moveit_config/launch/static_virtual_joint_tfs.launch.py

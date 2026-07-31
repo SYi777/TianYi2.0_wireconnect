@@ -1,4 +1,0 @@
-
-
-bool    result
-string  info

@@ -1,9 +1,0 @@
-<library path="identify_load_R_controller">
-  <class name="identify_load_R_controller/IdentifyLoadRController"
-         type="identify_load_R_controller::IdentifyLoadRController" 
-         base_class_type="controller_interface::ControllerInterface">
-  <description>
-    identify_load_R_controller ros2_control controller.
-  </description>
-  </class>
-</library>

@@ -1,5 +1,0 @@
-[console_scripts]
-auto_switch_mode = controller_manager.auto_switch_mode:main
-hardware_spawner = controller_manager.hardware_spawner:main
-spawner = controller_manager.spawner:main
-unspawner = controller_manager.unspawner:main

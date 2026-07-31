@@ -38,6 +38,7 @@ class TableDetector(Node):
         self.declare_parameter("interval_sec", 2.0)
         self.declare_parameter("jump_thresh", 0.10)     # 10cm depth jump = edge
         self.declare_parameter("table_thickness", 0.05)
+        self.declare_parameter("table_ground_z", 0.75)  # table surface height above base (rules)
         self.declare_parameter("show_debug", False)
 
         self._fx = self.get_parameter("fx").value
@@ -150,7 +151,23 @@ class TableDetector(Node):
         y_min = edge_y_center - TABLE_WIDTH / 2
         y_max = edge_y_center + TABLE_WIDTH / 2
 
-        self._z_hist.append(edge_z)
+        # Z — use TF base→waist_yaw to compute table height relative to waist frame
+        table_z_ground = self.get_parameter("table_ground_z").value  # 0.75m by rules
+        try:
+            import tf2_geometry_msgs as tfg
+            from geometry_msgs.msg import PointStamped, Point
+            ps = PointStamped()
+            ps.header.frame_id = "base"
+            ps.point = Point()  # origin of base
+            t = self._tf_buf.lookup_transform(self._target, "base",
+                rclpy.time.Time(), timeout=rclpy.duration.Duration(seconds=0.5))
+            # base origin in target frame: z component = -waist_height
+            waist_z = -t.transform.translation.z  # positive value = base→waist height
+            table_z = table_z_ground - waist_z
+        except Exception:
+            table_z = edge_z  # fallback to detected
+
+        self._z_hist.append(table_z)
         self._x_hist.append((x_min, x_max))
         self._y_hist.append((y_min, y_max))
 
@@ -167,7 +184,8 @@ class TableDetector(Node):
 
         self.get_logger().info(
             f"edge x={edge_x:.3f}  table: {TABLE_DEPTH:.1f}d×{TABLE_WIDTH:.1f}w m  "
-            f"z={msg.z:.3f}  xy=[{msg.x_min:.2f}~{msg.x_max:.2f}][{msg.y_min:.2f}~{msg.y_max:.2f}]",
+            f"z={msg.z:.3f}(ground={table_z_ground:.2f}m)  "
+            f"xy=[{msg.x_min:.2f}~{msg.x_max:.2f}][{msg.y_min:.2f}~{msg.y_max:.2f}]",
             throttle_duration_sec=2.0)
 
         # marker: full table box

@@ -1,2 +1,0 @@
-
-bool force_accepted

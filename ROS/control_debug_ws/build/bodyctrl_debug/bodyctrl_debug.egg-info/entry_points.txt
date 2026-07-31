@@ -1,3 +1,0 @@
-[console_scripts]
-bodyctrldebug = bodyctrl_debug.bodyctrldebug:main
-headkb = bodyctrl_debug.head_keyboard_control:main

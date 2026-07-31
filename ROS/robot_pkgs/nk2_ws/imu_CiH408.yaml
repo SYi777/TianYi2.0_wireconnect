@@ -1,4 +1,0 @@
-# name, canIds[], slaveId, channel, passages[], type, mode, rateWork, rateReq, direction, pos limit or not
-imu:
-  - [100, [1, 2, 3], 0, 0, [13, 14, 15], 0, 0, 400, 1000, 0, 0]  # 
-

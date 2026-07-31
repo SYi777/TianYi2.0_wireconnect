@@ -1,6 +1,0 @@
-setup.py
-eai_manipulator_msgs/__init__.py
-eai_manipulator_msgs.egg-info/PKG-INFO
-eai_manipulator_msgs.egg-info/SOURCES.txt
-eai_manipulator_msgs.egg-info/dependency_links.txt
-eai_manipulator_msgs.egg-info/top_level.txt

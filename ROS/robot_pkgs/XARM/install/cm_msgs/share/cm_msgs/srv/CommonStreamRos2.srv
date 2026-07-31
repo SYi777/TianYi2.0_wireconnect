@@ -1,8 +1,0 @@
-string  msg_id
-string  json_data
-uint8[] data
-
----
-
-bool    result
-string  info

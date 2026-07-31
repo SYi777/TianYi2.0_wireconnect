@@ -1,6 +1,0 @@
-int16 mode
-
----
-
-bool    result
-string  info

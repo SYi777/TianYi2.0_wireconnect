@@ -1,4 +1,0 @@
-source;share/freq_change/local_setup.bash
-source;share/freq_change/local_setup.dsv
-source;share/freq_change/local_setup.sh
-source;share/freq_change/local_setup.zsh

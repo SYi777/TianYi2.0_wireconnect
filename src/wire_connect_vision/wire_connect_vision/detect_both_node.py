@@ -246,26 +246,12 @@ class DetectBothNode(Node):
 
         # ── arm target assignment ─────────────────────────────────
         valid_plugs = [p for p in plugs if p.depth_valid]
-        # sort by Y coordinate: left arm (y large, most positive) first
-        valid_plugs.sort(key=lambda p: p.pose.position.y, reverse=True)
+        # sort by X (distance from robot, near → far), left arm only
+        valid_plugs.sort(key=lambda p: p.pose.position.x)
 
-        left_target = None
-        right_target = None
-
-        if len(valid_plugs) >= 2:
-            # leftmost → left arm, rightmost → right arm
+        if valid_plugs:
             left_target = self._make_arm_target(valid_plugs[0], "left")
-            right_target = self._make_arm_target(valid_plugs[-1], "right")
-        elif len(valid_plugs) == 1:
-            if self._default_arm == "left":
-                left_target = self._make_arm_target(valid_plugs[0], "left")
-            else:
-                right_target = self._make_arm_target(valid_plugs[0], "right")
-
-        if left_target is not None:
             self._pub_left.publish(left_target)
-        if right_target is not None:
-            self._pub_right.publish(right_target)
 
         # ── publish markers ───────────────────────────────────────
         publish_markers(self._pub_markers, markers)

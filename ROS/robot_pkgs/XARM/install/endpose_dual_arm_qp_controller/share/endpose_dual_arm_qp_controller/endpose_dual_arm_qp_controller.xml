@@ -1,9 +1,0 @@
-<library path="endpose_dual_arm_qp_controller">
-  <class name="endpose_dual_arm_qp_controller/EndposeDualArmQpController"
-         type="endpose_dual_arm_qp_controller::EndposeDualArmQpController" 
-         base_class_type="controller_interface::ControllerInterface">
-  <description>
-    endpose_dual_arm_qp_controller ros2_control controller.
-  </description>
-  </class>
-</library>

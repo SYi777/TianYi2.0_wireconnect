@@ -1,4 +1,0 @@
-string[] name
-float32[] angle_ratio
----
-bool angle_accepted

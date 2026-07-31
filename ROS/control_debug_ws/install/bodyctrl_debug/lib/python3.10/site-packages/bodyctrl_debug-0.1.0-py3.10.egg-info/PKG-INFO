@@ -1,7 +1,0 @@
-Metadata-Version: 2.1
-Name: bodyctrl_debug
-Version: 0.1.0
-Summary: body_control debug — sensor monitor and motor-level control
-Maintainer: SYi777
-License: MIT
-Requires-Dist: setuptools

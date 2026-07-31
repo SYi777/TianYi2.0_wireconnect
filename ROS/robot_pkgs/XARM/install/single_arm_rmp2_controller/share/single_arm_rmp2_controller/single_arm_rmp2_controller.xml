@@ -1,9 +1,0 @@
-<library path="single_arm_rmp2_controller">
-  <class name="single_arm_rmp2_controller/SingleArmRmp2Controller"
-         type="single_arm_rmp2_controller::SingleArmRmp2Controller" 
-         base_class_type="controller_interface::ControllerInterface">
-  <description>
-    single_arm_rmp2_controller ros2_control controller.
-  </description>
-  </class>
-</library>

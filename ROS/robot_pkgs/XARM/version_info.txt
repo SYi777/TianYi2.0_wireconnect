@@ -1,4 +1,0 @@
-product:XARM
-version:V1.2.27
-commit:EAI-manipulator/xarm_release,c6f1ebd375217d14b199884ad56e5fc99979cd20
-release_time:2026-04-15 02:51:02

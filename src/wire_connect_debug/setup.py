@@ -18,6 +18,8 @@ setup(
         "console_scripts": [
             "camera_view = wire_connect_debug.camera_view:main",
             "joint_relay = wire_connect_debug.joint_state_relay:main",
+            "keyboard_teleop = wire_connect_debug.keyboard_teleop:main",
+            "cartesian_debug = wire_connect_debug.cartesian_debug:main",
         ],
     },
 )

@@ -1,1 +1,0 @@
-string group_name
