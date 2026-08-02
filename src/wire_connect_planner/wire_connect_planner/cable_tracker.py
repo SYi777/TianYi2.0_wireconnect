@@ -17,7 +17,7 @@ import enum
 import rclpy
 from rclpy.node import Node
 
-from geometry_msgs.msg import Pose, Point, Quaternion
+from geometry_msgs.msg import Pose, Point, Quaternion, Vector3
 from moveit_msgs.srv import GetPositionIK, GetMotionPlan, GetCartesianPath
 from moveit_msgs.msg import (
     MotionPlanRequest, Constraints, JointConstraint, PositionIKRequest, RobotState,
@@ -37,6 +37,9 @@ ARM_R = [
 
 CARTESIAN_THRESHOLD = 0.05  # 5cm: below this skip OMPL, go straight Cartesian
 
+# TCP → gripper offset [x, y, z] in TCP frame (m), no rotation
+GRIPPER_OFFSET = [0.02, -0.15, -0.13]
+
 
 class State(enum.IntEnum):
     IDLE = 0
@@ -50,10 +53,10 @@ class CableTracker(Node):
         super().__init__("cable_tracker")
 
         self.declare_parameter("arm", "left")
-        self.declare_parameter("approach_z", 0.10)
-        self.declare_parameter("retry_max", 3)
-        self.declare_parameter("track_threshold", 0.03)
-        self.declare_parameter("occlusion_z_jump", 0.05)
+        self.declare_parameter("approach_z", 0.10)   # gripper 10cm above cable
+        self.declare_parameter("retry_max", 5)           # try 5 yaw offsets: 0°, ±5°, ±10°
+        self.declare_parameter("track_threshold", 0.015)  # 1.5cm trigger
+        self.declare_parameter("occlusion_z_jump", 0.15)  # 15cm before treating as occlusion
         self.declare_parameter("target_timeout", 3.0)
         self.declare_parameter("vel_scale", 0.3)
         self.declare_parameter("acc_scale", 0.3)
@@ -62,7 +65,10 @@ class CableTracker(Node):
         self.declare_parameter("cart_jump_thresh", 1.5)
         self.declare_parameter("block_timeout", 5.0)   # block failed plug for N seconds
         self.declare_parameter("frame", "waist_yaw_link")
+        self.declare_parameter("cartesian_threshold", CARTESIAN_THRESHOLD)
         self.declare_parameter("test_mode", False)
+        self.declare_parameter("plan_only", False)    # plan but don't execute
+        # TCP→gripper offset in TCP frame [dx, dy, dz] (m), no rotation
 
         self._arm = self.get_parameter("arm").value
         self._z_approach = self.get_parameter("approach_z").value
@@ -77,6 +83,9 @@ class CableTracker(Node):
         import tf2_ros
         self._tf_buf = tf2_ros.Buffer()
         self._tf_listener = tf2_ros.TransformListener(self._tf_buf, self)
+        # publish static TF: left_tcp_link → left_gripper_link (offset, no rotation)
+        self._tf_broadcaster = tf2_ros.TransformBroadcaster(self)
+        self.create_timer(0.1, self._publish_gripper_tf)
 
         # subscriber
         self._target = None
@@ -100,8 +109,8 @@ class CableTracker(Node):
         self._track_z = None
         self._test_done = False
         self._block_timeout = self.get_parameter("block_timeout").value
-        self._blocked_plugs = {}      # plug_id → block_start_time
-        self._plan_fail_start = None  # when current planning started failing
+        self._blocked_plugs = {}
+        self._plan_fail_start = None
 
         # two-phase trajectory buffer
         self._traj_ompl = None     # phase 1 trajectory
@@ -207,6 +216,20 @@ class CableTracker(Node):
                 self._retry = 0
                 self._busy = False
 
+    # ── TF: tcp → gripper ─────────────────────────────────────────
+    def _publish_gripper_tf(self):
+        from geometry_msgs.msg import TransformStamped
+        t = TransformStamped()
+        t.header.stamp = self.get_clock().now().to_msg()
+        t.header.frame_id = f"{self._arm}_tcp_link"
+        t.child_frame_id = f"{self._arm}_gripper_link"
+        o = GRIPPER_OFFSET
+        t.transform.translation.x = o[0]
+        t.transform.translation.y = o[1]
+        t.transform.translation.z = o[2]
+        t.transform.rotation.w = 1.0
+        self._tf_broadcaster.sendTransform(t)
+
     # ── planning entry ───────────────────────────────────────────────
     def _start_plan(self):
         """Decide: OMPL + Cartesian (two-phase) or Cartesian only (short distance)."""
@@ -251,13 +274,17 @@ class CableTracker(Node):
             self._call_ompl(goal, self._ompl_phase1_done)
             return
 
-        # vision mode: cable detection → approach above cable only (OMPL, keep TCP orientation)
-        approach_pose = Pose(
-            position=Point(x=target.pose.position.x,
-                           y=target.pose.position.y,
-                           z=target.cable_z + self._z_approach),
-            orientation=tcp.orientation,
-        )
+        # vision mode: gripper → cable + approach_z, TCP = gripper - R*offset
+        # rotate yaw on retry for ±10° tolerance
+        yaw_offsets = [0.0, math.radians(5), math.radians(-5),
+                       math.radians(10), math.radians(-10)]
+        yaw = target.cable_yaw + yaw_offsets[self._retry % len(yaw_offsets)]
+        target_ori = _palm_orientation(yaw)
+        ow = _rotate_vector(GRIPPER_OFFSET, target_ori)
+        tcp_target = Point(x=target.pose.position.x - ow[0],
+                           y=target.pose.position.y - ow[1],
+                           z=target.cable_z + self._z_approach)
+        approach_pose = Pose(position=tcp_target, orientation=target_ori)
         self._approach_pose = approach_pose
 
         dist = math.sqrt(
@@ -266,11 +293,11 @@ class CableTracker(Node):
             (approach_pose.position.z - tcp.position.z)**2)
 
         self.get_logger().info(
-            f"VISION  TCP [{tcp.position.x:.3f},{tcp.position.y:.3f},{tcp.position.z:.3f}] → "
+            f"VISION  cable [{target.pose.position.x:.3f},{target.pose.position.y:.3f},"
+            f"{target.cable_z:.3f}]  tcp [{tcp_target.x:.3f},{tcp_target.y:.3f},{tcp_target.z:.3f}]  "
             f"approach [{approach_pose.position.x:.3f},{approach_pose.position.y:.3f},"
-            f"{approach_pose.position.z:.3f}]  dist={dist:.3f}m  OMPL only")
+            f"{approach_pose.position.z:.3f}]  dist={dist:.3f}m  OMPL")
 
-        # OMPL only for now (Cartesian phase 2 pending finger joint fix)
         self._call_ompl(approach_pose, self._execute_trajectories)
 
     # ── OMPL phase ───────────────────────────────────────────────────
@@ -292,9 +319,9 @@ class CableTracker(Node):
             self._busy = False
             return
         self._ik_client.call_async(req).add_done_callback(
-            lambda f: self._ik_cb(f, done_cb))
+            lambda f: self._ik_cb(f, done_cb, goal_pose))
 
-    def _ik_cb(self, future, done_cb):
+    def _ik_cb(self, future, done_cb, goal_pose=None):
         result = future.result()
         if result is None or result.error_code.val != 1:
             code = result.error_code.val if result else 'None'
@@ -322,6 +349,21 @@ class CableTracker(Node):
         req.max_acceleration_scaling_factor = self.get_parameter("acc_scale").value
         req.start_state = RobotState(is_diff=True)
         req.goal_constraints = [Constraints(joint_constraints=jcs)]
+        # constrain workspace to region near current TCP + goal
+        tcp = self._get_tcp_pose()
+        if tcp is not None and goal_pose is not None:
+            margin = 0.15  # 15cm margin around start+goal
+            goal = goal_pose.position
+            req.workspace_parameters.min_corner = Vector3(
+                x=min(tcp.position.x, goal.x) - margin,
+                y=min(tcp.position.y, goal.y) - margin,
+                z=min(tcp.position.z, goal.z) - margin,
+            )
+            req.workspace_parameters.max_corner = Vector3(
+                x=max(tcp.position.x, goal.x) + margin,
+                y=max(tcp.position.y, goal.y) + margin,
+                z=max(tcp.position.z, goal.z) + margin,
+            )
 
         self.get_logger().info("OMPL planning with joint constraints...")
         if not self._plan_client.wait_for_service(timeout_sec=1.0):
@@ -415,6 +457,12 @@ class CableTracker(Node):
     def _execute_trajectories(self):
         """Concatenate OMPL + Cartesian trajectories and publish."""
         self._busy = False
+
+        if self.get_parameter("plan_only").value:
+            self.get_logger().info("plan_only: trajectory ready, not executing")
+            self._state = State.IDLE if self.get_parameter("test_mode").value else State.TRACKING
+            return
+
         self._state = State.EXECUTING
 
         # collect all points from both phases
@@ -474,12 +522,12 @@ class CableTracker(Node):
 # ── helpers ──────────────────────────────────────────────────────────
 
 def _palm_orientation(cable_yaw: float) -> Quaternion:
-    """TCP Z↓(palm∥table), TCP Y⊥cable direction."""
-    perp_yaw = cable_yaw + math.pi / 2
-    cy, sy = math.cos(perp_yaw), math.sin(perp_yaw)
-    x_dir = (-cy, -sy, 0.0)
-    y_dir = (cy, sy, 0.0)
-    z_dir = (0.0, 0.0, -1.0)
+    """TCP Y ↑ (⊥ table), TCP X ∥ cable, XZ ∥ table."""
+    cy, sy = math.cos(cable_yaw), math.sin(cable_yaw)
+    x_dir = (cy, sy, 0.0)         # TCP X ∥ cable in XY
+    y_dir = (0.0, 0.0, 1.0)       # TCP Y ↑ (world +Z)
+    # z_dir = cross(x, y) → right-hand frame
+    z_dir = (sy, -cy, 0.0)        # cross((cy,sy,0), (0,0,1))
     return _rotmat_to_quat(x_dir, y_dir, z_dir)
 
 
@@ -501,6 +549,21 @@ def _rotmat_to_quat(x, y, z) -> Quaternion:
         s = math.sqrt(1.0 + z[2] - x[0] - y[1]) * 2
         return Quaternion(w=(x[1] - y[0]) / s, x=(z[0] + x[2]) / s,
                           y=(z[1] + y[2]) / s, z=0.25 * s)
+
+
+def _rotate_vector(v: list, q: Quaternion) -> list:
+    """Rotate vector [x,y,z] by quaternion, return [x',y',z']."""
+    x, y, z = v[0], v[1], v[2]
+    qx, qy, qz, qw = q.x, q.y, q.z, q.w
+    # v' = q * v * q^-1
+    # t = 2 * cross(q.xyz, v)
+    # v' = v + q.w * t + cross(q.xyz, t)
+    tx = 2.0 * (qy * z - qz * y)
+    ty = 2.0 * (qz * x - qx * z)
+    tz = 2.0 * (qx * y - qy * x)
+    return [x + qw * tx + (qy * tz - qz * ty),
+            y + qw * ty + (qz * tx - qx * tz),
+            z + qw * tz + (qx * ty - qy * tx)]
 
 
 # ── main ─────────────────────────────────────────────────────────────

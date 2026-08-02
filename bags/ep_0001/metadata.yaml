@@ -1,0 +1,56 @@
+rosbag2_bagfile_information:
+  version: 5
+  storage_identifier: sqlite3
+  duration:
+    nanoseconds: 2635322208
+  starting_time:
+    nanoseconds_since_epoch: 1785485079302499071
+  message_count: 701
+  topics_with_message_count:
+    - topic_metadata:
+        name: /tcp_pose
+        type: geometry_msgs/msg/PoseStamped
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 132
+    - topic_metadata:
+        name: /arm_6dof_left
+        type: geometry_msgs/msg/WrenchStamped
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 265
+    - topic_metadata:
+        name: /camera_wrist/camera_wrist/color/image_rect_raw/compressed
+        type: sensor_msgs/msg/CompressedImage
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 79
+    - topic_metadata:
+        name: /camera_wrist_left/camera_wrist_left/color/image_rect_raw/compressed
+        type: sensor_msgs/msg/CompressedImage
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 79
+    - topic_metadata:
+        name: /inspire_hand/state/left_hand
+        type: sensor_msgs/msg/JointState
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 66
+    - topic_metadata:
+        name: /ob_camera_head/color/image_raw/compressed
+        type: sensor_msgs/msg/CompressedImage
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 80
+  compression_format: ""
+  compression_mode: ""
+  relative_file_paths:
+    - ep_0001_0.db3
+  files:
+    - path: ep_0001_0.db3
+      starting_time:
+        nanoseconds_since_epoch: 1785485079302499071
+      duration:
+        nanoseconds: 2635322208
+      message_count: 701

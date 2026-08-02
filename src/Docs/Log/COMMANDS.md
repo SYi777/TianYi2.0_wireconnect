@@ -1,6 +1,6 @@
 # WireConnect 命令速查
 
-> 最后更新: 2026-07-30
+> 最后更新: 2026-07-31
 
 ---
 
@@ -185,6 +185,80 @@ mkdir -p ~/jyh_ws/src/wire_connect_vision/vendor
 rm -rf ~/jyh_ws/src/wire_connect_vision/vendor/numpy*
 pip3 install --target ~/jyh_ws/src/wire_connect_vision/vendor /tmp/u_arm/numpy-1.26.4*.whl
 pip3 install --target ~/jyh_ws/src/wire_connect_vision/vendor /tmp/u_arm/ultralytics*.whl
+"
+```
+
+---
+
+---
+
+## 数据采集 (模仿学习)
+
+### AGX — 同步 + 构建
+
+```bash
+# 笔记本 → AGX (全量同步src)
+rsync -avz --exclude 'build/' --exclude 'install/' --exclude 'log/' \
+  ~/WireConnect_ws/src/ nvidia@192.168.41.2:~/jyh_ws/src/
+
+# AGX 构建
+ssh nvidia@192.168.41.2 "
+source /opt/ros/humble/setup.bash
+cd ~/jyh_ws && rm -rf build/ install/
+colcon build --symlink-install --packages-select wire_connect_msgs wire_connect_vision wire_connect_debug wire_connect_planner trajectory_bridge bodyctrl_msgs data_collect
+source install/setup.bash
+"
+```
+
+### AGX — 启动腕部相机
+
+```bash
+ssh nvidia@192.168.41.2
+source /opt/ros/humble/setup.bash && source ~/realsense_ros2_ws/install/setup.bash
+ros2 launch data_collect wrist_cameras.launch.py
+```
+
+### 笔记本 — 可视化 (SSH X转发)
+
+```bash
+ssh -X nvidia@192.168.41.2
+# 腕部右
+ros2 run rqt_image_view rqt_image_view /camera_wrist/camera_wrist/color/image_rect_raw --ros-args -p _image_transport:=compressed &
+
+# 腕部左
+ros2 run rqt_image_view rqt_image_view /camera_wrist_left/camera_wrist_left/color/image_rect_raw --ros-args -p _image_transport:=compressed &
+
+# 头部 (机器人端，只有raw)
+ros2 run rqt_image_view rqt_image_view /ob_camera_head/color/image_raw &
+```
+
+### AGX — 录制
+
+```bash
+source ~/jyh_ws/install/setup.bash
+ros2 run data_collect record_episode --ros-args -p obs_window:=5 -p output_dir:=$HOME/jyh_ws/bags
+```
+
+操作: `s` 开始 → 拖臂做动作 → `s` 停止 → `y` 保留 / `n` 丢弃
+
+### 笔记本 — 校验 + 转换
+
+```bash
+# 拖回数据
+scp -r nvidia@192.168.41.2:~/jyh_ws/bags/ep_0002 ~/WireConnect_ws/bags/
+
+# 校验
+source ~/WireConnect_ws/install/setup.bash
+ros2 run data_collect check_dataset ~/WireConnect_ws/bags/ep_0002 --obs-window 5
+
+# 转 LeRobot 格式
+ros2 run data_collect bag_to_lerobot ~/WireConnect_ws/bags/ep_0002 --output ~/lerobot_data --obs-window 5
+
+# 导出视频查看
+python3 -c "
+from data_collect.bag_to_lerobot import read_bag, decode_image
+streams = read_bag('~/WireConnect_ws/bags/ep_0002')
+# ... export frames as mp4
 "
 ```
 

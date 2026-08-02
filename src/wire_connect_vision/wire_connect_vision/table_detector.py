@@ -144,28 +144,15 @@ class TableDetector(Node):
 
         # Rules: table = 80cm depth(X) × 120cm width(Y), robot at long side centre
         TABLE_DEPTH = 0.8  # X (forward, away from robot along short side)
-        TABLE_WIDTH = 1.2  # Y (left-right, along long side)
+        TABLE_WIDTH = 1.7  # Y (left-right, along long side)
 
         x_min = edge_x
         x_max = edge_x + TABLE_DEPTH
         y_min = edge_y_center - TABLE_WIDTH / 2
         y_max = edge_y_center + TABLE_WIDTH / 2
 
-        # Z — use TF base→waist_yaw to compute table height relative to waist frame
-        table_z_ground = self.get_parameter("table_ground_z").value  # 0.75m by rules
-        try:
-            import tf2_geometry_msgs as tfg
-            from geometry_msgs.msg import PointStamped, Point
-            ps = PointStamped()
-            ps.header.frame_id = "base"
-            ps.point = Point()  # origin of base
-            t = self._tf_buf.lookup_transform(self._target, "base",
-                rclpy.time.Time(), timeout=rclpy.duration.Duration(seconds=0.5))
-            # base origin in target frame: z component = -waist_height
-            waist_z = -t.transform.translation.z  # positive value = base→waist height
-            table_z = table_z_ground - waist_z
-        except Exception:
-            table_z = edge_z  # fallback to detected
+        # Z — use detected depth edge points directly
+        table_z = float(edge_z)
 
         self._z_hist.append(table_z)
         self._x_hist.append((x_min, x_max))
@@ -184,7 +171,7 @@ class TableDetector(Node):
 
         self.get_logger().info(
             f"edge x={edge_x:.3f}  table: {TABLE_DEPTH:.1f}d×{TABLE_WIDTH:.1f}w m  "
-            f"z={msg.z:.3f}(ground={table_z_ground:.2f}m)  "
+            f"z={msg.z:.3f}(from depth)  "
             f"xy=[{msg.x_min:.2f}~{msg.x_max:.2f}][{msg.y_min:.2f}~{msg.y_max:.2f}]",
             throttle_duration_sec=2.0)
 
