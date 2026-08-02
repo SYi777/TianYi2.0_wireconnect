@@ -61,6 +61,16 @@ ros2 control switch_controllers --activate jointspace_arm_R_controller
 ros2 control list_controllers | grep jointspace_arm
 ```
 
+### 遥操左手 (同构臂 ZMQ)
+
+```bash
+# 笔记本 → 机器人同步脚本
+scp ~/WireConnect_ws/tools/zmq_hand_control.py ubuntu@172.16.17.214:~/
+
+# 机器人启动
+ssh ubuntu@172.16.17.214 "source /opt/ros/humble/setup.bash && python3 ~/zmq_hand_control.py"
+```
+
 ---
 
 ## 阶段3 — Orin (SSH nvidia@192.168.41.2)：视觉感知
