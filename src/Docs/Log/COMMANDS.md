@@ -61,13 +61,32 @@ ros2 control switch_controllers --activate jointspace_arm_R_controller
 ros2 control list_controllers | grep jointspace_arm
 ```
 
-### 遥操左手 (同构臂 ZMQ)
+### 遥操 (同构臂 ZMQ → bodyctrl)
 
 ```bash
-# 笔记本 → 机器人同步脚本
-scp ~/WireConnect_ws/tools/zmq_hand_control.py ubuntu@172.16.17.214:~/
+# 左手遥操
+source ~/WireConnect_ws/install/setup.bash
+python3 ~/WireConnect_ws/tools/zmq_teleop.py
 
-# 机器人启动
+# 右手遥操 + 录制 (空格=录/停/存)
+python3 ~/WireConnect_ws/tools/zmq_teleop_right.py
+
+# 右手回放 / 倒放
+python3 ~/WireConnect_ws/tools/zmq_teleop_right.py --replay \
+  ~/WireConnect_ws/src/trajectory_bridge/config/right_traj.json
+python3 ~/WireConnect_ws/tools/zmq_teleop_right.py --replay \
+  ~/WireConnect_ws/src/trajectory_bridge/config/right_traj.json --reverse
+```
+
+### 灵巧手控制 (键盘/手柄)
+
+```bash
+# 笔记本 (键盘模式，空格切换，DDS到机器人)
+source ~/WireConnect_ws/install/setup.bash
+python3 ~/WireConnect_ws/tools/zmq_hand_control.py --keyboard
+
+# 机器人端 (ZMQ手柄模式)
+scp ~/WireConnect_ws/tools/zmq_hand_control.py ubuntu@172.16.17.214:~/
 ssh ubuntu@172.16.17.214 "source /opt/ros/humble/setup.bash && python3 ~/zmq_hand_control.py"
 ```
 
@@ -165,21 +184,20 @@ ros2 run tf2_tools view_frames
 
 ---
 
-## Orin 同步 + 构建
+## AGX / Orin — 同步 + 构建
 
 ```bash
-# 笔记本 → Orin 同步代码 (排除 build/install/log)
+# 笔记本 → AGX (全量同步)
 rsync -avz --exclude 'build/' --exclude 'install/' --exclude 'log/' \
   ~/WireConnect_ws/src/ nvidia@192.168.41.2:~/jyh_ws/src/
+rsync -avz ~/WireConnect_ws/tools/ nvidia@192.168.41.2:~/jyh_ws/tools/
 
-# Orin 重建 (不删 vendor, 不删网线检测模型)
+# AGX 增量构建
 ssh nvidia@192.168.41.2 "
-source /opt/ros/humble/setup.bash
-cd ~/jyh_ws && rm -rf build/ install/
-colcon build --symlink-install --packages-select wire_connect_msgs wire_connect_vision wire_connect_debug
+source /opt/ros/humble/setup.bash && cd ~/jyh_ws
+colcon build --symlink-install --packages-select wire_connect_msgs wire_connect_vision wire_connect_debug wire_connect_planner trajectory_bridge bodyctrl_msgs data_collect
 source install/setup.bash
 "
-```
 
 ## Orin 离线依赖
 
@@ -202,44 +220,29 @@ pip3 install --target ~/jyh_ws/src/wire_connect_vision/vendor /tmp/u_arm/ultraly
 
 ---
 
-## 数据采集 (模仿学习)
 
-### AGX — 同步 + 构建
+### AGX — 启动全部相机 (头部 + 双腕)
 
 ```bash
-# 笔记本 → AGX (全量同步src)
-rsync -avz --exclude 'build/' --exclude 'install/' --exclude 'log/' \
-  ~/WireConnect_ws/src/ nvidia@192.168.41.2:~/jyh_ws/src/
-
-# AGX 构建
 ssh nvidia@192.168.41.2 "
 source /opt/ros/humble/setup.bash
-cd ~/jyh_ws && rm -rf build/ install/
-colcon build --symlink-install --packages-select wire_connect_msgs wire_connect_vision wire_connect_debug wire_connect_planner trajectory_bridge bodyctrl_msgs data_collect
-source install/setup.bash
+export ROS_DOMAIN_ID=0
+source /home/nvidia/orbbec_camera_ros2/install/setup.bash
+source /home/nvidia/realsense_ros2_ws/install/setup.bash
+source ~/jyh_ws/install/setup.bash
+ros2 launch wire_connect_debug start_all_cameras.launch.py
 "
-```
-
-### AGX — 启动腕部相机
-
-```bash
-ssh nvidia@192.168.41.2
-source /opt/ros/humble/setup.bash && source ~/realsense_ros2_ws/install/setup.bash
-ros2 launch data_collect wrist_cameras.launch.py
 ```
 
 ### 笔记本 — 可视化 (SSH X转发)
 
 ```bash
-ssh -X nvidia@192.168.41.2
-# 腕部右
-ros2 run rqt_image_view rqt_image_view /camera_wrist/camera_wrist/color/image_rect_raw --ros-args -p _image_transport:=compressed &
-
-# 腕部左
-ros2 run rqt_image_view rqt_image_view /camera_wrist_left/camera_wrist_left/color/image_rect_raw --ros-args -p _image_transport:=compressed &
-
-# 头部 (机器人端，只有raw)
-ros2 run rqt_image_view rqt_image_view /ob_camera_head/color/image_raw &
+# OpenCV 单窗口三路 (推荐, 15Hz JPEG压缩)
+ssh -X nvidia@192.168.41.2 "
+source /opt/ros/humble/setup.bash
+source ~/jyh_ws/install/setup.bash
+ros2 run wire_connect_debug multi_camera_view
+"
 ```
 
 ### AGX — 录制

@@ -20,7 +20,7 @@ def generate_launch_description():
             output="log",
         ),
 
-        # 2. joint_states 转发 (broadcaster/joint_states + inspire_hand → /joint_states)
+        # 2. joint_relay — 只转发body+arm，手指映射后续再修
         Node(
             package="wire_connect_debug",
             executable="joint_relay",

@@ -21,22 +21,23 @@ from rclpy.node import Node
 from sensor_msgs.msg import JointState
 
 
-# inspire hand index → URDF joint name (independent joints only)
+# inspire hand index → URDF joint name
+# 1=小指 2=无名指 3=中指 4=食指 5=拇指弯曲 6=拇指旋转
 LEFT_HAND_MAP = {
-    '1': 'left_thumb_1_joint',
-    '2': 'left_thumb_2_joint',
-    '3': 'left_index_1_joint',
-    '4': 'left_middle_1_joint',
-    '5': 'left_ring_1_joint',
-    '6': 'left_little_1_joint',
+    '1': 'left_little_1_joint',
+    '2': 'left_ring_1_joint',
+    '3': 'left_middle_1_joint',
+    '4': 'left_index_1_joint',
+    '5': 'left_thumb_1_joint',
+    '6': 'left_thumb_2_joint',
 }
 RIGHT_HAND_MAP = {
-    '1': 'right_thumb_1_joint',
-    '2': 'right_thumb_2_joint',
-    '3': 'right_index_1_joint',
-    '4': 'right_middle_1_joint',
-    '5': 'right_ring_1_joint',
-    '6': 'right_little_1_joint',
+    '1': 'right_little_1_joint',
+    '2': 'right_ring_1_joint',
+    '3': 'right_middle_1_joint',
+    '4': 'right_index_1_joint',
+    '5': 'right_thumb_1_joint',
+    '6': 'right_thumb_2_joint',
 }
 
 # mimic rules: (dependent_joint, source_joint, multiplier)
@@ -103,37 +104,23 @@ class JointStateRelay(Node):
         out.velocity = list(self._body_js.velocity) if self._body_js.velocity else [0.0] * len(out.name)
         out.effort = list(self._body_js.effort) if self._body_js.effort else [0.0] * len(out.name)
 
-        # merge left hand
-        for idx, jname in LEFT_HAND_MAP.items():
-            if idx in self._left_hand:
-                out.name.append(jname)
-                out.position.append(float(self._left_hand[idx]))
-                out.velocity.append(0.0)
-                out.effort.append(0.0)
-
-        # left mimic joints
-        for dep, src, mult in LEFT_MIMIC:
-            if src in out.name:
-                src_idx = out.name.index(src)
-                out.name.append(dep)
-                out.position.append(out.position[src_idx] * mult)
-                out.velocity.append(0.0)
-                out.effort.append(0.0)
-
-        # merge right hand
-        for idx, jname in RIGHT_HAND_MAP.items():
-            if idx in self._right_hand:
-                out.name.append(jname)
-                out.position.append(float(self._right_hand[idx]))
-                out.velocity.append(0.0)
-                out.effort.append(0.0)
-
-        # right mimic joints
-        for dep, src, mult in RIGHT_MIMIC:
-            if src in out.name:
-                src_idx = out.name.index(src)
-                out.name.append(dep)
-                out.position.append(out.position[src_idx] * mult)
+        # finger joints — publish 0 to silence move_group "missing" warnings
+        ALL_FINGER_JOINTS = [
+            "left_thumb_1_joint", "left_thumb_2_joint", "left_thumb_3_joint", "left_thumb_4_joint",
+            "left_index_1_joint", "left_index_2_joint",
+            "left_middle_1_joint", "left_middle_2_joint",
+            "left_ring_1_joint", "left_ring_2_joint",
+            "left_little_1_joint", "left_little_2_joint",
+            "right_thumb_1_joint", "right_thumb_2_joint", "right_thumb_3_joint", "right_thumb_4_joint",
+            "right_index_1_joint", "right_index_2_joint",
+            "right_middle_1_joint", "right_middle_2_joint",
+            "right_ring_1_joint", "right_ring_2_joint",
+            "right_little_1_joint", "right_little_2_joint",
+        ]
+        for j in ALL_FINGER_JOINTS:
+            if j not in out.name:
+                out.name.append(j)
+                out.position.append(0.0)
                 out.velocity.append(0.0)
                 out.effort.append(0.0)
 

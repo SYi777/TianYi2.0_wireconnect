@@ -12,7 +12,7 @@ Output structure:
       observation.images.wrist_l/episode_000000/000001.jpg
 
 Each row in parquet:
-  observation.state      — [tcp(7) + wrench(6) + hand(6)] = 19 dims, repeated obs_window times
+  observation.state      — [tcp(7) + wrench(6)] = 13 dims, repeated obs_window times
   action                 — [tcp(7)] target TCP pose
   episode_index          — 0
   frame_index            — 0, 1, 2, ...
@@ -30,15 +30,14 @@ import cv2
 from rosbag2_py import SequentialReader, StorageOptions, ConverterOptions
 from rclpy.serialization import deserialize_message
 
-from sensor_msgs.msg import Image as ImageMsg, CompressedImage, JointState
+from sensor_msgs.msg import Image as ImageMsg
 from geometry_msgs.msg import WrenchStamped, PoseStamped
 
 
-TOPIC_HEAD  = "/ob_camera_head/color/image_raw/compressed"
+TOPIC_HEAD  = "/ob_camera_head/color/image_raw"
 TOPIC_WRIST_R = "/camera_wrist/camera_wrist/color/image_rect_raw"
 TOPIC_WRIST_L = "/camera_wrist_left/camera_wrist_left/color/image_rect_raw"
 TOPIC_FT     = "/arm_6dof_left"
-TOPIC_HAND   = "/inspire_hand/state/left_hand"
 TOPIC_TCP    = "/tcp_pose"
 
 CAMERA_KEYS = ["head", "wrist_r", "wrist_l"]
@@ -60,23 +59,16 @@ def read_bag(bag_dir: str) -> dict:
 
 
 def decode_image(topic: str, msg_bytes: bytes):
-    """Decode raw msg bytes to BGR numpy array."""
-    if "compressed" in topic:
-        img_msg = deserialize_message(msg_bytes, CompressedImage)
-        # compressed image data is in array.array format
-        data = bytes(img_msg.data) if hasattr(img_msg.data, 'tobytes') else bytes(img_msg.data)
-        return cv2.imdecode(np.frombuffer(data, np.uint8), cv2.IMREAD_COLOR)
+    """Decode raw Image msg bytes to BGR numpy array."""
+    img_msg = deserialize_message(msg_bytes, ImageMsg)
+    data = bytes(img_msg.data)
+    if img_msg.encoding == "rgb8":
+        frame = np.frombuffer(data, np.uint8).reshape(img_msg.height, img_msg.width, 3)
+        return cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+    elif img_msg.encoding == "bgr8":
+        return np.frombuffer(data, np.uint8).reshape(img_msg.height, img_msg.width, 3)
     else:
-        img_msg = deserialize_message(msg_bytes, ImageMsg)
-        data = bytes(img_msg.data) if hasattr(img_msg.data, 'tobytes') else bytes(img_msg.data)
-        if img_msg.encoding == "rgb8":
-            frame = np.frombuffer(data, np.uint8).reshape(img_msg.height, img_msg.width, 3)
-            return cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
-        elif img_msg.encoding == "bgr8":
-            return np.frombuffer(data, np.uint8).reshape(img_msg.height, img_msg.width, 3)
-        else:
-            return np.frombuffer(data, np.uint8).reshape(img_msg.height, img_msg.width, -1)
-
+        return np.frombuffer(data, np.uint8).reshape(img_msg.height, img_msg.width, -1)
 
 def parse_tcp(msg_bytes: bytes) -> list:
     """Parse PoseStamped → [x, y, z, qx, qy, qz, qw]."""
@@ -92,13 +84,6 @@ def parse_ft(msg_bytes: bytes) -> list:
     return [f.x, f.y, f.z, t.x, t.y, t.z]
 
 
-def parse_hand(msg_bytes: bytes) -> list:
-    """Parse JointState (inspire hand) → 6 positions."""
-    msg = deserialize_message(msg_bytes, JointState)
-    return list(msg.position[:6]) if len(msg.position) >= 6 else \
-        list(msg.position) + [0.0] * (6 - len(msg.position))
-
-
 def align_frames(streams: dict) -> list:
     """Align all topics by timestamp, return sorted list of frames."""
     # Use head camera as master (30Hz). For each head frame, find closest
@@ -107,7 +92,6 @@ def align_frames(streams: dict) -> list:
     wrist_r = streams.get(TOPIC_WRIST_R, [])
     wrist_l = streams.get(TOPIC_WRIST_L, [])
     ft = streams.get(TOPIC_FT, [])
-    hand = streams.get(TOPIC_HAND, [])
     tcp = streams.get(TOPIC_TCP, [])
 
     frames = []
@@ -115,7 +99,7 @@ def align_frames(streams: dict) -> list:
         frame = {"stamp": h_stamp, "head": h_msg}
         # closest match within 50ms
         for key, stream in [("wrist_r", wrist_r), ("wrist_l", wrist_l),
-                            ("ft", ft), ("hand", hand), ("tcp", tcp)]:
+                            ("ft", ft), ("tcp", tcp)]:
             best = None
             for s, m in stream:
                 if abs(s - h_stamp) < 50_000_000:  # 50ms
@@ -158,13 +142,12 @@ def build_episode(frames: list, obs_window: int, output_dir: str, ep_idx: int):
                     img_path = os.path.join(img_dirs[cam_key], f"{idx:06d}.jpg")
                     cv2.imwrite(img_path, img, [cv2.IMWRITE_JPEG_QUALITY, 90])
 
-        # state vector: obs_window × [tcp(7) + ft(6) + hand(6)] = obs_window × 19
+        # state vector: obs_window × [tcp(7) + ft(6)] = obs_window × 13
         state = []
         for f in obs_frames:
             tcp_vec = parse_tcp(f.get("tcp", b"")) if "tcp" in f else [0.0]*7
             ft_vec  = parse_ft(f.get("ft", b"")) if "ft" in f else [0.0]*6
-            hand_vec = parse_hand(f.get("hand", b"")) if "hand" in f else [0.0]*6
-            state.extend(tcp_vec + ft_vec + hand_vec)
+            state.extend(tcp_vec + ft_vec)
 
         # action: target TCP pose
         action = parse_tcp(act_frame.get("tcp", b"")) if "tcp" in act_frame else [0.0]*7
@@ -218,7 +201,7 @@ def main():
         json.dump({
             "fps": args.fps,
             "obs_window": args.obs_window,
-            "state_dim": args.obs_window * 19,  # tcp(7) + ft(6) + hand(6) per obs frame
+            "state_dim": args.obs_window * 13,  # tcp(7) + ft(6) per obs frame
             "action_dim": 7,
             "camera_keys": CAMERA_KEYS,
         }, f, indent=2)

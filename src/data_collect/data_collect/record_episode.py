@@ -38,7 +38,6 @@ TOPIC_HEAD_CAMERA = "/ob_camera_head/color/image_raw"
 TOPIC_WRIST_LEFT  = "/camera_wrist_left/camera_wrist_left/color/image_rect_raw"
 TOPIC_WRIST_RIGHT = "/camera_wrist/camera_wrist/color/image_rect_raw"
 TOPIC_FT_LEFT     = "/arm_6dof_left"
-TOPIC_HAND_LEFT   = "/inspire_hand/state/left_hand"
 
 HEAD_MOTORS = {1: "roll", 2: "pitch", 3: "yaw"}
 
@@ -83,8 +82,6 @@ class RecordEpisode(Node):
         self.create_subscription(ImageMsg, TOPIC_WRIST_LEFT, self._cb_left, qos_img)
         self.create_subscription(ImageMsg, TOPIC_WRIST_RIGHT, self._cb_right, qos_img)
         self.create_subscription(WrenchStamped, TOPIC_FT_LEFT, self._cb_ft, 10)
-        self.create_subscription(JointState, TOPIC_HAND_LEFT, self._cb_hand, 10)
-
         # bag writer
         self._writer = None
         self._bag_path = ""
@@ -124,12 +121,6 @@ class RecordEpisode(Node):
         self._latest_ft = msg
         if self._recording and self._writer:
             self._writer.write(TOPIC_FT_LEFT, serialize_message(msg),
-                               self.get_clock().now().nanoseconds)
-
-    def _cb_hand(self, msg: JointState):
-        self._latest_hand = msg
-        if self._recording and self._writer:
-            self._writer.write(TOPIC_HAND_LEFT, serialize_message(msg),
                                self.get_clock().now().nanoseconds)
 
     def _tcp_timer(self):
@@ -176,8 +167,6 @@ class RecordEpisode(Node):
             TopicMetadata(name=TOPIC_WRIST_RIGHT, type="sensor_msgs/msg/Image",
                           serialization_format="cdr"),
             TopicMetadata(name=TOPIC_FT_LEFT, type="geometry_msgs/msg/WrenchStamped",
-                          serialization_format="cdr"),
-            TopicMetadata(name=TOPIC_HAND_LEFT, type="sensor_msgs/msg/JointState",
                           serialization_format="cdr"),
             TopicMetadata(name="/tcp_pose", type="geometry_msgs/msg/PoseStamped",
                           serialization_format="cdr"),

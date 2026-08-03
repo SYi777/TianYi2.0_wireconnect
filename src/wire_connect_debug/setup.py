@@ -21,6 +21,7 @@ setup(
             "keyboard_teleop = wire_connect_debug.keyboard_teleop:main",
             "cartesian_debug = wire_connect_debug.cartesian_debug:main",
             "gripper_tf = wire_connect_debug.gripper_tf_publisher:main",
+            "multi_camera_view = wire_connect_debug.multi_camera_view:main",
         ],
     },
 )

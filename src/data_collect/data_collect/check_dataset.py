@@ -18,8 +18,6 @@ EXPECTED = {
         "sensor_msgs/msg/Image",
     "/arm_6dof_left":
         "geometry_msgs/msg/WrenchStamped",
-    "/inspire_hand/state/left_hand":
-        "sensor_msgs/msg/JointState",
     "/tcp_pose":
         "geometry_msgs/msg/PoseStamped",
 }
@@ -65,14 +63,12 @@ def check_bag(bag_dir: str, obs_window: int = 5) -> dict:
     wrist_r_stamps = timestamps.get("/camera_wrist/camera_wrist/color/image_rect_raw", [])
     wrist_l_stamps = timestamps.get("/camera_wrist_left/camera_wrist_left/color/image_rect_raw", [])
     ft_stamps = timestamps.get("/arm_6dof_left", [])
-    hand_stamps = timestamps.get("/inspire_hand/state/left_hand", [])
     tcp_stamps = timestamps.get("/tcp_pose", [])
 
     report["stats"]["head_frames"] = len(head_stamps)
     report["stats"]["wrist_r_frames"] = len(wrist_r_stamps)
     report["stats"]["wrist_l_frames"] = len(wrist_l_stamps)
     report["stats"]["ft_samples"] = len(ft_stamps)
-    report["stats"]["hand_samples"] = len(hand_stamps)
     report["stats"]["tcp_samples"] = len(tcp_stamps)
 
     # overall duration

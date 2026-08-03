@@ -1,19 +1,23 @@
 #!/usr/bin/env python3
-"""ZMQ 手柄 → 左手控制 (机器人端)
+"""右手控制 — ZMQ手柄 或 键盘
 
-按键: Right_A 按下张开手，松开闭合手
-部署: ssh ubuntu@172.16.17.214 后 python3 zmq_hand_control.py
+Usage:
+    python3 zmq_hand_control.py              # ZMQ模式 (默认)
+    python3 zmq_hand_control.py --keyboard   # 键盘模式 (空格=切换张手/闭合, q=退出)
+
+部署: ssh ubuntu@172.16.17.214 后 python3 zmq_hand_control.py [--keyboard]
 """
 
 import os
+import sys
 import json
 import time
+import select
 import threading
 import signal
 
 os.environ["RCUTILS_LOGGING_USE_STDOUT"] = "0"
 
-import zmq
 import rclpy
 from rclpy.node import Node
 from rclpy.logging import LoggingSeverity
@@ -25,46 +29,25 @@ ZMQ_PORT = 5003
 BTN_A = 0  # Left first button
 
 JOINT_NAMES = ["1", "2", "3", "4", "5", "6"]
-PRESET_OPEN  = [0.10, 0.05, 0.75, 0.55, 0.65, 0.22]   # 张手 (thumb roll 22%)
-PRESET_CLOSE = [0.10, 0.05, 0.50, 0.50, 0.55, 0.22]   # 闭合 (thumb roll 22%)
+PRESET_OPEN  = [1.00, 1.00, 1.00, 0.85, 0.75, 0.16]   # 张手
+PRESET_CLOSE = [1.00, 1.00, 1.00, 0.55, 0.55, 0.16]   # 闭合
 
 
 class HandControlNode(Node):
     def __init__(self):
         super().__init__("zmq_hand_control")
         self.get_logger().set_level(LoggingSeverity.WARN)
-        self.pub = self.create_publisher(JointState, "/inspire_hand/ctrl/left_hand", 10)
-        self._angles = [0.0] * 6
-        self._lock = threading.Lock()
+        self.pub = self.create_publisher(JointState, "/inspire_hand/ctrl/right_hand", 10)
 
-    def send(self, angles=None):
-        if angles is not None:
-            self._angles = list(angles)
+    def send(self, angles: list):
         msg = JointState()
         msg.name = JOINT_NAMES
-        msg.position = list(self._angles)
+        msg.position = list(angles)
         self.pub.publish(msg)
 
-    def set_all(self, values: list):
-        """Set all 6 joints at once."""
-        self._angles = list(values)
-        self.send()
 
-    def step_to(self, idx: int, target: float, step: float, delay: float):
-        """Smoothly step one joint to target."""
-        cur = self._angles[idx]
-        while abs(cur - target) > 0.005:
-            cur = min(target, cur + step) if cur < target else max(target, cur - step)
-            self._angles[idx] = cur
-            self.send()
-            time.sleep(delay)
-
-
-def main():
-    rclpy.init()
-    hand = HandControlNode()
-    threading.Thread(target=rclpy.spin, args=(hand,), daemon=True).start()
-
+def run_zmq(hand: HandControlNode):
+    import zmq
     ctx = zmq.Context()
     sock = ctx.socket(zmq.SUB)
     sock.setsockopt(zmq.CONFLATE, 1)
@@ -72,25 +55,13 @@ def main():
     sock.connect(f"tcp://{ZMQ_IP}:{ZMQ_PORT}")
     sock.setsockopt(zmq.RCVTIMEO, 200)
 
-    running = True
-    def stop(sig, frame):
-        nonlocal running; running = False
-    signal.signal(signal.SIGINT, stop)
-    signal.signal(signal.SIGTERM, stop)
-
-    print("🎮 ZMQ 手柄 → 左手")
-    print(f"   Left[0] 按下 → 🖐️ 张手")
-    print(f"   Left[0] 松手 → ✊ 闭合")
-    print("等待按键...")
-
     was_pressed = False
-    hand.set_all(PRESET_CLOSE)
+    hand.send(PRESET_CLOSE)
 
     try:
-        while running and rclpy.ok():
-            pressed = was_pressed  # default keep current
+        while rclpy.ok():
+            pressed = was_pressed
             try:
-                # drain all ZMQ messages, keep latest button state
                 while True:
                     msg = sock.recv(zmq.NOBLOCK)
                     try:
@@ -103,20 +74,55 @@ def main():
             except zmq.Again:
                 pass
 
-            if pressed and not was_pressed:
-                print("🖐️ 张手")
-            elif not pressed and was_pressed:
-                print("✊ 闭合")
+            if pressed != was_pressed:
+                print("🖐️ 张手" if pressed else "✊ 闭合")
             was_pressed = pressed
-
-            hand.set_all(PRESET_OPEN if pressed else PRESET_CLOSE)
-            time.sleep(0.02)   # 50Hz send rate
+            hand.send(PRESET_OPEN if pressed else PRESET_CLOSE)
+            time.sleep(0.02)
     finally:
-        sock.close()
-        ctx.destroy()
-        hand.destroy_node()
-        rclpy.shutdown()
-        print("✅ 已退出")
+        sock.close(); ctx.destroy()
+
+
+def run_keyboard(hand: HandControlNode):
+    import tty, termios
+    fd = sys.stdin.fileno(); old = termios.tcgetattr(fd); tty.setcbreak(fd)
+    is_open = False
+    hand.send(PRESET_CLOSE)
+    print("⌨️ 键盘模式: 空格=切换张手/闭合  q=退出")
+    try:
+        while rclpy.ok():
+            rclpy.spin_once(hand, timeout_sec=0.02)
+            if select.select([sys.stdin], [], [], 0)[0]:
+                key = sys.stdin.read(1)
+                if key == ' ':
+                    is_open = not is_open
+                    print("🖐️ 张手" if is_open else "✊ 闭合")
+                elif key in ('q', '\x1b'):
+                    break
+            hand.send(PRESET_OPEN if is_open else PRESET_CLOSE)
+            time.sleep(0.02)
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old)
+
+
+def main():
+    rclpy.init()
+    hand = HandControlNode()
+
+    running = True
+    def stop(sig, frame):
+        nonlocal running; running = False
+    signal.signal(signal.SIGINT, stop)
+    signal.signal(signal.SIGTERM, stop)
+
+    if "--keyboard" in sys.argv:
+        run_keyboard(hand)
+    else:
+        print("🎮 ZMQ 手柄 → 左手 (空格切换, q退出)")
+        run_zmq(hand)
+
+    hand.destroy_node(); rclpy.try_shutdown()
+    print("✅ 已退出")
 
 
 if __name__ == "__main__":
