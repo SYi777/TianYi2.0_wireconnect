@@ -40,25 +40,25 @@ ros2 launch wire_connect_debug infrastructure.launch.py
 ## 阶段2 — 机器人 (SSH ubuntu@192.168.41.1)
 
 ```bash
+# 2.1 启动 body_control (电机驱动 + 灵巧手)
 source /opt/ros/humble/setup.bash
-source ~/XARM/install/setup.bash
+source /home/ubuntu/ros2ws/install/setup.bash
+ros2 launch body_control body.launch.py
 
-# 2.1 启动 body_control + XARM
+# 2.2 启动 XARM
+source /home/ubuntu/XARM/install/setup.bash
 ros2 launch tianyi2_bringup tianyi2.launch.py hardware:=real
 
-# 2.2 杀掉机器人 RSP（避免TF与笔记本冲突）
+# 2.3 杀掉机器人 RSP（避免TF与笔记本冲突）
 pkill -f robot_state_publisher
 
-# 2.3 手臂模式 + 使能
+# 2.4 手臂使能 (bodyctrl 遥操无需此步骤, XARM模式才需要)
 ros2 service call /EAIHardware/set_arm_mode eai_manipulator_msgs/srv/Mode "{mode: 3}"
-ros2 service call /EAIHardware/set_arm_enable std_srvs/srv/SetBool "data: true"
+ros2 service call /EAIHardware/set_arm_enable std_srvs/srv/SetBool "{data: true}"
 
-# 2.4 激活左/右臂关节控制器
+# 2.5 激活关节控制器 (bodyctrl 遥操无需此步骤)
 ros2 control switch_controllers --activate jointspace_arm_L_controller
 ros2 control switch_controllers --activate jointspace_arm_R_controller
-
-# 2.5 确认控制器 active
-ros2 control list_controllers | grep jointspace_arm
 ```
 
 ### 遥操 (同构臂 ZMQ → bodyctrl)
@@ -78,32 +78,38 @@ python3 ~/WireConnect_ws/tools/zmq_teleop_right.py --replay \
   ~/WireConnect_ws/src/trajectory_bridge/config/right_traj.json --reverse
 ```
 
-### 灵巧手控制 (键盘/手柄)
+### 灵巧手控制 (本地 DDS)
 
 ```bash
-# 笔记本 (键盘模式，空格切换，DDS到机器人)
+# 键盘模式 (空格切换张手/闭合)
 source ~/WireConnect_ws/install/setup.bash
 python3 ~/WireConnect_ws/tools/zmq_hand_control.py --keyboard
 
-# 机器人端 (ZMQ手柄模式)
-scp ~/WireConnect_ws/tools/zmq_hand_control.py ubuntu@172.16.17.214:~/
-ssh ubuntu@172.16.17.214 "source /opt/ros/humble/setup.bash && python3 ~/zmq_hand_control.py"
+# ZMQ手柄模式
+python3 ~/WireConnect_ws/tools/zmq_hand_control.py
 ```
 
 ---
 
-## 阶段3 — Orin (SSH nvidia@192.168.41.2)：视觉感知
+## 阶段3 — AGX (SSH nvidia@192.168.41.2)：视觉 + 相机
 
 ```bash
-source /opt/ros/humble/setup.bash
+# 3.1 启动全部相机 (头部Orbbec + 双腕D405)
+source /opt/ros/humble/setup.bash && export ROS_DOMAIN_ID=0
+source /home/nvidia/orbbec_camera_ros2/install/setup.bash
+source /home/nvidia/realsense_ros2_ws/install/setup.bash
 source ~/jyh_ws/install/setup.bash
-export PYTHONPATH=$HOME/jyh_ws/src/wire_connect_vision/vendor:$PYTHONPATH
+ros2 launch wire_connect_debug start_all_cameras.launch.py
 
-# 3.1 线缆+端口识别（YOLO双模型 + 深度 + TF → /vision/plugs, /vision/left_target）
+# 3.2 线缆+端口识别 (YOLO双模型 + 深度 + TF)
+export PYTHONPATH=$HOME/jyh_ws/src/wire_connect_vision/vendor:$PYTHONPATH
 ros2 launch wire_connect_vision detect_both.launch.py
 
-# 3.2 桌子识别（深度边缘 → /vision/table）
+# 3.3 桌子识别 (深度边缘 → /vision/table)
 ros2 run wire_connect_vision table_detector
+
+# 3.4 补 TF: head_roll_link → ob_camera_head_link (launch已包含, 手动补)
+# ros2 run tf2_ros static_transform_publisher 0.075 0.011 0.074 0 0 0 head_roll_link ob_camera_head_link &
 ```
 
 ---
