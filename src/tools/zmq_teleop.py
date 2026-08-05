@@ -201,12 +201,15 @@ def main():
                     state = "locked"; print(f"🔒 锁定 (锁定位={[f'{x:.2f}' for x in locked_pos]})")
                 elif state == "locked":
                     if in_reentry(hand_angles, locked_pos):
-                        state = "approaching"; print("✅ 重入遥操")
+                        start_angles = list(locked_pos); state = "approaching"
+                        print("✅ 重入遥操")
                     else:
                         print("⚠ 不在锁定区间, 无法启动遥操")
             btn_prev = pressed
 
-            if state == "locked": time.sleep(0.02); continue
+            if state == "locked":
+                if locked_pos: node.send(clamp_joints(locked_pos))  # 保持锁定, 不飘
+                time.sleep(0.02); continue
 
             if state == "waiting":
                 # first entry: check vs reference. re-entry: check vs locked_pos

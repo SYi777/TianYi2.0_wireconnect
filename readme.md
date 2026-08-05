@@ -10,7 +10,8 @@
 | 目录 | 内容 |
 |------|------|
 | `src/` | 全部 ROS2 包（统一工作空间） |
-| `tools/` | 工具脚本（ZMQ 遥操/调试/手柄桥接） |
+| `src/tools/` | 工具脚本（ZMQ 遥操/调试/手柄桥接） |
+| `compition/` | 比赛流程脚本 + 架构文档 |
 | `data_collector/` | Web 相机预览（UDP JPEG 流） |
 | `bags/` | 录制数据 |
 | `Docs/Log/` | 工程日志 + 命令速查 |
@@ -72,7 +73,7 @@ ros2 launch wire_connect_debug infrastructure.launch.py
 
 ```bash
 # 同步到机器人
-scp ~/WireConnect_ws/tools/zmq_hand_control.py ubuntu@172.16.17.214:~/
+scp ~/WireConnect_ws/src/tools/zmq_hand_control.py ubuntu@172.16.17.214:~/
 ```
 
 ## 录制数据

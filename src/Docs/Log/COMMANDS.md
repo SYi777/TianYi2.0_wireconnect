@@ -1,6 +1,6 @@
 # WireConnect 命令速查
 
-> 最后更新: 2026-07-31
+> 最后更新: 2026-08-03
 
 ---
 
@@ -61,20 +61,30 @@ ros2 control switch_controllers --activate jointspace_arm_L_controller
 ros2 control switch_controllers --activate jointspace_arm_R_controller
 ```
 
+### 比赛流程
+
+```bash
+# 初始化录制 (录左右臂轨迹)
+python3 ~/WireConnect_ws/compition/competition.py --mode init
+
+# 比赛运行 (回放+遥操+插入+返回循环)
+python3 ~/WireConnect_ws/compition/competition.py --mode compete
+```
+
 ### 遥操 (同构臂 ZMQ → bodyctrl)
 
 ```bash
 # 左手遥操
 source ~/WireConnect_ws/install/setup.bash
-python3 ~/WireConnect_ws/tools/zmq_teleop.py
+python3 ~/WireConnect_ws/src/tools/zmq_teleop.py
 
 # 右手遥操 + 录制 (空格=录/停/存)
-python3 ~/WireConnect_ws/tools/zmq_teleop_right.py
+python3 ~/WireConnect_ws/src/tools/zmq_teleop_right.py
 
 # 右手回放 / 倒放
-python3 ~/WireConnect_ws/tools/zmq_teleop_right.py --replay \
+python3 ~/WireConnect_ws/src/tools/zmq_teleop_right.py --replay \
   ~/WireConnect_ws/src/trajectory_bridge/config/right_traj.json
-python3 ~/WireConnect_ws/tools/zmq_teleop_right.py --replay \
+python3 ~/WireConnect_ws/src/tools/zmq_teleop_right.py --replay \
   ~/WireConnect_ws/src/trajectory_bridge/config/right_traj.json --reverse
 ```
 
@@ -83,10 +93,10 @@ python3 ~/WireConnect_ws/tools/zmq_teleop_right.py --replay \
 ```bash
 # 键盘模式 (空格切换张手/闭合)
 source ~/WireConnect_ws/install/setup.bash
-python3 ~/WireConnect_ws/tools/zmq_hand_control.py --keyboard
+python3 ~/WireConnect_ws/src/tools/zmq_hand_control.py --keyboard
 
 # ZMQ手柄模式
-python3 ~/WireConnect_ws/tools/zmq_hand_control.py
+python3 ~/WireConnect_ws/src/tools/zmq_hand_control.py
 ```
 
 ---
@@ -196,7 +206,7 @@ ros2 run tf2_tools view_frames
 # 笔记本 → AGX (全量同步)
 rsync -avz --exclude 'build/' --exclude 'install/' --exclude 'log/' \
   ~/WireConnect_ws/src/ nvidia@192.168.41.2:~/jyh_ws/src/
-rsync -avz ~/WireConnect_ws/tools/ nvidia@192.168.41.2:~/jyh_ws/tools/
+rsync -avz ~/WireConnect_ws/src/tools/ nvidia@192.168.41.2:~/jyh_ws/tools/
 
 # AGX 增量构建
 ssh nvidia@192.168.41.2 "
