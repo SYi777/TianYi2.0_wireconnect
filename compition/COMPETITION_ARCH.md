@@ -44,4 +44,84 @@
 
 ## 依赖
 
-bodyctrl + XARM(关节) + joint_relay + bridge + RSP + move_group
+## 完整启动流程 (从机器人开机)
+
+### 机器人 (SSH ubuntu@192.168.41.1)
+
+```bash
+# 0. 跳过自检
+sudo systemctl stop proc_manager.service
+
+# 1. body_control (电机驱动 + 灵巧手)
+source /opt/ros/humble/setup.bash
+source /home/ubuntu/ros2ws/install/setup.bash
+ros2 launch body_control body.launch.py
+
+# 2. XARM (仅关节状态, 不用于控制)
+source /home/ubuntu/XARM/install/setup.bash
+ros2 launch tianyi2_bringup tianyi2.launch.py hardware:=real
+
+# 3. 杀机器人RSP (避免TF冲突)
+pkill -f robot_state_publisher
+```
+
+### 笔记本
+
+```bash
+source /opt/ros/humble/setup.bash
+source ~/WireConnect_ws/install/setup.bash
+
+# 1. 基础设施 (joint_relay + bridge + TF)
+ros2 launch wire_connect_debug infrastructure.launch.py
+
+# 2. RSP (发布TF树)
+ros2 launch tianyi2_moveit_config rsp.launch.py
+
+# 3. move_group (IK + Cartesian)
+ros2 launch tianyi2_moveit_config move_group.launch.py
+```
+
+### 比赛脚本
+
+```bash
+# 初始化录制
+python3 ~/WireConnect_ws/compition/competition.py --mode init
+
+# 比赛运行
+python3 ~/WireConnect_ws/compition/competition.py --mode compete
+```
+
+### 一键启动 (三个终端)
+
+```bash
+# 终端1: 笔记本基础设施
+source ~/WireConnect_ws/install/setup.bash
+ros2 launch wire_connect_debug infrastructure.launch.py
+ros2 launch tianyi2_moveit_config rsp.launch.py
+ros2 launch tianyi2_moveit_config move_group.launch.py
+
+# 终端2: 机器人 (SSH)
+ssh ubuntu@192.168.41.1 "
+source /opt/ros/humble/setup.bash
+source /home/ubuntu/ros2ws/install/setup.bash
+ros2 launch body_control body.launch.py &
+source /home/ubuntu/XARM/install/setup.bash
+ros2 launch tianyi2_bringup tianyi2.launch.py hardware:=real &
+sleep 5
+pkill -f robot_state_publisher
+"
+
+# 终端3: 比赛
+python3 ~/WireConnect_ws/compition/competition.py --mode compete
+```
+
+### 依赖链
+
+```
+机器人: body_control → XARM(关节) → joint_relay(笔记本) → /joint_states
+                                                              ↓
+笔记本: RSP(URDF→TF) ← move_group(/compute_ik, /compute_cartesian_path)
+                                                              ↓
+比赛:   ZMQ(同构臂) → competition.py → bodyctrl /arm/cmd_pos → 电机
+                              └─→ /inspire_hand/ctrl/right_hand → 灵巧手
+```
