@@ -606,7 +606,8 @@ def _teleop_loop(node, sock, right_traj, left_traj):
         if locked:
             if getattr(node, '_right_at_target', False):
                 node.send_right(right_traj[-1])
-            jx = float(joy[0]) if len(joy)>0 and abs(float(joy[0])) > JOY_DEADBAND else 0.0
+            # 手柄左右方向与base X相反，取负号使操作方向符合直觉。
+            jx = -float(joy[0]) if len(joy)>0 and abs(float(joy[0])) > JOY_DEADBAND else 0.0
             jy = float(joy[1]) if len(joy)>1 and abs(float(joy[1])) > JOY_DEADBAND else 0.0
             dz = 0.0
             axial = total = lateral = float("nan")
