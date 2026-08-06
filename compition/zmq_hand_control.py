@@ -14,7 +14,6 @@ import json
 import time
 import select
 import threading
-import signal
 
 os.environ["RCUTILS_LOGGING_USE_STDOUT"] = "0"
 
@@ -29,8 +28,11 @@ ZMQ_PORT = 5003
 BTN_A = 0  # Left first button
 
 JOINT_NAMES = ["1", "2", "3", "4", "5", "6"]
-PRESET_OPEN  = [1.00, 1.00, 1.00, 0.85, 0.75, 0.16]   # 张手
-PRESET_CLOSE = [1.00, 1.00, 1.00, 0.55, 0.55, 0.16]   # 闭合
+# PRESET_OPEN  = [1.00, 1.00, 1.00, 0.85, 0.75, 0.16]   # 张手
+# PRESET_CLOSE = [1.00, 1.00, 1.00, 0.55, 0.55, 0.16]   # 闭合
+
+PRESET_OPEN  = [1.00, 1.00, 1.00, 0.80, 0.65, 0.05]   # 张手
+PRESET_CLOSE = [1.00, 1.00, 1.00, 0.70, 0.65, 0.05]   # 闭合
 
 
 class HandControlNode(Node):
@@ -79,6 +81,8 @@ def run_zmq(hand: HandControlNode):
             was_pressed = pressed
             hand.send(PRESET_OPEN if pressed else PRESET_CLOSE)
             time.sleep(0.02)
+    except KeyboardInterrupt:
+        pass
     finally:
         sock.close(); ctx.destroy()
 
@@ -97,7 +101,7 @@ def run_keyboard(hand: HandControlNode):
                 if key == ' ':
                     is_open = not is_open
                     print("🖐️ 张手" if is_open else "✊ 闭合")
-                elif key in ('q', '\x1b'):
+                elif key in ('q', '\x1b', '\x03'):
                     break
             hand.send(PRESET_OPEN if is_open else PRESET_CLOSE)
             time.sleep(0.02)
@@ -109,17 +113,14 @@ def main():
     rclpy.init()
     hand = HandControlNode()
 
-    running = True
-    def stop(sig, frame):
-        nonlocal running; running = False
-    signal.signal(signal.SIGINT, stop)
-    signal.signal(signal.SIGTERM, stop)
-
-    if "--keyboard" in sys.argv:
-        run_keyboard(hand)
-    else:
-        print("🎮 ZMQ 手柄 → 左手 (空格切换, q退出)")
-        run_zmq(hand)
+    try:
+        if "--keyboard" in sys.argv:
+            run_keyboard(hand)
+        else:
+            print("🎮 ZMQ 手柄 → 左手 (Ctrl+C 退出)")
+            run_zmq(hand)
+    except KeyboardInterrupt:
+        pass
 
     hand.destroy_node(); rclpy.try_shutdown()
     print("✅ 已退出")

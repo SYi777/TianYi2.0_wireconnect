@@ -61,6 +61,28 @@ ros2 control switch_controllers --activate jointspace_arm_L_controller
 ros2 control switch_controllers --activate jointspace_arm_R_controller
 ```
 
+### 比赛前必查：禁用 XARM 控制器抢占 /arm/cmd_pos
+
+> **根因**：XARM 的 EAIHardware 以 250Hz 向 `/arm/cmd_pos` 发布保持指令，
+> 覆盖 competition.py / zmq_teleop 的 ~20Hz 指令。
+> **症状**：固定位置附近振动、摇杆推不动。
+
+```bash
+# 1. 查看当前控制器状态
+ros2 control list_controllers
+
+# 2. 停用 XARM 关节控制器（释放 /arm/cmd_pos）
+ros2 control switch_controllers \
+  --deactivate jointspace_arm_L_controller jointspace_arm_R_controller \
+  --activate empty_L_controller empty_R_controller
+
+# 3. 确认 /arm/cmd_pos 发布者（应只剩 bodyctrl 相关节点）
+ros2 topic info /arm/cmd_pos --verbose
+
+# 4. 确认没有残留的遥操/比赛/规划进程
+pgrep -af "zmq_teleop|competition|cable_tracker"
+```
+
 ### 比赛流程
 
 ```bash
@@ -69,6 +91,14 @@ python3 ~/WireConnect_ws/compition/competition.py --mode init
 
 # 比赛运行 (回放+遥操+插入+返回循环)
 python3 ~/WireConnect_ws/compition/competition.py --mode compete
+```
+
+### 力控轴向标定 (确定插入方向向量 u)
+
+```bash
+source ~/WireConnect_ws/install/setup.bash
+python3 ~/WireConnect_ws/src/tools/calibrate_force_axis.py
+# → force_axis_cal.json 保存在同目录
 ```
 
 ### 遥操 (同构臂 ZMQ → bodyctrl)
