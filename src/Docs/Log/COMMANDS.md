@@ -83,13 +83,34 @@ ros2 topic info /arm/cmd_pos --verbose
 pgrep -af "zmq_teleop|competition|cable_tracker"
 ```
 
+### 比赛前必查：禁用 XARM 控制器抢占 /arm/cmd_pos
+
+> **根因**：XARM EAIHardware 以 250Hz 向 `/arm/cmd_pos` 发布保持指令，覆盖 competition.py 的 ~20Hz 指令。症状：固定位置附近振动、摇杆推不动。
+
+```bash
+ros2 control list_controllers
+ros2 control switch_controllers \
+  --deactivate jointspace_arm_L_controller jointspace_arm_R_controller
+ros2 topic info /arm/cmd_pos --verbose
+pgrep -af "zmq_teleop|competition|cable_tracker"
+```
+
+### 力控轴向标定 (确定插入方向向量 u)
+
+```bash
+source ~/WireConnect_ws/install/setup.bash
+python3 ~/WireConnect_ws/src/tools/calibrate_force_axis.py
+# → 输出 force_axis_cal.json 到同目录
+# 需标定 2 次以上，u 夹角 < 10° 确认方向稳定
+```
+
 ### 比赛流程
 
 ```bash
 # 初始化录制 (录左右臂轨迹)
 python3 ~/WireConnect_ws/compition/competition.py --mode init
 
-# 比赛运行 (回放+遥操+插入+返回循环)
+# 比赛运行 (回放+遥操+恒力插入+返回循环)
 python3 ~/WireConnect_ws/compition/competition.py --mode compete
 ```
 

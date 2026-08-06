@@ -8,11 +8,10 @@
 | button.left[0] | compete | 夹爪开合(切换) |
 | button.left[1] | compete | 自锁↔插入模式切换 |
 | button.left[2] | compete遥操 | 右臂正放(到位) / 再按倒放(回悬垂) |
-| joystick.left XY | 插入 | TCP前后左右 |
-| button.right[0] | 插入 | TCP上 |
-| button.right[1] | 插入 | TCP下 |
-| scroll.left | 插入 | 绕TCP局部X旋转 |
-| scroll.right | 插入 | 绕基座Z旋转 |
+| joystick.left XY | 插入 | TCP精细XY（约6mm/s） |
+| button.right[0/1] | 插入手动模式 | TCP上/下（约6mm/s） |
+| button.right[2] | 插入 | 启动/退出1.2N恒力Z环 |
+| scroll.left/right | 插入 | 暂不使用，避免姿态变化破坏力基线 |
 
 ## init 模式
 
@@ -34,9 +33,15 @@
   │         [btn0] 夹爪  [btn2] 右臂倒放回悬垂
   │         [btn1] → 锁定位姿+朝向, 进入插入
   │
-  ├─ 插入: TCP位姿+朝向锁定不变
-  │         joystick+按钮+双scroll 微调
-  │         连续笛卡尔路径 (compute_cartesian_path)
+  ├─ 插入: 锁定当前TCP姿态 → 采集0.5s力基线
+  │         默认手动: joystick控制精细XY, 右键0/1控制Z
+  │         右键2启动恒力环: XY仍由人工控制, Z由六维力闭环控制
+  │         再按右键2退出恒力环，恢复手动Z
+  │         XY+Z合成为单次连续笛卡尔路径
+  │         恒力环: 总力4N/横向力3N触发2mm回退
+  │         手动Z: 轴向4N仅警告, 8N硬停；横向力仍为3N硬停
+  │         回退完成自动恢复手动Z；故障锁存时按右键2也可确认并恢复手动
+  │         Z软限位30mm只保持，不自动返回
   │         [btn0] 夹爪  [btn1] → 完成, 进入返回
   │
   └─ 返回: smoothstep回录制终点 → 倒放悬垂 → 循环
@@ -119,9 +124,12 @@ python3 ~/WireConnect_ws/compition/competition.py --mode compete
 
 ```
 机器人: body_control → XARM(关节) → joint_relay(笔记本) → /joint_states
+         └─→ /arm_6dof_left (100Hz六维力)
                                                               ↓
 笔记本: RSP(URDF→TF) ← move_group(/compute_ik, /compute_cartesian_path)
                                                               ↓
 比赛:   ZMQ(同构臂) → competition.py → bodyctrl /arm/cmd_pos → 电机
                               └─→ /inspire_hand/ctrl/right_hand → 灵巧手
 ```
+
+恒力插入还需 `src/tools/force_axis_cal.json`，每次进入插入模式都会重新采集当前姿态下的 `F₀`。
