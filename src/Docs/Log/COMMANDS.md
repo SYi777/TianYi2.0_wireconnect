@@ -172,7 +172,7 @@ source ~/WireConnect_ws/install/setup.bash
 
 # 遥操调试: 按键让同构臂跟随机械臂
 python3 ~/WireConnect_ws/src/tools/isomorphic_follow.py
-# f=左臂跟随 g=右臂跟随 s=双腕 1=张手 2=闭合 q=退出
+# 空格=开始/停止同步 q=退出
 ```
 
 ## 1.7 遥操 (同构臂 ZMQ → bodyctrl)

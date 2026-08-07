@@ -29,10 +29,15 @@ from sensor_msgs.msg import JointState
 
 # ═══════════════════════════════════════════════════════════
 ZMQ_IP, ZMQ_PORT = "192.168.41.100", 5003
+ISO_SYNC_HOST = "192.168.41.100"
+ISO_SYNC_PORT = 6003
+ISO_SYNC_HZ = 100.0
 CONFIG_DIR = os.path.expanduser("~/WireConnect_ws/config")
 WORKSPACE_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-FORCE_AXIS_FILE = os.path.join(
-    WORKSPACE_ROOT, "src", "tools", "force_axis_cal.json")
+FORCE_AXIS_FILES = [
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "force_axis_cal.json"),
+    os.path.join(WORKSPACE_ROOT, "src", "tools", "force_axis_cal.json"),
+]
 
 MOTOR_LEFT  = [11,12,13,14,15,16,17]
 MOTOR_RIGHT = [21,22,23,24,25,26,27]
@@ -64,6 +69,8 @@ PRESET_CLOSE = [1.00, 1.00, 1.00, 0.55, 0.55, 0.16]
 
 FORCE_XY_STEP = 0.0003  # 恒力插入时摇杆每周期XY步长(m)
 MANUAL_Z_STEP = 0.0003  # 手动Z每周期步长(m)
+ROT_STEP = 0.01         # 拨轮每单位旋转量(rad)
+SCROLL_CHANGE_EPS = 0.002
 CART_MAX_STEP = 0.002  # 连续笛卡尔路径内部插值步长(m)
 CART_JUMP_THRESHOLD = 1.5
 CART_MIN_FRACTION = 0.99
@@ -71,6 +78,7 @@ JOY_DEADBAND = 0.08  # 摇杆死区
 CART_MAX_JOINT_STEP = math.radians(10.0)
 RETURN_TRANSITION_SEC = 3.0
 RIGHT_RETURN_TRANSITION_SEC = 1.0
+RIGHT_REPLAY_JOIN_SEC = 0.5
 HANGING_TOL = math.radians(5.0)
 INSERT_LOOP_DT = 0.05
 HOLD_PERIOD = 0.2
@@ -81,8 +89,6 @@ FORCE_CONTACT = 0.8
 FORCE_CONTACT_FRAMES = 5
 FORCE_HARD_STOP = 4.0
 FORCE_LATERAL_STOP = 3.0
-MANUAL_AXIAL_WARN = 4.0
-MANUAL_AXIAL_HARD_STOP = 8.0
 FORCE_MAX_SPEED = 0.002       # m/s
 FORCE_GAIN = 0.0001           # m/(N·周期)
 FORCE_DEADBAND = 0.1
@@ -120,13 +126,18 @@ def check_safety(a, ref=REF_L):
 
 
 def _load_force_axis():
-    with open(FORCE_AXIS_FILE) as file:
+    force_axis_file = next(
+        (path for path in FORCE_AXIS_FILES if os.path.isfile(path)), None)
+    if force_axis_file is None:
+        raise FileNotFoundError(
+            "找不到力轴标定文件，已检查: " + ", ".join(FORCE_AXIS_FILES))
+    with open(force_axis_file) as file:
         data = json.load(file)
     axis = [float(value) for value in data["u"]]
     norm = math.sqrt(sum(value*value for value in axis))
     if norm < 1e-9:
         raise ValueError("force_axis_cal.json 中的 u 无效")
-    return [value / norm for value in axis]
+    return [value / norm for value in axis], force_axis_file
 
 
 def _force_components(force, baseline, axis):
@@ -300,6 +311,84 @@ class BodyCtrlNode(Node):
         except: return None
 
 
+class IsomorphicSyncController:
+    """在独立线程中以100Hz发送机器人关节状态给同构臂。"""
+    def __init__(self, node):
+        self._node = node
+        self._enabled = threading.Event()
+        self._stop = threading.Event()
+        self._ready = threading.Event()
+        self._stopped_ack = threading.Event()
+        self._stopped_ack.set()
+        self._thread = threading.Thread(
+            target=self._run, name="isomorphic_sync", daemon=True)
+        self._thread.start()
+        if not self._ready.wait(timeout=1.0):
+            raise RuntimeError("同构臂同步线程启动失败")
+
+    def _run(self):
+        context = zmq.Context()
+        publisher = context.socket(zmq.PUB)
+        publisher.setsockopt(zmq.LINGER, 0)
+        publisher.connect(f"tcp://{ISO_SYNC_HOST}:{ISO_SYNC_PORT}")
+        time.sleep(0.1)
+
+        def send_stop(repeats=3):
+            for _ in range(repeats):
+                publisher.send(json.dumps({
+                    "type": "get_xtele",
+                }).encode("utf-8"))
+                time.sleep(0.01)
+
+        # 主动清除工控机可能残留的反向同步状态。
+        send_stop(repeats=10)
+        self._ready.set()
+        was_syncing = False
+        last_stop_sent = 0.0
+        period = 1.0 / ISO_SYNC_HZ
+        try:
+            while not self._stop.is_set():
+                if self._enabled.is_set():
+                    left = self._node.get_left_joints(max_age=1.0)
+                    right = self._node.get_right_joints(max_age=1.0)
+                    if left is not None and right is not None:
+                        position = list(left) + list(right) + [0.0]
+                        publisher.send(json.dumps({
+                            "type": "sync_xtele",
+                            "position": position,
+                        }).encode("utf-8"))
+                        was_syncing = True
+                        self._stopped_ack.clear()
+                    self._stop.wait(period)
+                else:
+                    now = time.monotonic()
+                    if was_syncing or now - last_stop_sent >= 0.5:
+                        send_stop()
+                        was_syncing = False
+                        last_stop_sent = time.monotonic()
+                    self._stopped_ack.set()
+                    self._stop.wait(0.02)
+        finally:
+            if was_syncing:
+                send_stop()
+            self._stopped_ack.set()
+            publisher.close()
+            context.destroy()
+
+    def start(self):
+        self._stopped_ack.clear()
+        self._enabled.set()
+
+    def stop(self):
+        self._enabled.clear()
+        self._stopped_ack.wait(timeout=0.3)
+
+    def shutdown(self):
+        self.stop()
+        self._stop.set()
+        self._thread.join(timeout=1.0)
+
+
 def _send(pub, motors, angles, spd, cur):
     msg = CmdSetMotorPosition()
     msg.header.stamp.sec = 0; msg.header.stamp.nanosec = 0
@@ -352,6 +441,29 @@ def _normalize_quat(q):
     if norm < 1e-9:
         return None
     return [v / norm for v in q]
+
+
+def _quat_multiply(a, b):
+    ax, ay, az, aw = a
+    bx, by, bz, bw = b
+    return [
+        aw*bx + ax*bw + ay*bz - az*by,
+        aw*by - ax*bz + ay*bw + az*bx,
+        aw*bz + ax*by - ay*bx + az*bw,
+        aw*bw - ax*bx - ay*by - az*bz,
+    ]
+
+
+def _rotate_local_x(orientation, angle):
+    half = angle / 2.0
+    return _quat_multiply(
+        orientation, [math.sin(half), 0.0, 0.0, math.cos(half)])
+
+
+def _rotate_base_z(orientation, angle):
+    half = angle / 2.0
+    return _quat_multiply(
+        [0.0, 0.0, math.sin(half), math.cos(half)], orientation)
 
 
 def _nearest_equivalent(joints, seed):
@@ -518,12 +630,18 @@ def mode_compete(node, sock):
     fl = os.path.join(CONFIG_DIR, "left_traj.json")
     with open(fr) as f: rt = json.load(f)
     with open(fl) as f: lt = json.load(f)
-    node._force_axis = _load_force_axis()
+    node._force_axis, force_axis_file = _load_force_axis()
     print(
         "💪 加载力控轴向 u="
         f"[{node._force_axis[0]:+.3f},"
         f"{node._force_axis[1]:+.3f},"
-        f"{node._force_axis[2]:+.3f}]")
+        f"{node._force_axis[2]:+.3f}] "
+        f"({force_axis_file})")
+    if not hasattr(node, "_iso_sync"):
+        node._iso_sync = IsomorphicSyncController(node)
+    print(
+        f"🔄 同构臂反向同步已就绪 → "
+        f"{ISO_SYNC_HOST}:{ISO_SYNC_PORT} ({ISO_SYNC_HZ:.0f}Hz)")
 
     # 右臂由左手第三键手动正放/倒放，避免程序启动后立即运动。
     node._competition_right_traj = rt
@@ -546,11 +664,17 @@ def _teleop_loop(node, sock, right_traj, left_traj):
     start_angles = node.get_left_joints(max_age=2.0) or list(REF_L)
     last_sent = list(start_angles); state = "waiting"
     locked = False; locked_pos = None
+    lock_setup_failed = False
     hand_open = False
     btn_prev = [False]*5
     btn_right_prev = [False]*3
     insert_target = None
     insert_base_ori = None
+    insert_target_ori = None
+    scroll_baseline_l = None
+    scroll_baseline_r = None
+    last_rot_x = 0.0
+    last_rot_z = 0.0
     last_insert_sent = None
     last_hold_at = 0.0
     ik_warn_at = 0.0
@@ -561,10 +685,11 @@ def _teleop_loop(node, sock, right_traj, left_traj):
     force_backoff_goal_z = None
     force_status_at = 0.0
     force_warn_at = 0.0
-    force_fault_was_manual = False
     force_enabled = False
+    force_baseline_valid = False
     control_reason = "正常"
     b, r, joy = [], [], [0.0, 0.0]
+    scr_l, scr_r = 0.0, 0.0
 
     while rclpy.ok():
         # ZMQ drain
@@ -575,6 +700,9 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                 b = d.get("button",{}).get("left",[])
                 r = d.get("button",{}).get("right",[])
                 joy = d.get("joystick",{}).get("left",[0.0,0.0])
+                scroll = d.get("scroll", {})
+                scr_l = scroll.get("left", 0)
+                scr_r = scroll.get("right", 0)
                 if a and len(a)==7: hand_angles = [float(x) for x in a]
         except zmq.Again: pass
 
@@ -599,11 +727,37 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                     node.get_left_joints(max_age=2.0) or
                     node._last_left_command or
                     list(last_sent or start_angles))
-                reverse = getattr(node, '_right_at_target', False)
+                right_current = (
+                    node.get_right_joints(max_age=2.0) or
+                    node._last_right_command)
+                if right_current is not None:
+                    nearest = _nearest_trajectory_index(
+                        right_current, right_traj)
+                    join_diff = _joints_diff(
+                        right_current, right_traj[nearest])
+                    print(
+                        f"  右臂最近轨迹点 "
+                        f"{nearest}/{len(right_traj)-1}，"
+                        f"接入差值={math.degrees(join_diff):.1f}°")
+                    if join_diff > math.radians(1.0):
+                        _move_right_smooth(
+                            node, right_current, right_traj[nearest],
+                            RIGHT_REPLAY_JOIN_SEC)
+                else:
+                    nearest = int(getattr(
+                        node, '_right_traj_index', 0))
+                    print(
+                        f"⚠ 无右臂实时关节状态，使用记录轨迹点 {nearest}")
+
+                # 同一进程内沿用上次方向；重启后若已在终点则自动倒放。
+                reverse = (
+                    getattr(node, '_right_at_target', False) or
+                    nearest >= len(right_traj) - 2)
                 print("◀ 左手第三键触发右臂倒放..." if reverse
                       else "▶ 左手第三键触发右臂正放...")
-                indexes = (range(len(right_traj)-1, -1, -1)
-                           if reverse else range(len(right_traj)))
+                indexes = (
+                    range(nearest, -1, -1)
+                    if reverse else range(nearest, len(right_traj)))
                 for frame, index in enumerate(indexes):
                     node.send_right(right_traj[index])
                     node._right_traj_index = index
@@ -635,63 +789,88 @@ def _teleop_loop(node, sock, right_traj, left_traj):
         # ── 自锁切换 ──
         if btn1 and not btn_prev[1]:
             if locked:
-                # 解锁 → 插入完成, 返回悬垂
-                print("✅ 插入完成 → 返回悬垂")
-                _return_to_hanging(node, left_traj, last_insert_sent or locked_pos)
+                # 解除机器人→同构臂反向同步，恢复同构臂→机器人遥操。
+                print("\n✅ 插入完成 → 切回正常同构臂遥操")
+                node._iso_sync.stop()
+                time.sleep(0.1)
+                latest_master = _recv_latest_master_left(
+                    sock, hand_angles)
+                locked = False
+                force_enabled = False
+                force_state = "IDLE"
+                force_baseline_valid = False
+                current = (
+                    node.get_left_joints(max_age=2.0) or
+                    list(last_insert_sent or locked_pos))
+                start_angles = list(current)
+                last_sent = list(current)
+                hand_angles = (
+                    list(latest_master)
+                    if latest_master is not None else list(current))
+                state = "approaching"
                 btn_prev[1] = btn1
-                return  # 退出内层循环, 外层 while 重新开始
+                print("🔄 已停止反向同步，左臂短步进吸收残差")
+                time.sleep(0.02)
+                continue
             else:
                 # 自锁当前TCP位姿，不再强制切换到固定插入朝向。
+                # 进入插入前确保同构臂反向同步已关闭。
+                node._iso_sync.stop()
                 locked_pos = node.get_left_joints(max_age=2.0) or list(last_sent or hand_angles)
                 tcp = node.get_tcp()
                 current_ori = _normalize_quat(tcp[3:7]) if tcp else None
                 if tcp is None or current_ori is None:
-                    print("⚠ 当前TCP获取失败，未进入插入模式")
+                    lock_setup_failed = True
+                    print(
+                        "⚠ 当前TCP获取失败，机器人保持关节锁定；"
+                        "再次按左手第二键重试")
                     node.send_left(locked_pos, spd=SPD_INSERT_L)
                 else:
+                    force_baseline = None
+                    force_baseline_valid = False
+                    insert_target = list(tcp[:3])
+                    insert_base_ori = current_ori
+                    insert_target_ori = list(current_ori)
+                    scroll_baseline_l = float(scr_l)
+                    scroll_baseline_r = float(scr_r)
+                    last_rot_x = 0.0
+                    last_rot_z = 0.0
+                    last_insert_sent = clamp(locked_pos)
+                    last_hold_at = time.monotonic()
+                    force_enabled = False
+                    force_state = "MANUAL"
+                    force_contact_count = 0
+                    force_start_z = tcp[2]
+                    force_backoff_goal_z = None
+                    force_status_at = 0.0
+                    lock_setup_failed = False
+                    control_reason = "纯手动控制（未启用六维力）"
+                    locked = True
+                    node._iso_sync.start()
+                    print("🔒 已锁定当前TCP姿态，进入纯手动插入")
+                    print("🔄 已切换为机器人→同构臂反向跟随")
                     print(
-                        "⏳ 采集当前姿态力基线 F₀："
-                        "请确保插头尚未接触插座并保持静止...")
-                    force_baseline, force_std = node.sample_force_baseline(0.5)
-                    if force_baseline is None or max(force_std) > 0.5:
-                        print(
-                            "⚠ 力基线采集失败或不稳定，未进入插入模式 "
-                            f"σ={force_std}")
-                        node.send_left(locked_pos, spd=SPD_INSERT_L)
-                    else:
-                        insert_target = list(tcp[:3])
-                        insert_base_ori = current_ori
-                        last_insert_sent = clamp(locked_pos)
-                        last_hold_at = time.monotonic()
-                        force_enabled = False
-                        force_state = "MANUAL"
-                        force_contact_count = 0
-                        force_start_z = tcp[2]
-                        force_backoff_goal_z = None
-                        force_status_at = 0.0
-                        control_reason = "正常"
-                        locked = True
-                        print(
-                            "🔒 已锁定当前TCP姿态，"
-                            f"F₀=[{force_baseline[0]:+.2f},"
-                            f"{force_baseline[1]:+.2f},"
-                            f"{force_baseline[2]:+.2f}]N")
-                        print(
-                            "🎮 共享插入: 摇杆=精细XY，"
-                            "右键0/1=手动Z上/下，"
-                            f"右键2=切换{FORCE_TARGET:.1f}N恒力环；"
-                            "拨轮暂禁")
+                        "🎮 共享插入: 摇杆=精细XY，拨轮=姿态，"
+                        "右键0/1=手动Z上/下，"
+                        f"右键2=切换{FORCE_TARGET:.1f}N恒力环")
         btn_prev[1] = btn1
+
+        if lock_setup_failed:
+            node.send_left(locked_pos, spd=SPD_INSERT_L)
+            time.sleep(INSERT_LOOP_DT)
+            continue
 
         # ── locked: 插入模式 ──
         if locked:
             if getattr(node, '_right_at_target', False):
                 node.send_right(right_traj[-1])
-            # 手柄左右方向与base X相反，取负号使操作方向符合直觉。
+            # 同构手柄XY与base平面方向均相反，两个轴全部取反。
             jx = -float(joy[0]) if len(joy)>0 and abs(float(joy[0])) > JOY_DEADBAND else 0.0
-            jy = float(joy[1]) if len(joy)>1 and abs(float(joy[1])) > JOY_DEADBAND else 0.0
+            jy = -float(joy[1]) if len(joy)>1 and abs(float(joy[1])) > JOY_DEADBAND else 0.0
             dz = 0.0
             axial = total = lateral = float("nan")
+            desired_orientation = insert_target_ori
+            orientation_changed = False
 
             if btnR2_edge:
                 if force_enabled:
@@ -708,46 +887,50 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                 elif force_state == "DEPTH_LIMIT":
                     print("\n⚠ 已到Z软限位，请先手动上升")
                 elif node.force_fresh():
-                    force_enabled = True
-                    force_state = "APPROACH"
-                    force_contact_count = 0
-                    control_reason = "寻找接触"
-                    print(
-                        f"\n💪 启动恒力环：接触阈值={FORCE_CONTACT:.1f}N，"
-                        f"目标={FORCE_TARGET:.1f}N")
+                    if not force_baseline_valid:
+                        print(
+                            "\n⏳ 姿态已改变，启动恒力前重新采集F₀；"
+                            "请确保尚未接触插座并保持静止...")
+                        force_baseline, force_std = (
+                            node.sample_force_baseline(0.5))
+                        force_baseline_valid = (
+                            force_baseline is not None and
+                            max(force_std) <= 0.5)
+                    if force_baseline_valid:
+                        force_enabled = True
+                        force_state = "APPROACH"
+                        force_contact_count = 0
+                        control_reason = "寻找接触"
+                        print(
+                            f"\n💪 启动恒力环："
+                            f"接触阈值={FORCE_CONTACT:.1f}N，"
+                            f"目标={FORCE_TARGET:.1f}N")
+                    else:
+                        print(
+                            f"\n⚠ 力基线重新采集失败 σ={force_std}，"
+                            "保持手动模式")
                 else:
                     print("\n⚠ 六维力数据未就绪，无法启动恒力环")
 
-            force = node.filtered_force()
-            if force is None or not node.force_fresh():
-                if force_state != "PAUSED":
-                    print("\n⚠ 六维力数据超时，暂停共享插入")
-                force_enabled = False
-                force_state = "PAUSED"
-                control_reason = "六维力数据超时"
-            else:
-                axial, total, lateral = _force_components(
-                    force, force_baseline, node._force_axis)
+            force_control_active = force_state in (
+                "APPROACH", "FORCE", "FAULT")
+            if force_control_active:
+                force = node.filtered_force()
+                if force is None or not node.force_fresh():
+                    if time.monotonic() - force_warn_at > 1.0:
+                        print(
+                            "\n⚠ 六维力数据超时，退出恒力环；"
+                            "手动控制继续可用")
+                        force_warn_at = time.monotonic()
+                    force_enabled = False
+                    if force_state in ("APPROACH", "FORCE"):
+                        force_state = "MANUAL"
+                        control_reason = "恒力退出，纯手动控制"
+                else:
+                    axial, total, lateral = _force_components(
+                        force, force_baseline, node._force_axis)
 
-                if force_state not in ("FAULT", "PAUSED", "DEPTH_LIMIT"):
-                    if force_state == "MANUAL":
-                        safety_trip = (
-                            abs(axial) >= MANUAL_AXIAL_HARD_STOP or
-                            lateral >= FORCE_LATERAL_STOP)
-                        reason = (
-                            f"手动轴向力={axial:.2f}N"
-                            if abs(axial) >= MANUAL_AXIAL_HARD_STOP
-                            else f"横向力={lateral:.2f}N")
-                        if (
-                            not safety_trip and
-                            abs(axial) >= MANUAL_AXIAL_WARN and
-                            time.monotonic() - force_warn_at > 1.0
-                        ):
-                            print(
-                                f"\n⚠ 手动压紧轴向力={axial:.2f}N，"
-                                f"{MANUAL_AXIAL_HARD_STOP:.1f}N时硬停")
-                            force_warn_at = time.monotonic()
-                    else:
+                    if force_state in ("APPROACH", "FORCE"):
                         safety_trip = (
                             total >= FORCE_HARD_STOP or
                             lateral >= FORCE_LATERAL_STOP)
@@ -755,67 +938,82 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                             f"|ΔF|={total:.2f}N"
                             if total >= FORCE_HARD_STOP
                             else f"横向力={lateral:.2f}N")
+                        if safety_trip:
+                            print(
+                                f"\n⛔ {reason}，自动回退"
+                                f"{FORCE_BACKOFF*1000:.0f}mm并退出恒力")
+                            force_enabled = False
+                            force_state = "FAULT"
+                            control_reason = reason
+                            force_backoff_goal_z = min(
+                                force_start_z,
+                                insert_target[2] + FORCE_BACKOFF)
 
-                    if safety_trip:
-                        print(f"\n⛔ {reason}，自动回退{FORCE_BACKOFF*1000:.0f}mm并暂停")
-                        force_fault_was_manual = force_state == "MANUAL"
-                        force_enabled = False
-                        force_state = "FAULT"
-                        control_reason = reason
-                        force_backoff_goal_z = min(
-                            force_start_z,
-                            insert_target[2] + FORCE_BACKOFF)
-
-                if force_state == "APPROACH":
-                    if axial >= FORCE_CONTACT:
-                        force_contact_count += 1
-                    else:
-                        force_contact_count = 0
-                    if force_contact_count >= FORCE_CONTACT_FRAMES:
-                        force_state = "FORCE"
-                        control_reason = "恒力环运行中"
-                        print(
-                            f"\n✅ 检测到接触，进入恒力模式 "
-                            f"F={axial:.2f}N")
-                    else:
-                        dz = -FORCE_MAX_SPEED * INSERT_LOOP_DT
-                elif force_state == "FORCE":
-                    error = FORCE_TARGET - axial
-                    if abs(error) > FORCE_DEADBAND:
-                        dz = -max(
-                            -FORCE_MAX_SPEED * INSERT_LOOP_DT,
-                            min(
-                                FORCE_MAX_SPEED * INSERT_LOOP_DT,
-                                FORCE_GAIN * error))
-                elif force_state == "FAULT" and force_backoff_goal_z is not None:
-                    remaining = force_backoff_goal_z - insert_target[2]
-                    force_is_safe = (
-                        (abs(axial) < MANUAL_AXIAL_HARD_STOP
-                         if force_fault_was_manual
-                         else total < FORCE_HARD_STOP) and
-                        lateral < FORCE_LATERAL_STOP)
-                    if (
-                        remaining <= 1e-6 and
-                        force_is_safe
+                    if force_state == "APPROACH":
+                        if axial >= FORCE_CONTACT:
+                            force_contact_count += 1
+                        else:
+                            force_contact_count = 0
+                        if force_contact_count >= FORCE_CONTACT_FRAMES:
+                            force_state = "FORCE"
+                            control_reason = "恒力环运行中"
+                            print(
+                                f"\n✅ 检测到接触，进入恒力模式 "
+                                f"F={axial:.2f}N")
+                        else:
+                            dz = -FORCE_MAX_SPEED * INSERT_LOOP_DT
+                    elif force_state == "FORCE":
+                        error = FORCE_TARGET - axial
+                        if abs(error) > FORCE_DEADBAND:
+                            dz = -max(
+                                -FORCE_MAX_SPEED * INSERT_LOOP_DT,
+                                min(
+                                    FORCE_MAX_SPEED * INSERT_LOOP_DT,
+                                    FORCE_GAIN * error))
+                    elif (
+                        force_state == "FAULT" and
+                        force_backoff_goal_z is not None
                     ):
-                        force_state = "MANUAL"
-                        force_backoff_goal_z = None
-                        control_reason = "超力回退完成"
-                        print("\n✅ 超力回退完成，自动恢复手动Z")
-                    else:
-                        dz = max(
-                            0.0,
-                            min(
-                                2.0 * FORCE_MAX_SPEED * INSERT_LOOP_DT,
-                                remaining))
-                elif force_state == "MANUAL":
-                    dz = (
-                        (MANUAL_Z_STEP if btnR0 else 0.0) -
-                        (MANUAL_Z_STEP if btnR1 else 0.0))
-                elif force_state == "DEPTH_LIMIT" and btnR0:
-                    dz = MANUAL_Z_STEP
-                    force_state = "MANUAL"
-                    control_reason = "已离开Z软限位"
+                        remaining = (
+                            force_backoff_goal_z - insert_target[2])
+                        force_is_safe = (
+                            total < FORCE_HARD_STOP and
+                            lateral < FORCE_LATERAL_STOP)
+                        if remaining <= 1e-6 and force_is_safe:
+                            force_state = "MANUAL"
+                            force_backoff_goal_z = None
+                            control_reason = "超力回退完成"
+                            print(
+                                "\n✅ 超力回退完成，自动恢复纯手动控制")
+                        else:
+                            dz = max(
+                                0.0,
+                                min(
+                                    2.0 * FORCE_MAX_SPEED *
+                                    INSERT_LOOP_DT,
+                                    remaining))
+            if force_state == "MANUAL":
+                dz = (
+                    (MANUAL_Z_STEP if btnR0 else 0.0) -
+                    (MANUAL_Z_STEP if btnR1 else 0.0))
+            elif force_state == "DEPTH_LIMIT" and btnR0:
+                dz = MANUAL_Z_STEP
+                force_state = "MANUAL"
+                control_reason = "已离开Z软限位"
+
+            if force_state == "MANUAL":
+                rot_x = (
+                    (float(scr_l) - scroll_baseline_l) * ROT_STEP
+                    if scroll_baseline_l is not None else 0.0)
+                rot_z = (
+                    (float(scr_r) - scroll_baseline_r) * ROT_STEP
+                    if scroll_baseline_r is not None else 0.0)
+                orientation_changed = (
+                    abs(rot_x - last_rot_x) > SCROLL_CHANGE_EPS or
+                    abs(rot_z - last_rot_z) > SCROLL_CHANGE_EPS)
+                if orientation_changed:
+                    desired_orientation = _rotate_base_z(
+                        _rotate_local_x(insert_base_ori, rot_x), rot_z)
 
             descent = force_start_z - insert_target[2]
             if (
@@ -836,7 +1034,9 @@ def _teleop_loop(node, sock, right_traj, left_traj):
             if not movement_enabled:
                 jx = jy = 0.0
 
-            has_motion = abs(jx)>0 or abs(jy)>0 or abs(dz)>1e-9
+            has_motion = (
+                abs(jx)>0 or abs(jy)>0 or abs(dz)>1e-9 or
+                orientation_changed)
             if has_motion:
                 # 单一Cartesian请求同时合成人工XY与自动恒力Z，姿态保持不变。
                 candidate_target = [
@@ -845,7 +1045,8 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                     insert_target[2] + dz,
                 ]
                 raw_path, fraction, service_reason = node.cartesian_path(
-                    candidate_target, insert_base_ori, seed=last_insert_sent)
+                    candidate_target, desired_orientation,
+                    seed=last_insert_sent)
                 path, jump = _validate_joint_path(
                     raw_path, last_insert_sent, CART_MAX_JOINT_STEP) if raw_path else (None, None)
                 if path and fraction >= CART_MIN_FRACTION:
@@ -856,8 +1057,14 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                             time.sleep(point_delay)
                     last_insert_sent = list(path[-1])
                     insert_target = candidate_target
+                    insert_target_ori = list(desired_orientation)
+                    if orientation_changed:
+                        last_rot_x = rot_x
+                        last_rot_z = rot_z
+                        force_baseline_valid = False
+                        control_reason = "姿态已改变，恒力启动时将重采F₀"
                     last_hold_at = time.monotonic()
-                    if force_state == "MANUAL":
+                    if force_state == "MANUAL" and not orientation_changed:
                         control_reason = "手动控制正常"
                     elif force_state == "APPROACH":
                         control_reason = "寻找接触"
@@ -865,7 +1072,7 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                         control_reason = "恒力环运行中"
                 elif time.monotonic() - ik_warn_at > 1.0:
                     detail = _diagnose_cartesian_failure(
-                        node, candidate_target, insert_base_ori,
+                        node, candidate_target, desired_orientation,
                         last_insert_sent, raw_path, path, jump,
                         fraction, service_reason)
                     print(f"\n⚠ 无法控制：{detail}；保持上一位置")
@@ -877,12 +1084,19 @@ def _teleop_loop(node, sock, right_traj, left_traj):
             now = time.monotonic()
             if now - force_status_at >= 0.5:
                 depth = (force_start_z - insert_target[2]) * 1000.0
-                print(
-                    f"\r💪 {force_state:11s} "
-                    f"F轴={axial:+4.2f}N |ΔF|={total:4.2f}N "
-                    f"F侧={lateral:4.2f}N Z={depth:5.1f}mm "
-                    f"原因={control_reason[:52]:52s}",
-                    end="", flush=True)
+                if force_state in ("APPROACH", "FORCE", "FAULT"):
+                    print(
+                        f"\r💪 {force_state:11s} "
+                        f"F轴={axial:+4.2f}N |ΔF|={total:4.2f}N "
+                        f"F侧={lateral:4.2f}N Z={depth:5.1f}mm "
+                        f"原因={control_reason[:52]:52s}",
+                        end="", flush=True)
+                else:
+                    print(
+                        f"\r🕹 {force_state:11s} "
+                        f"Z={depth:5.1f}mm 力控=OFF "
+                        f"原因={control_reason[:52]:52s}",
+                        end="", flush=True)
                 force_status_at = now
 
             # bodyctrl 只需低频刷新保持，不在静止时重复求 IK。
@@ -912,6 +1126,18 @@ def _teleop_loop(node, sock, right_traj, left_traj):
             continue
 
         time.sleep(0.01)
+
+
+def _recv_latest_master_left(sock, latest=None):
+    try:
+        while True:
+            data = json.loads(sock.recv(zmq.NOBLOCK).decode("utf-8"))
+            angles = data.get("arm", {}).get("position", {}).get("left")
+            if angles and len(angles) == 7:
+                latest = [float(value) for value in angles]
+    except (zmq.Again, json.JSONDecodeError, UnicodeDecodeError):
+        pass
+    return latest
 
 
 def _return_to_hanging(node, left_traj, start_hint):
@@ -990,12 +1216,15 @@ def _recover_competition_to_hanging(node):
         print("⚠ 比赛轨迹尚未加载，无法自动回收")
         return
 
+    sync = getattr(node, "_iso_sync", None)
+    if sync is not None:
+        sync.stop()
     print("🛟 Ctrl+C安全回收：先处理右臂")
     _right_return_to_hanging(node, right_traj)
 
     print("🛟 处理左臂")
     _left_return_to_hanging_nearest(node, left_traj)
-    print("✅ 双臂安全回收完成")
+    print("✅ 双臂已从各自最近轨迹点倒放回悬垂")
 
 
 # ═══════════════════ main ═══════════════════
@@ -1034,6 +1263,9 @@ def main():
                 print("\n⛔ 安全回收被用户中止")
     finally:
         sock.close(linger=0); ctx.destroy()
+        sync = getattr(node, "_iso_sync", None)
+        if sync is not None:
+            sync.shutdown()
         executor.shutdown()
         spin_thread.join(timeout=1.0)
         node.destroy_node(); rclpy.try_shutdown()
