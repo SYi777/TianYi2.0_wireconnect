@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""同构臂 ZMQ → 天轶左手遥操 + 右手自动初始化
+"""left_arm_teleop — 同构臂 ZMQ → 天轶左手遥操
 
 状态机:
   waiting    → 等同构臂数据
@@ -8,8 +8,8 @@
   locked     → 臂锁定, btn[1]回到锁定区间可重新跟随
 
 Usage:
-    python3 zmq_teleop.py
-    python3 zmq_teleop.py --no-right-init
+    python3 left_arm_teleop.py
+    python3 left_arm_teleop.py --no-right-init
 """
 
 import json, math, os, sys, time, threading, signal
@@ -50,7 +50,7 @@ JOINT_LIMITS = [
 
 class TeleopNode(Node):
     def __init__(self):
-        super().__init__("zmq_teleop")
+        super().__init__("left_arm_teleop")
         self._pub_l = self.create_publisher(CmdSetMotorPosition, "/arm/cmd_pos", 10)
     def send(self, angles, motors=MOTOR_LEFT, spd=SPD_LEFT, cur=CUR_LEFT):
         msg = CmdSetMotorPosition()
@@ -170,8 +170,7 @@ def main():
     time.sleep(0.5)  # discovery
 
     if "--no-right-init" not in sys.argv:
-        print("⚠ 右手已独立为 zmq_teleop_right.py, 请单独运行")
-        # goto_right_init removed — use zmq_teleop_right.py instead
+        print("⚠ 右手已独立为 right_arm_teleop.py, 请单独运行")
 
     ctx = zmq.Context(); sock = ctx.socket(zmq.SUB)
     sock.setsockopt(zmq.CONFLATE, 1); sock.setsockopt(zmq.SUBSCRIBE, b"")

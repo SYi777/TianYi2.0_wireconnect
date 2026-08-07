@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""ZMQ 数据监听调试 — 打印同构臂手柄发来的原始数据。
+"""zmq_monitor — ZMQ 数据监听，打印同构臂手柄发来的原始数据。
 
 Usage:
-    python3 zmq_debug.py [-p PORT] [-i IP]
+    python3 zmq_monitor.py [-p PORT] [-i IP]
 
 部署在机器人 (ssh ubuntu@192.168.41.1):
-    python3 zmq_debug.py
+    python3 zmq_monitor.py
 
 或在笔记本测试连通性:
-    python3 zmq_debug.py -i 192.168.41.100
+    python3 zmq_monitor.py -i 192.168.41.100
 """
 
 import argparse

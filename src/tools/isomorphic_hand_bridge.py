@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-机器人端运行: 同构臂按键 → 左手预设
+isomorphic_hand_bridge — 同构臂按键 → 左手预设 (机器人端)
 
 部署在机器人 x86 (192.168.41.1):
   ssh ubuntu@192.168.41.1

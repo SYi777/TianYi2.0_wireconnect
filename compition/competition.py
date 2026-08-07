@@ -90,6 +90,22 @@ FORCE_MAX_DESCENT = 0.03      # 仅软限位，达到后保持
 FORCE_BACKOFF = 0.002         # 超力后回退2mm
 FORCE_STALE_SEC = 0.1
 
+MOVEIT_ERROR_NAMES = {
+    1: "SUCCESS",
+    -1: "PLANNING_FAILED",
+    -2: "INVALID_MOTION_PLAN",
+    -6: "TIMED_OUT",
+    -10: "START_STATE_IN_COLLISION",
+    -12: "GOAL_IN_COLLISION",
+    -15: "INVALID_GROUP_NAME",
+    -17: "INVALID_ROBOT_STATE",
+    -18: "INVALID_LINK_NAME",
+    -21: "FRAME_TRANSFORM_FAILURE",
+    -22: "COLLISION_CHECKING_UNAVAILABLE",
+    -23: "ROBOT_STATE_STALE",
+    -31: "NO_IK_SOLUTION",
+}
+
 
 def _joints_diff(a, b):
     if a is None or b is None: return 999
@@ -221,13 +237,16 @@ class BodyCtrlNode(Node):
         msg = JointState(); msg.name = HAND_NAMES; msg.position = list(p)
         self._pub_hand.publish(msg)
 
-    def cartesian_path(self, pos, ori, seed):
-        """从seed连续规划到目标TCP，返回按ARM_J_L排序的关节路径与完成比例。"""
+    def cartesian_path(
+            self, pos, ori, seed, *,
+            avoid_collisions=True,
+            jump_threshold=CART_JUMP_THRESHOLD):
+        """返回连续关节路径、完成比例和MoveIt诊断原因。"""
         from geometry_msgs.msg import Point, Pose, Quaternion
         from moveit_msgs.msg import RobotState
         from moveit_msgs.srv import GetCartesianPath
         if not self._cartesian.wait_for_service(timeout_sec=0.5):
-            return None, 0.0
+            return None, 0.0, "服务 /compute_cartesian_path 不可用"
 
         req = GetCartesianPath.Request()
         req.header.frame_id = "waist_yaw_link"
@@ -241,29 +260,34 @@ class BodyCtrlNode(Node):
             position=Point(x=pos[0], y=pos[1], z=pos[2]),
             orientation=Quaternion(x=ori[0], y=ori[1], z=ori[2], w=ori[3]))]
         req.max_step = CART_MAX_STEP
-        req.jump_threshold = CART_JUMP_THRESHOLD
-        req.avoid_collisions = True
+        req.jump_threshold = jump_threshold
+        req.avoid_collisions = avoid_collisions
 
         future = self._cartesian.call_async(req)
         deadline = time.monotonic() + 1.0
         while rclpy.ok() and not future.done() and time.monotonic() < deadline:
             time.sleep(0.002)
         if not future.done():
-            return None, 0.0
+            return None, 0.0, "Cartesian服务响应超时"
         result = future.result()
-        if result is None or result.error_code.val != 1:
-            return None, float(result.fraction) if result else 0.0
+        if result is None:
+            return None, 0.0, "Cartesian服务返回空结果"
+        error_code = int(result.error_code.val)
+        if error_code != 1:
+            error_name = MOVEIT_ERROR_NAMES.get(
+                error_code, f"MoveIt错误码{error_code}")
+            return None, float(result.fraction), error_name
 
         trajectory = result.solution.joint_trajectory
         names = list(trajectory.joint_names)
         if not trajectory.points or not all(name in names for name in ARM_J_L):
-            return None, float(result.fraction)
+            return None, float(result.fraction), "轨迹为空或缺少左臂关节"
         indexes = [names.index(name) for name in ARM_J_L]
         path = [
             [float(point.positions[index]) for index in indexes]
             for point in trajectory.points
         ]
-        return path, float(result.fraction)
+        return path, float(result.fraction), "SUCCESS"
 
     def get_tcp(self):
         """Current TCP [x,y,z,qx,qy,qz,qw] in waist_yaw_link or None."""
@@ -362,6 +386,61 @@ def _validate_joint_path(path, seed, max_step):
         result.append(clamp(joints))
         previous = joints
     return result, largest_jump
+
+
+def _closest_joint_limit(joints):
+    closest = None
+    for i, value in enumerate(joints):
+        lo, hi = JOINT_LIMITS_L[i]
+        margin = min(value - lo, hi - value)
+        if closest is None or margin < closest[1]:
+            closest = (ARM_J_L[i], margin, value, lo, hi)
+    return closest
+
+
+def _diagnose_cartesian_failure(
+        node, target, orientation, seed,
+        raw_path, validated_path, jump, fraction, service_reason):
+    """只做诊断复算，不执行返回的无碰撞/无跳变保护轨迹。"""
+    if raw_path and validated_path is None:
+        if jump is None:
+            return "轨迹包含超出软件关节限位的解"
+        return (
+            f"IK分支跳变 {math.degrees(jump):.1f}° "
+            f"(允许上限{math.degrees(CART_MAX_JOINT_STEP):.1f}°)")
+
+    no_collision_path, no_collision_fraction, no_collision_reason = (
+        node.cartesian_path(
+            target, orientation, seed, avoid_collisions=False))
+    if no_collision_path and no_collision_fraction >= CART_MIN_FRACTION:
+        return (
+            "碰撞检查阻止运动 "
+            f"(关闭碰撞后fraction={no_collision_fraction:.3f})")
+
+    no_jump_path, no_jump_fraction, no_jump_reason = node.cartesian_path(
+        target, orientation, seed,
+        avoid_collisions=False, jump_threshold=0.0)
+    if no_jump_path and no_jump_fraction >= CART_MIN_FRACTION:
+        _, no_jump_size = _validate_joint_path(
+            no_jump_path, seed, CART_MAX_JOINT_STEP)
+        jump_text = (
+            f"，候选关节跳变={math.degrees(no_jump_size):.1f}°"
+            if no_jump_size is not None else "")
+        return f"接近奇异位或IK分支不连续{jump_text}"
+
+    closest = _closest_joint_limit(seed)
+    if closest and closest[1] < math.radians(8.0):
+        name, margin, value, lo, hi = closest
+        return (
+            f"关节接近限位: {name} 余量={math.degrees(margin):.1f}° "
+            f"当前={value:.3f} 范围=[{lo:.3f},{hi:.3f}]")
+
+    reasons = "/".join(dict.fromkeys([
+        service_reason, no_collision_reason, no_jump_reason]))
+    return (
+        "无连续IK解：可能处于奇异位、工作空间边界或目标不可达 "
+        f"(fraction={fraction:.3f}, no_collision={no_collision_fraction:.3f}, "
+        f"no_jump={no_jump_fraction:.3f}, {reasons})")
 
 
 # ═══════════════════ 初始化模式 ═══════════════════
@@ -484,6 +563,7 @@ def _teleop_loop(node, sock, right_traj, left_traj):
     force_warn_at = 0.0
     force_fault_was_manual = False
     force_enabled = False
+    control_reason = "正常"
     b, r, joy = [], [], [0.0, 0.0]
 
     while rclpy.ok():
@@ -589,6 +669,7 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                         force_start_z = tcp[2]
                         force_backoff_goal_z = None
                         force_status_at = 0.0
+                        control_reason = "正常"
                         locked = True
                         print(
                             "🔒 已锁定当前TCP姿态，"
@@ -616,11 +697,13 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                 if force_enabled:
                     force_enabled = False
                     force_state = "MANUAL"
+                    control_reason = "人工退出恒力环"
                     print("\n🕹 已退出恒力环，恢复手动Z")
                 elif force_state in ("FAULT", "PAUSED"):
                     force_enabled = False
                     force_state = "MANUAL"
                     force_backoff_goal_z = None
+                    control_reason = "故障已确认，手动模式"
                     print("\n✅ 已确认安全状态，恢复手动Z；再次按键可启动恒力环")
                 elif force_state == "DEPTH_LIMIT":
                     print("\n⚠ 已到Z软限位，请先手动上升")
@@ -628,6 +711,7 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                     force_enabled = True
                     force_state = "APPROACH"
                     force_contact_count = 0
+                    control_reason = "寻找接触"
                     print(
                         f"\n💪 启动恒力环：接触阈值={FORCE_CONTACT:.1f}N，"
                         f"目标={FORCE_TARGET:.1f}N")
@@ -640,6 +724,7 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                     print("\n⚠ 六维力数据超时，暂停共享插入")
                 force_enabled = False
                 force_state = "PAUSED"
+                control_reason = "六维力数据超时"
             else:
                 axial, total, lateral = _force_components(
                     force, force_baseline, node._force_axis)
@@ -676,6 +761,7 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                         force_fault_was_manual = force_state == "MANUAL"
                         force_enabled = False
                         force_state = "FAULT"
+                        control_reason = reason
                         force_backoff_goal_z = min(
                             force_start_z,
                             insert_target[2] + FORCE_BACKOFF)
@@ -687,6 +773,7 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                         force_contact_count = 0
                     if force_contact_count >= FORCE_CONTACT_FRAMES:
                         force_state = "FORCE"
+                        control_reason = "恒力环运行中"
                         print(
                             f"\n✅ 检测到接触，进入恒力模式 "
                             f"F={axial:.2f}N")
@@ -713,6 +800,7 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                     ):
                         force_state = "MANUAL"
                         force_backoff_goal_z = None
+                        control_reason = "超力回退完成"
                         print("\n✅ 超力回退完成，自动恢复手动Z")
                     else:
                         dz = max(
@@ -727,6 +815,7 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                 elif force_state == "DEPTH_LIMIT" and btnR0:
                     dz = MANUAL_Z_STEP
                     force_state = "MANUAL"
+                    control_reason = "已离开Z软限位"
 
             descent = force_start_z - insert_target[2]
             if (
@@ -737,6 +826,7 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                 dz = -max(0.0, FORCE_MAX_DESCENT - descent)
                 force_enabled = False
                 force_state = "DEPTH_LIMIT"
+                control_reason = "达到Z软限位"
                 print(
                     f"\n⚠ 达到Z软限位 {FORCE_MAX_DESCENT*1000:.1f}mm，"
                     "保持当前位置，不自动返回")
@@ -754,7 +844,7 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                     insert_target[1] + jy * FORCE_XY_STEP,
                     insert_target[2] + dz,
                 ]
-                raw_path, fraction = node.cartesian_path(
+                raw_path, fraction, service_reason = node.cartesian_path(
                     candidate_target, insert_base_ori, seed=last_insert_sent)
                 path, jump = _validate_joint_path(
                     raw_path, last_insert_sent, CART_MAX_JOINT_STEP) if raw_path else (None, None)
@@ -767,14 +857,21 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                     last_insert_sent = list(path[-1])
                     insert_target = candidate_target
                     last_hold_at = time.monotonic()
+                    if force_state == "MANUAL":
+                        control_reason = "手动控制正常"
+                    elif force_state == "APPROACH":
+                        control_reason = "寻找接触"
+                    elif force_state == "FORCE":
+                        control_reason = "恒力环运行中"
                 elif time.monotonic() - ik_warn_at > 1.0:
-                    if raw_path and path is None and jump is not None:
-                        detail = f"轨迹关节跳变 {math.degrees(jump):.1f}°"
-                    else:
-                        detail = f"Cartesian fraction={fraction:.3f}"
-                    print(f"⚠ 连续笛卡尔路径失败（{detail}），保持上一位置")
+                    detail = _diagnose_cartesian_failure(
+                        node, candidate_target, insert_base_ori,
+                        last_insert_sent, raw_path, path, jump,
+                        fraction, service_reason)
+                    print(f"\n⚠ 无法控制：{detail}；保持上一位置")
                     force_enabled = False
                     force_state = "PAUSED"
+                    control_reason = detail
                     ik_warn_at = time.monotonic()
 
             now = time.monotonic()
@@ -782,8 +879,9 @@ def _teleop_loop(node, sock, right_traj, left_traj):
                 depth = (force_start_z - insert_target[2]) * 1000.0
                 print(
                     f"\r💪 {force_state:11s} "
-                    f"Fz={axial:+4.2f}N |ΔF|={total:4.2f}N "
-                    f"F侧={lateral:4.2f}N Z={depth:5.1f}mm   ",
+                    f"F轴={axial:+4.2f}N |ΔF|={total:4.2f}N "
+                    f"F侧={lateral:4.2f}N Z={depth:5.1f}mm "
+                    f"原因={control_reason[:52]:52s}",
                     end="", flush=True)
                 force_status_at = now
 

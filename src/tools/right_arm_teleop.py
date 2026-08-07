@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""同构臂 ZMQ → 天轶右手遥操 + 录制轨迹
+"""right_arm_teleop — 同构臂 ZMQ → 天轶右手遥操 + 录制/回放
 
 Usage:
-    python3 zmq_teleop_right.py                    # 遥操+录制 (空格保存)
-    python3 zmq_teleop_right.py --replay <file>    # 回放录好的轨迹
+    python3 right_arm_teleop.py                    # 遥操+录制 (空格保存)
+    python3 right_arm_teleop.py --replay <file>    # 回放录好的轨迹
 """
 
 import json, math, os, sys, time, threading, signal, select, tty, termios
@@ -33,7 +33,7 @@ def check_safety(a):
 
 class RightTeleopNode(Node):
     def __init__(self):
-        super().__init__("zmq_teleop_right")
+        super().__init__("right_arm_teleop")
         self._pub = self.create_publisher(CmdSetMotorPosition, "/arm/cmd_pos", 10)
     def send(self, angles):
         msg = CmdSetMotorPosition()
