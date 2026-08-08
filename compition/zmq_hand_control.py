@@ -31,8 +31,8 @@ JOINT_NAMES = ["1", "2", "3", "4", "5", "6"]
 # PRESET_OPEN  = [1.00, 1.00, 1.00, 0.85, 0.75, 0.16]   # 张手
 # PRESET_CLOSE = [1.00, 1.00, 1.00, 0.55, 0.55, 0.16]   # 闭合
 
-PRESET_OPEN  = [1.00, 1.00, 1.00, 0.80, 0.60, 0.05]   # 张手
-PRESET_CLOSE = [1.00, 1.00, 1.00, 0.50, 0.60, 0.05]   # 闭合
+PRESET_OPEN  = [1.00, 1.00, 1.00, 0.80, 0.50, 0.15]   # 张手
+PRESET_CLOSE = [1.00, 1.00, 1.00, 0.50, 0.50, 0.15]   # 闭合
 
 
 class HandControlNode(Node):
@@ -40,6 +40,24 @@ class HandControlNode(Node):
         super().__init__("zmq_hand_control")
         self.get_logger().set_level(LoggingSeverity.WARN)
         self.pub = self.create_publisher(JointState, "/inspire_hand/ctrl/right_hand", 10)
+        # 设置力度为最大 (1.0 = 1000g)
+        from bodyctrl_msgs.srv import SetForce
+        self._force_cli = self.create_client(SetForce, "/inspire_hand/set_force/right_hand")
+
+    def set_force_max(self):
+        if not self._force_cli.wait_for_service(timeout_sec=1.0):
+            print("⚠ set_force 服务不可用，跳过力度设置")
+            return
+        from bodyctrl_msgs.srv import SetForce
+        req = SetForce.Request()
+        req.force0_ratio = 1.0
+        req.force1_ratio = 1.0
+        req.force2_ratio = 1.0
+        req.force3_ratio = 1.0
+        req.force4_ratio = 1.0
+        req.force5_ratio = 1.0
+        self._force_cli.call_async(req)
+        print("💪 力度已设为最大 (1000g)")
 
     def send(self, angles: list):
         msg = JointState()
@@ -112,6 +130,7 @@ def run_keyboard(hand: HandControlNode):
 def main():
     rclpy.init()
     hand = HandControlNode()
+    hand.set_force_max()
 
     try:
         if "--keyboard" in sys.argv:

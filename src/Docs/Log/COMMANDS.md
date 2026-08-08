@@ -83,7 +83,7 @@ source /opt/ros/humble/setup.bash
 source ~/WireConnect_ws/install/setup.bash
 
 # 力控轴向标定 (需 2 次以上, u 夹角 < 10° 确认方向稳定)
-python3 ~/WireConnect_ws/src/tools/calibrate_force_axis.py
+python3 ~/WireConnect_ws/compition/calibrate_force_axis.py
 # → force_axis_cal.json 保存在同目录
 
 # 初始化录制 (录左右臂轨迹)
@@ -128,7 +128,7 @@ python3 ~/WireConnect_ws/compition/competition.py --mode compete
 │ python3 ~/WireConnect_ws/compition/competition.py \   │
 │   --mode compete                                       │
 │                                                       │
-│ 需先 calibrate_force_axis.py → force_axis_cal.json    │
+│ 需先 compition/calibrate_force_axis.py → force_axis_cal.json    │
 └───────────────────────────────────────────────────────┘
 ```
 
@@ -196,13 +196,14 @@ python3 ~/WireConnect_ws/src/tools/right_arm_teleop.py --replay \
 ## 1.8 灵巧手控制
 
 ```bash
+source /opt/ros/humble/setup.bash
 source ~/WireConnect_ws/install/setup.bash
 
 # 键盘模式 (空格切换张手/闭合, q/ESC/Ctrl+C 退出)
-python3 ~/WireConnect_ws/src/tools/zmq_hand_control.py --keyboard
+python3 ~/WireConnect_ws/compition/zmq_hand_control.py --keyboard
 
 # ZMQ手柄模式
-python3 ~/WireConnect_ws/src/tools/zmq_hand_control.py
+python3 ~/WireConnect_ws/compition/zmq_hand_control.py
 ```
 
 ## 1.9 调试工具
@@ -352,7 +353,7 @@ source /opt/ros/humble/setup.bash
 source /home/ubuntu/ros2ws/install/setup.bash
 
 # 同步脚本到机器人
-scp ~/WireConnect_ws/src/tools/zmq_hand_control.py ubuntu@192.168.41.1:~/
+scp ~/WireConnect_ws/compition/zmq_hand_control.py ubuntu@192.168.41.1:~/
 
 # 运行
 ssh ubuntu@192.168.41.1 "source /opt/ros/humble/setup.bash && python3 ~/zmq_hand_control.py"

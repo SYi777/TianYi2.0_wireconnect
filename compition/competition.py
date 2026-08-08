@@ -45,14 +45,14 @@ ARM_J_L = ["shoulder_pitch_l_joint","shoulder_roll_l_joint","shoulder_yaw_l_join
            "elbow_pitch_l_joint","elbow_yaw_l_joint","wrist_pitch_l_joint","wrist_roll_l_joint"]
 ARM_J_R = ["shoulder_pitch_r_joint","shoulder_roll_r_joint","shoulder_yaw_r_joint",
            "elbow_pitch_r_joint","elbow_yaw_r_joint","wrist_pitch_r_joint","wrist_roll_r_joint"]
-SPD_L = 8.0; CUR_L = [20.0,15.0,6.0,6.0,6.0,4.0,4.0]
+SPD_L = 12.0; CUR_L = [20.0,15.0,6.0,6.0,6.0,4.0,4.0]
 SPD_R = 2.0; CUR_R = [8.0,6.0,4.0,4.0,4.0,3.0,3.0]
 SPD_INSERT_L = 3.0
 
 REF_L  = [0.026, 0.014, -0.202, -0.245, -0.038, 0.164, -0.144]
 REF_R  = [0.04, -0.032, 0.077, -0.258, 0.08, 0.247, -0.084]
 SAFE_TH = [math.radians(25)]*2 + [math.radians(30)]*3 + [math.radians(30)]*2
-APPROACH_STEP = 0.002
+APPROACH_STEP = 0.004
 
 JOINT_LIMITS_L = [
     (-2.96,2.96), (-0.262,2.616), (-2.96,2.96), (-2.61,0.261),
@@ -329,6 +329,7 @@ class IsomorphicSyncController:
     def _run(self):
         context = zmq.Context()
         publisher = context.socket(zmq.PUB)
+        publisher.setsockopt(zmq.SNDHWM, 1)
         publisher.setsockopt(zmq.LINGER, 0)
         publisher.connect(f"tcp://{ISO_SYNC_HOST}:{ISO_SYNC_PORT}")
         time.sleep(0.1)
